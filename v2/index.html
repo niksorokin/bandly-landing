@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Bandly is an AI-native accounting firm in Dubai. Automation collects and prepares; qualified accountants review before anything is filed.">
+<title>Bandly — Accounting you can actually follow</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+<style>
+/* ===== Gleap design tokens ===== */
+:root{
+  --canvas:#edede8;
+  --white:#ffffff;
+  --stone:#dbdbd2;
+  --pebble:#c0c0c0;
+  --graphite:#141414;
+  --charcoal:#292929;
+  --slate:#6f6f6e;
+  --ash:#8f8f8e;
+  --iron:#353535;
+  --quartz:#d0d0c8;
+  --lime:#4cc02b;
+  --hairline:#0000001f;
+  --amber:#b08900;
+  --font:'Switzer',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --r-card:12px;
+  --r-pill:200px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);
+  background:var(--canvas);
+  color:var(--charcoal);
+  font-size:19px;
+  line-height:1.4;
+  letter-spacing:-0.19px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+section{padding:72px 0}
+h1,h2,h3{font-weight:400;color:var(--charcoal)}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* unconfirmed-figure marker (claims gate) */
+.tbc{border-bottom:2px dashed var(--amber);text-underline-offset:4px;cursor:help}
+
+/* ===== Header ===== */
+.header{position:sticky;top:0;z-index:50;background:rgba(237,237,232,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.nav{display:flex;align-items:center;height:60px;gap:24px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:500;font-size:16px;color:var(--charcoal)}
+.brand i{width:12px;height:12px;border-radius:50%;background:var(--graphite);display:inline-block;position:relative}
+.brand i::after{content:"";position:absolute;right:-4px;top:-4px;width:6px;height:6px;border-radius:50%;background:var(--lime)}
+.nav-links{display:flex;gap:24px;margin:0 auto}
+.nav-links a{font-size:14px;color:var(--iron)}
+.nav-links a:hover{color:var(--charcoal)}
+.nav-cta{margin-left:auto}
+.menu-btn{display:none;font-size:14px;color:var(--iron);margin-left:auto}
+.mobile-nav{display:none;padding:12px 24px 18px;flex-direction:column;gap:14px;background:var(--canvas)}
+.mobile-nav a,.mobile-nav button{font-size:16px;color:var(--iron);text-align:left}
+
+/* ===== Pills ===== */
+.pill{display:inline-flex;align-items:center;justify-content:center;border-radius:var(--r-pill);font-size:16px;font-weight:400;line-height:1;padding:14px 24px;transition:transform .15s ease}
+.pill:active{transform:scale(.98)}
+.pill-dark{background:var(--graphite);color:#fff}
+.pill-stone{background:var(--stone);color:var(--charcoal)}
+.pill-sm{padding:11px 18px;font-size:14px}
+
+/* ===== Hero ===== */
+.hero{padding:96px 0 80px;text-align:center}
+.eyebrow{font-size:12px;letter-spacing:.14em;color:var(--slate);text-transform:uppercase;margin-bottom:24px}
+.hero h1{font-size:80px;line-height:1;letter-spacing:-1.6px;margin-bottom:24px}
+.hero .lead{max-width:640px;margin:0 auto 36px;color:var(--slate);font-size:19px;line-height:1.5}
+.hero-ctas{display:flex;gap:12px;justify-content:center;margin-bottom:72px}
+
+/* product visual — close-state card */
+.close-card{
+  background:var(--white);border-radius:var(--r-card);border:1px solid var(--hairline);
+  max-width:880px;margin:0 auto;padding:18px;text-align:left;
+}
+.close-head{display:flex;align-items:center;justify-content:space-between;padding:6px 6px 18px;border-bottom:1px solid var(--quartz)}
+.close-head b{font-weight:500;font-size:16px}
+.close-head span{font-size:12px;color:var(--ash);letter-spacing:.08em;text-transform:uppercase}
+.close-body{display:grid;grid-template-columns:1.2fr 1fr;gap:18px;padding-top:18px}
+.stat-row{display:flex;align-items:center;gap:12px;padding:12px 6px;border-bottom:1px solid var(--quartz);font-size:16px}
+.stat-row:last-child{border-bottom:none}
+.stat-row .n{font-weight:500;min-width:44px}
+.dot{width:8px;height:8px;border-radius:50%;flex:none}
+.dot-lime{background:var(--lime)}
+.dot-graphite{background:var(--graphite)}
+.dot-hollow{border:1.5px solid var(--graphite);background:transparent}
+.request-card{background:var(--stone);border-radius:var(--r-card);padding:18px;display:flex;flex-direction:column;gap:12px}
+.request-card .label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron)}
+.request-card p{font-size:16px;line-height:1.5}
+.request-card .pill{align-self:flex-start}
+.close-foot{padding:14px 6px 4px;font-size:14px;color:var(--slate);display:flex;align-items:center;gap:9px}
+.illustrative{font-size:12px;color:var(--ash);letter-spacing:.08em;text-transform:uppercase}
+
+/* ===== Section heads ===== */
+.section-head{max-width:640px;margin-bottom:48px}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.section-head .label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);margin-bottom:18px}
+.section-head h2{font-size:45px;line-height:1.2;letter-spacing:-0.45px;margin-bottom:18px}
+.section-head p{color:var(--slate)}
+
+/* ===== Steps ===== */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step{background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-card);padding:18px}
+.step .step-img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:6px;display:block;margin-bottom:18px}
+.step .num{font-size:14px;color:var(--ash);display:block;margin-bottom:12px}
+.step h3{font-size:27px;letter-spacing:-0.27px;margin-bottom:12px}
+.step p{font-size:16px;color:var(--slate);line-height:1.5}
+.caption{margin-top:24px;font-size:14px;color:var(--iron)}
+
+/* ===== Ledger ===== */
+.ledger{background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-card);overflow:hidden}
+.ledger-row{display:grid;grid-template-columns:40px 1fr 1.4fr;gap:24px;padding:24px;border-bottom:1px solid var(--quartz);align-items:center}
+.ledger-row:last-child{border-bottom:none}
+.ledger-row h3{font-size:23px;letter-spacing:-0.23px;font-weight:500}
+.ledger-row p{font-size:16px;color:var(--slate);line-height:1.5}
+
+/* ===== UAE ===== */
+.uae-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:start}
+.uae-list{list-style:none}
+.uae-list li{display:flex;gap:12px;padding:18px 0;border-bottom:1px solid var(--quartz);font-size:16px;color:var(--charcoal);line-height:1.5}
+.uae-list li:last-child{border-bottom:none}
+.uae-list .dot{margin-top:8px}
+
+/* ===== Segments ===== */
+.segments{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.segment{background:var(--stone);border-radius:var(--r-card);padding:24px}
+.segment h3{font-size:19px;font-weight:500;margin-bottom:9px}
+.segment p{font-size:16px;color:var(--iron);line-height:1.5}
+.segments-close{margin-top:24px;font-size:16px;color:var(--slate)}
+
+/* ===== Dark boundary ===== */
+.dark{background:var(--graphite);color:#fff;border-radius:24px;margin:0 24px;padding:96px 0}
+.dark .wrap{max-width:1000px}
+.dark h2{color:#fff;font-size:45px;line-height:1.2;letter-spacing:-0.45px;margin-bottom:60px;max-width:600px}
+.dark-rules{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+.dark-rule .num{color:#b8b8b2;font-size:14px;display:block;margin-bottom:24px}
+.dark-rule p{font-size:19px;line-height:1.5;color:#e8e8e4}
+
+/* ===== Reassurance ===== */
+.reassure{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.reassure-item{background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-card);padding:24px}
+.reassure-item .tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash);display:block;margin-bottom:18px}
+.reassure-item p{font-size:16px;color:var(--slate);line-height:1.5}
+
+/* ===== Pricing ===== */
+.pricing-card{background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-card);display:grid;grid-template-columns:1.1fr 1fr;overflow:hidden}
+.calc{padding:36px;border-right:1px solid var(--quartz)}
+.calc .label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash);display:block;margin-bottom:18px}
+.calc output{display:block;font-size:64px;line-height:.9;letter-spacing:-0.64px;margin:18px 0 6px}
+.calc output small{font-size:23px;letter-spacing:-0.23px;color:var(--slate)}
+.calc .tx{font-size:16px;color:var(--slate);margin-bottom:24px}
+.calc input[type=range]{width:100%;appearance:none;-webkit-appearance:none;height:6px;border-radius:3px;background:var(--stone);outline:none;margin:18px 0}
+.calc input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--graphite);cursor:pointer;border:none}
+.calc input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:var(--graphite);cursor:pointer;border:none}
+.calc .range-marks{display:flex;justify-content:space-between;font-size:14px;color:var(--slate);margin-top:6px}
+.calc .foot{margin-top:24px;font-size:14px;color:var(--slate);line-height:1.5}
+.included{padding:36px;background:var(--stone)}
+.included h3{font-size:16px;font-weight:500;margin-bottom:18px}
+.included ul{list-style:none}
+.included li{display:flex;gap:12px;align-items:flex-start;padding:9px 0;font-size:16px;color:var(--charcoal)}
+.included li svg{flex:none;margin-top:4px}
+.addons{padding:18px 36px;background:var(--stone);border-top:1px solid var(--quartz);font-size:14px;color:var(--iron);grid-column:1/-1}
+
+/* ===== Comparison ===== */
+.compare{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--r-card);overflow:hidden;border:1px solid var(--hairline)}
+.compare th,.compare td{padding:24px;text-align:left;font-size:16px;border-bottom:1px solid var(--quartz);vertical-align:top;line-height:1.5}
+.compare tr:last-child td{border-bottom:none}
+.compare thead th{font-size:14px;color:var(--ash);font-weight:400;letter-spacing:.04em}
+.compare thead th.us{color:var(--charcoal);font-weight:500}
+.compare td:first-child{color:var(--ash);font-size:14px;width:140px}
+.compare td.us{background:#f4f4ef;font-weight:500;color:var(--charcoal)}
+
+/* ===== FAQ ===== */
+.faq{max-width:800px;margin:0 auto}
+.faq details{border-bottom:1px solid var(--quartz)}
+.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;font-size:19px;letter-spacing:-0.19px;cursor:pointer}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .ic{flex:none;width:28px;height:28px;border-radius:50%;background:var(--stone);display:flex;align-items:center;justify-content:center;font-size:16px;transition:transform .2s}
+.faq details[open] summary .ic{transform:rotate(45deg)}
+.faq details p{padding:0 60px 24px 0;font-size:16px;color:var(--slate);line-height:1.6}
+
+/* ===== Closing ===== */
+.closing{text-align:center;padding:96px 0}
+.closing h2{font-size:64px;line-height:1;letter-spacing:-0.64px;margin-bottom:24px}
+.closing p{color:var(--slate);max-width:520px;margin:0 auto 36px}
+
+/* ===== Footer ===== */
+footer{border-top:1px solid var(--quartz);padding:48px 0 60px}
+.foot-grid{display:flex;justify-content:space-between;align-items:flex-start;gap:48px}
+.foot-brand{font-size:14px;color:var(--slate);max-width:280px;line-height:1.6}
+.foot-brand .brand{margin-bottom:12px}
+.foot-links{display:flex;gap:72px}
+.foot-links h4{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ash);font-weight:400;margin-bottom:14px}
+.foot-links ul{list-style:none}
+.foot-links li{margin-bottom:9px}
+.foot-links a{font-size:14px;color:var(--iron)}
+
+/* ===== Dialog ===== */
+dialog{border:none;border-radius:var(--r-card);padding:0;max-width:420px;width:calc(100% - 48px);background:var(--white);box-shadow:rgba(0,0,0,.3) 0 32px 68px}
+dialog::backdrop{background:rgba(20,20,20,.4)}
+.dialog-body{padding:30px}
+.dialog-body h3{font-size:23px;letter-spacing:-0.23px;margin-bottom:12px}
+.dialog-body p{font-size:16px;color:var(--slate);line-height:1.5;margin-bottom:24px}
+.dialog-body .row{display:flex;gap:12px}
+
+/* ===== Draft badge ===== */
+.draft-badge{position:fixed;left:18px;bottom:18px;z-index:60;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border:1px solid var(--hairline);border-radius:var(--r-pill);padding:9px 16px;font-size:12px;color:var(--iron)}
+.draft-badge b{color:var(--amber);font-weight:500}
+
+/* ===== Icon tiles (monoline on pebble, Gleap pattern) ===== */
+.tile{width:40px;height:40px;border-radius:50%;background:var(--pebble);display:flex;align-items:center;justify-content:center;flex:none;color:#292929}
+.tile svg{width:20px;height:20px;stroke-width:1.8}
+.step .tile{margin-bottom:24px}
+.segment .tile{margin-bottom:18px}
+.reassure-item .tile{margin-bottom:18px}
+
+/* ===== Dark figure ===== */
+.dark-figure{margin-top:60px}
+.dark-figure img{width:100%;height:auto;border-radius:var(--r-card);display:block;object-fit:cover;max-height:420px}
+.dark-figure figcaption{margin-top:12px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#b8b8b2}
+
+/* ===== Team ===== */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.person{background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-card);padding:24px;text-align:center}
+.person img{width:96px;height:96px;border-radius:9999px;object-fit:cover;display:block;margin:0 auto 18px}
+.person h3{font-size:19px;font-weight:500;margin-bottom:6px}
+.person .role{font-size:14px;color:var(--slate);line-height:1.5}
+
+/* ===== Testimonials ===== */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.quote{background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-card);padding:24px;display:flex;flex-direction:column;gap:18px}
+.quote .metric{align-self:flex-start;background:var(--stone);border-radius:var(--r-pill);padding:6px 14px;font-size:12px;letter-spacing:.04em;color:var(--iron)}
+.quote p{font-size:16px;color:var(--charcoal);line-height:1.6}
+.quote .who{display:flex;align-items:center;gap:12px;margin-top:auto}
+.quote .who img{width:44px;height:44px;border-radius:9999px;object-fit:cover}
+.quote .who b{display:block;font-size:14px;font-weight:500}
+.quote .who span{font-size:12px;color:var(--slate)}
+
+/* ===== Responsive ===== */
+@media(max-width:900px){
+  .draft-badge{position:static;margin:0 24px 24px;display:inline-block}
+  .team-grid,.quotes{grid-template-columns:1fr}
+  .hero h1{font-size:52px;letter-spacing:-0.02em}
+  .section-head h2,.dark h2{font-size:36px}
+  .closing h2{font-size:44px;letter-spacing:-0.02em}
+  .close-body,.uae-grid,.pricing-card{grid-template-columns:1fr}
+  .calc{border-right:none;border-bottom:1px solid var(--quartz)}
+  .steps,.segments,.reassure,.dark-rules{grid-template-columns:1fr}
+  .ledger-row{grid-template-columns:1fr;gap:9px}
+  .nav-links,.nav-cta{display:none}
+  .menu-btn{display:block}
+  .compare-wrap{overflow-x:auto}
+  .compare{min-width:760px}
+  .foot-grid{flex-direction:column}
+  .foot-links{gap:48px;flex-wrap:wrap}
+  section{padding:56px 0}
+  .hero{padding:60px 0}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="#top"><i aria-hidden="true"></i>Bandly</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#how">How it works</a>
+      <a href="#scope">Service</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <button class="pill pill-dark pill-sm nav-cta" data-dialog="demo" type="button">Book a demo</button>
+    <button class="menu-btn" type="button" aria-controls="mnav" aria-expanded="false">Menu</button>
+  </div>
+  <nav id="mnav" class="mobile-nav" aria-label="Mobile" hidden>
+    <a href="#how">How it works</a>
+    <a href="#scope">Service</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <button class="pill pill-dark pill-sm" data-dialog="demo" type="button">Book a demo</button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- 01 · Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">AI-native accounting firm · Dubai, UAE</p>
+      <h1>Accounting you can<br>actually follow.</h1>
+      <p class="lead">Send the documents you already have — email, WhatsApp, a shared drive. Bandly sorts, reconciles and prepares everything, asks for exactly what is missing, and puts important outputs through professional review before anything goes out.</p>
+      <div class="hero-ctas">
+        <button class="pill pill-dark" data-dialog="demo" type="button">Book a demo</button>
+        <a class="pill pill-stone" href="#pricing">See pricing</a>
+      </div>
+
+      <div class="close-card" aria-label="Illustrative monthly close state">
+        <div class="close-head"><b>July — monthly close</b><span>Illustrative example</span></div>
+        <div class="close-body">
+          <div>
+            <div class="stat-row"><i class="dot dot-lime"></i><span class="n">214</span> documents received this month</div>
+            <div class="stat-row"><i class="dot dot-lime"></i><span class="n">209</span> matched and reconciled</div>
+            <div class="stat-row"><i class="dot dot-lime"></i><span class="n">VAT</span> return — prepared</div>
+            <div class="stat-row"><i class="dot dot-hollow"></i><span class="n">1</span> item needed: July bank statement</div>
+            <div class="stat-row"><i class="dot dot-graphite"></i><span class="n">Review</span> professional review before filing</div>
+          </div>
+          <div class="request-card">
+            <span class="label">One precise request</span>
+            <p>July bank statement — that's all we need to close the month. Nothing else will be asked twice.</p>
+            <button class="pill pill-dark pill-sm" data-dialog="demo" type="button">See it on a demo</button>
+          </div>
+        </div>
+        <div class="close-foot"><i class="dot dot-lime"></i> A clear close state, every month — <span class="illustrative">not client data</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · How it works -->
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">How it works</p>
+        <h2>Hand over the paperwork in one afternoon.</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><img class="step-img" src="assets/step-share.jpg" alt="A smartphone scanning paper receipts on a warm desk" width="1536" height="1024" loading="lazy"><span class="num">01</span><h3>Share</h3><p>Email, WhatsApp, shared folders — send documents the way you already work. No new system to learn, no migration.</p></div>
+        <div class="step"><img class="step-img" src="assets/step-prepare.jpg" alt="A laptop beside a neatly organized stack of documents" width="1536" height="1024" loading="lazy"><span class="num">02</span><h3>Prepare</h3><p>Bandly captures every document, matches it to transactions and keeps one clear working state. When something is missing, you get one precise request — never a reminder chain.</p></div>
+        <div class="step"><img class="step-img" src="assets/step-review.jpg" alt="A fountain pen and glasses resting on a document in warm light" width="1536" height="1024" loading="lazy"><span class="num">03</span><h3>Review</h3><p>A qualified accountant checks important outputs before anything is filed or sent. You approve with one tap.</p></div>
+      </div>
+      <p class="caption">Most clients are fully set up within <span class="tbc" title="Unconfirmed — pending Nikita's OK">one week</span>.</p>
+    </div>
+  </section>
+
+  <!-- 04 · Scope ledger -->
+  <section id="scope">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">The service</p>
+        <h2>Everything the books need. Nothing they don't.</h2>
+      </div>
+      <div class="ledger">
+        <div class="ledger-row"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h13"/></svg></span><h3>Bookkeeping &amp; period close</h3><p>Every transaction captured, categorised and reconciled. Your month closes clean, every month.</p></div>
+        <div class="ledger-row"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18.5 5 5.5 18.5"/><circle cx="8" cy="8" r="2.5"/><circle cx="16" cy="16" r="2.5"/></svg></span><h3>VAT support</h3><p>VAT returns prepared from your actual records and professionally reviewed before filing with the FTA.</p></div>
+        <div class="ledger-row"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7.5h6M9 12h.01M12 12h.01M15 12h.01M9 15.5h.01M12 15.5h.01M15 15.5h.01"/></svg></span><h3>Corporate Tax support</h3><p>Calculations and returns prepared against the 9% regime, reviewed before anything is submitted.</p></div>
+        <div class="ledger-row"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3.3 2.5-6 5.5-6s5.5 2.7 5.5 6"/><path d="M15.5 5.5a3 3 0 0 1 0 5.5M20.5 20c0-2.4-1.3-4.4-3.2-5.3"/></svg></span><h3>Payroll &amp; WPS <span class="tbc" title="Scope unconfirmed" style="font-size:12px">confirm</span></h3><p>Salaries, gratuity and WPS files, prepared on cycle.</p></div>
+        <div class="ledger-row"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4"/><path d="M4 20h16"/><path d="M8.5 16v-5M12.5 16V8M16.5 16v-3"/></svg></span><h3>Reporting &amp; administration</h3><p>Monthly P&amp;L, cash flow and balance sheet you can read without an accounting degree.</p></div>
+      </div>
+      <p class="caption">Final scope is confirmed for your business before work begins.</p>
+    </div>
+  </section>
+
+  <!-- 05 · Built for the UAE -->
+  <section>
+    <div class="wrap uae-grid">
+      <div class="section-head" style="margin-bottom:0">
+        <p class="label">Local expertise</p>
+        <h2>Dubai rules, native fluency.</h2>
+      </div>
+      <ul class="uae-list">
+        <li><i class="dot dot-graphite"></i>VAT at 5% and Corporate Tax at 9% — prepared and filed on FTA deadlines, not yours.</li>
+        <li><i class="dot dot-graphite"></i>Mainland or free zone — your structure is reflected in the books, not fought by them.</li>
+        <li><i class="dot dot-graphite"></i>IFRS-standard monthly reports, records kept <span class="tbc" title="Unconfirmed claim">audit-ready</span>.</li>
+        <li><i class="dot dot-graphite"></i><span class="tbc" title="Unconfirmed — AR/EN support">Arabic and English documentation support.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 06 · Who it's for -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">Who it's for</p>
+        <h2>Built for owner-led businesses with high standards.</h2>
+      </div>
+      <div class="segments">
+        <div class="segment"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15c-1.6 1.6-2 5-2 5s3.4-.4 5-2"/><path d="M9.5 14.5 15 9c2.2-2.2 5-3 5-3s-.8 2.8-3 5l-5.5 5.5-2-2Z"/><circle cx="14.5" cy="9.5" r="1.4"/></svg></span><h3>Startups</h3><p>Investor-ready numbers that update fast.</p></div>
+        <div class="segment"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13.5h18"/></svg></span><h3>Agencies &amp; consultants</h3><p>Revenue, collection and profit by project — finally visible.</p></div>
+        <div class="segment"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.5h2l2.4 11.5h10.8L21 8H6"/><circle cx="9.8" cy="19.5" r="1.4"/><circle cx="16.8" cy="19.5" r="1.4"/></svg></span><h3>Online sellers</h3><p>Gross profit by SKU, marketplace payouts reconciled.</p></div>
+        <div class="segment"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/></svg></span><h3>Restaurants &amp; retail</h3><p>Daily sales captured. You focus on service, not the back office.</p></div>
+        <div class="segment"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M10 21v-3.5h4V21"/></svg></span><h3>Real estate &amp; property managers</h3><p>Rent rolls, service charges and owner reports in order.</p></div>
+        <div class="segment"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 19 6.5v5c0 4.8-3.4 8.2-7 9.5-3.6-1.3-7-4.7-7-9.5v-5z"/><path d="m9 12 2 2 4-4.5"/></svg></span><h3>Clinics &amp; family offices</h3><p>Discreet, precise, always on time.</p></div>
+      </div>
+      <p class="segments-close">Not sure where you fit? Book a demo — we'll tell you honestly.</p>
+    </div>
+  </section>
+
+  <!-- 07 · Human review boundary -->
+  <section class="dark" style="padding-top:96px;padding-bottom:96px">
+    <div class="wrap">
+      <p class="label" style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#b8b8b2;margin-bottom:18px">The boundary</p>
+      <h2>Automation prepares. People make the call.</h2>
+      <div class="dark-rules">
+        <div class="dark-rule"><span class="num">01</span><p>Missing facts stay missing — they are requested, never guessed.</p></div>
+        <div class="dark-rule"><span class="num">02</span><p>External action is never automatic — important work is reviewed before it goes out.</p></div>
+        <div class="dark-rule"><span class="num">03</span><p>You work with a firm, not a tool. The service stays accountable to people.</p></div>
+      </div>
+      <figure class="dark-figure">
+        <img src="assets/review-scene-v2.jpg" alt="A senior expert working on a laptop in a dark premium office" width="1536" height="864" loading="lazy">
+        <figcaption>Every important output passes a professional review · illustrative photo</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 07b · Team -->
+  <section id="team">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">The people inside</p>
+        <h2>Reviewed by people you can name.</h2>
+        <p>Automation moves the routine work. These are the professionals who check what matters and stand behind it.</p>
+      </div>
+      <div class="team-grid">
+        <div class="person">
+          <img src="assets/team-1.jpg" alt="Senior accountant — placeholder portrait" width="768" height="768" loading="lazy">
+          <h3>Senior Accountant</h3>
+          <p class="role">Owns your monthly close and reconciliation standard. <span class="tbc" title="Name and credentials published at launch">ACCA · name &amp; photo confirmed at launch</span></p>
+        </div>
+        <div class="person">
+          <img src="assets/team-2.jpg" alt="Tax advisor — placeholder portrait" width="768" height="768" loading="lazy">
+          <h3>Tax Advisor</h3>
+          <p class="role">Prepares VAT and Corporate Tax work against FTA rules. <span class="tbc" title="Name and credentials published at launch">Name &amp; photo confirmed at launch</span></p>
+        </div>
+        <div class="person">
+          <img src="assets/team-3.jpg" alt="Reviewing partner — placeholder portrait" width="768" height="768" loading="lazy">
+          <h3>Reviewing Partner</h3>
+          <p class="role">Final professional review before anything is filed or sent. <span class="tbc" title="Name and credentials published at launch">CA · name &amp; photo confirmed at launch</span></p>
+        </div>
+      </div>
+      <p class="caption">Portraits are placeholders — the real team appears here with confirmed names, photos and credentials before launch.</p>
+    </div>
+  </section>
+
+  <!-- 08 · Reassurance (proof fallback) -->
+  <section>
+    <div class="wrap">
+      <div class="section-head center">
+        <p class="label">The standard</p>
+        <h2>What you can always see.</h2>
+      </div>
+      <div class="reassure">
+        <div class="reassure-item"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13.5 5 5.5h14l2 8V19a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M3 13.5h5l1.5 2.5h5L16 13.5h5"/></svg></span><span class="tag">In</span><p>Documents are collected into one clear working state — from email, WhatsApp and the drives you already use.</p></div>
+        <div class="reassure-item"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v10a1.5 1.5 0 0 1-1.5 1.5H9l-5 4.5z"/><path d="M12 8.2c0-1 .9-1.7 1.8-1.4.8.2 1.2 1 .9 1.8-.3.7-1.2.8-1.5 1.4-.1.2-.2.5-.2.8"/><path d="M12 13.4h.01"/></svg></span><span class="tag">Ask</span><p>Gaps become one precise request. You always know exactly what is needed and why.</p></div>
+        <div class="reassure-item"><span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.5 2.5 2.5 4.5-5.5"/></svg></span><span class="tag">Review</span><p>Important outputs carry a visible human boundary — reviewed by a professional before anything goes out.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 · Testimonials -->
+  <section id="testimonials">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">What clients say</p>
+        <h2>Proof, in their words.</h2>
+      </div>
+      <div class="quotes">
+        <div class="quote">
+          <span class="metric tbc" title="Illustrative — pending a real client result">Month-end close: 9 days → 2</span>
+          <p>"For the first time I know exactly where the books stand. When something is missing, I get one question — not ten reminders."</p>
+          <div class="who"><img src="assets/avatar-1.jpg" alt="" width="512" height="512" loading="lazy"><div><b class="tbc" title="Illustrative quote — replaced by a verified review">Startup founder</b><span>Dubai, technology</span></div></div>
+        </div>
+        <div class="quote">
+          <span class="metric tbc" title="Illustrative — pending a real client result">~6 hours/week back to the team</span>
+          <p>"We stopped chasing invoices and receipts ourselves. The requests we get are precise, and a real accountant checks the output."</p>
+          <div class="who"><img src="assets/avatar-2.jpg" alt="" width="512" height="512" loading="lazy"><div><b class="tbc" title="Illustrative quote — replaced by a verified review">Agency owner</b><span>Dubai, professional services</span></div></div>
+        </div>
+        <div class="quote">
+          <span class="metric tbc" title="Illustrative — pending a real client result">VAT filed on time, every quarter</span>
+          <p>"VAT used to be a quarterly panic. Now it's prepared early, reviewed, and I approve it with one message."</p>
+          <div class="who"><img src="assets/avatar-3.jpg" alt="" width="512" height="512" loading="lazy"><div><b class="tbc" title="Illustrative quote — replaced by a verified review">Restaurant owner</b><span>Dubai, F&amp;B</span></div></div>
+        </div>
+      </div>
+      <p class="caption">Quotes and metrics are illustrative placeholders — they are replaced with verified client reviews and a Google rating widget before publication.</p>
+    </div>
+  </section>
+
+  <!-- 09 · Pricing -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">Pricing</p>
+        <h2>Clear pricing. No surprises.</h2>
+        <p>One monthly package, priced by your transaction volume. Bookkeeping, VAT and Corporate Tax support, monthly reporting and your dedicated team — all included.</p>
+      </div>
+      <div class="pricing-card">
+        <div class="calc">
+          <span class="label">Transactions per month</span>
+          <input type="range" id="txRange" min="50" max="1200" step="50" value="150" aria-label="Transactions per month">
+          <div class="range-marks"><span>50</span><span>1,200+</span></div>
+          <output id="priceOut">AED <span class="tbc" title="Pricing model unconfirmed">990</span><small> / month</small></output>
+          <p class="tx" id="txOut">150 transactions / month</p>
+          <p class="foot">A transaction is one bank statement line. Payment gateways and marketplaces: 10 lines count as 1. Pricing from <span class="tbc" title="Entry price unconfirmed">AED 690</span>.</p>
+        </div>
+        <div class="included">
+          <h3>Included in every package</h3>
+          <ul id="incList"></ul>
+        </div>
+        <div class="addons">Add-ons <span class="tbc" title="Add-ons unconfirmed">(confirm)</span>: Backlog accounting · WPS file preparation</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · Comparison -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">The alternative</p>
+        <h2>The old way costs more than money.</h2>
+      </div>
+      <div class="compare-wrap">
+        <table class="compare">
+          <thead><tr><th></th><th>Traditional firm</th><th>In-house accountant</th><th class="us">Bandly</th></tr></thead>
+          <tbody>
+            <tr><td>Documents</td><td>You collect and send everything yourself</td><td>You hire, train and manage</td><td class="us">Captured automatically from email, bank and chats</td></tr>
+            <tr><td>Deadlines</td><td>A reminder days before filing</td><td>Depends on one person</td><td class="us">Tracked all year, prepared early</td></tr>
+            <tr><td>Answers</td><td>Days</td><td>Fast, but <span class="tbc" title="Market figure unconfirmed">AED 12,000+/mo</span></td><td class="us"><span class="tbc" title="SLA unconfirmed">Same day</span>, in your channel</td></tr>
+            <tr><td>Price</td><td><span class="tbc" title="Market range unconfirmed">AED 1,500–3,000+/mo</span></td><td><span class="tbc" title="Market figure unconfirmed">AED 12,000+/mo + visa</span></td><td class="us">From <span class="tbc" title="Entry price unconfirmed">AED 690</span>/mo</td></tr>
+            <tr><td>Accountability</td><td>Varies</td><td>Turnover risk</td><td class="us">A firm, with professional review on everything important</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head center">
+        <p class="label">Questions</p>
+        <h2>Asked before, answered straight.</h2>
+      </div>
+      <div class="faq" id="faqList"></div>
+    </div>
+  </section>
+
+  <!-- 12 · Closing -->
+  <section class="closing">
+    <div class="wrap">
+      <h2>Hand over the books.<br>Keep the business.</h2>
+      <p>Start with the setup and documents you already have. We'll show you your clear state within <span class="tbc" title="Unconfirmed">the first week</span>.</p>
+      <button class="pill pill-dark" data-dialog="demo" type="button">Book a demo</button>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <span class="brand"><i aria-hidden="true"></i>Bandly</span>
+      An AI-native accounting firm in Dubai. Automation collects and prepares; qualified accountants review the work and stand behind it.
+    </div>
+    <div class="foot-links">
+      <div><h4>Service</h4><ul><li><a href="#scope">Bookkeeping</a></li><li><a href="#scope">VAT support</a></li><li><a href="#scope">Corporate Tax</a></li><li><a href="#pricing">Pricing</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#how">How it works</a></li><li><a href="#faq">FAQ</a></li><li><a href="#top" data-dialog="demo">Book a demo</a></li></ul></div>
+    </div>
+  </div>
+</footer>
+
+<dialog id="demoDialog" aria-labelledby="dlgTitle">
+  <div class="dialog-body">
+    <h3 id="dlgTitle">Book a demo</h3>
+    <p>Preview build — the booking calendar isn't connected yet. In production this button opens the calendar. Nothing here is submitted anywhere.</p>
+    <div class="row"><button class="pill pill-dark pill-sm" id="dlgClose" type="button">Got it</button></div>
+  </div>
+</dialog>
+
+<div class="draft-badge">Review draft — <b>amber dashed</b> = unconfirmed figure or claim</div>
+
+<script>
+const $=(s,c=document)=>c.querySelector(s);
+const $$=(s,c=document)=>[...c.querySelectorAll(s)];
+
+/* menu */
+const mb=$('.menu-btn'),mn=$('#mnav');
+mb.addEventListener('click',()=>{const open=mn.hidden;mn.hidden=!open;mb.setAttribute('aria-expanded',open)});
+
+/* dialog (non-submitting preview state) */
+const dlg=$('#demoDialog');
+$$('[data-dialog="demo"]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();dlg.showModal()}));
+$('#dlgClose').addEventListener('click',()=>dlg.close());
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+
+/* included list (lime checkmarks — the only chromatic element) */
+const inc=['Transaction capture & categorisation','Bank & payment reconciliation','VAT and Corporate Tax support','Monthly P&L, cash flow, balance sheet','Dedicated accounting team','<span class="tbc" title="SLA unconfirmed">Same-day response</span>'];
+const check='<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7.5 5.5 11 12 3.5" stroke="#4cc02b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+$('#incList').innerHTML=inc.map(i=>`<li>${check}<span>${i}</span></li>`).join('');
+
+/* pricing calculator — illustrative tiered model, pending confirmation */
+const tiers=[[100,690],[300,990],[600,1490],[1200,1990]];
+const range=$('#txRange'),po=$('#priceOut'),to=$('#txOut');
+function fmt(n){return n.toLocaleString('en-US')}
+function price(tx){
+  for(const[cap,p]of tiers)if(tx<=cap)return`AED <span class="tbc" title="Pricing model unconfirmed">${fmt(p)}</span><small> / month</small>`;
+  return`Let's talk<small> — custom volume</small>`;
+}
+function upd(){const tx=+range.value;po.innerHTML=price(tx);to.textContent=`${fmt(tx)} transactions / month`}
+range.addEventListener('input',upd);upd();
+
+/* FAQ */
+const faqs=[
+ ['Is Bandly software or an accounting firm?','A firm. Automation does the collecting, sorting and preparing; qualified accountants review the work and stand behind it.'],
+ ['Does AI submit filings by itself?','No. Automation prepares; a professional reviews and approves before anything is filed with the FTA.'],
+ ['Do I have to replace my accounting system?','No. We work with what you already have — email, bank feeds, marketplaces, your current software.'],
+ ['What if a document is missing?','You get one precise request for exactly what is missing. Nothing is guessed or invented.'],
+ ['How much does accounting cost in Dubai?','Small-company packages range from <span class="tbc" title="Market range unconfirmed">AED 399 to 3,000+</span> per month. Bandly sits in the middle — without cutting corners on compliance, and with a level of visibility traditional firms don\'t offer.'],
+ ['Do I still need an accountant if AI does the work?','Yes — that is exactly the point. AI is tireless at collecting and matching; people are accountable for judgement. You get both.'],
+ ['Can you fix my backlog?','<span class="tbc" title="Service unconfirmed">Yes.</span> We bring your books up to date first, then keep them clean from there.'],
+ ['Is my financial data safe?','Details of our security posture — where data is stored, who has access, and how contractors are handled — are shared during the demo, once confirmed for publication.']
+];
+$('#faqList').innerHTML=faqs.map(([q,a])=>`<details><summary>${q}<span class="ic">+</span></summary><p>${a}</p></details>`).join('');
+</script>
+</body>
+</html>
