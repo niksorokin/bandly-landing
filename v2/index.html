@@ -108,8 +108,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 /* ===== Steps ===== */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.step{background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-card);padding:18px}
-.step .step-img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:6px;display:block;margin-bottom:18px}
+.step{background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-card);overflow:hidden}
+.step .step-img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block}
+.step .step-body{padding:18px}
 .step .num{font-size:14px;color:var(--ash);display:block;margin-bottom:12px}
 .step h3{font-size:27px;letter-spacing:-0.27px;margin-bottom:12px}
 .step p{font-size:16px;color:var(--slate);line-height:1.5}
@@ -224,7 +225,7 @@ dialog::backdrop{background:rgba(20,20,20,.4)}
 
 /* ===== Dark figure ===== */
 .dark-figure{margin-top:60px}
-.dark-figure img{width:100%;height:auto;border-radius:var(--r-card);display:block;object-fit:cover;max-height:420px}
+.dark-figure img{width:100%;aspect-ratio:16/9;height:auto;border-radius:var(--r-card);display:block;object-fit:cover}
 .dark-figure figcaption{margin-top:12px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#b8b8b2}
 
 /* ===== Team ===== */
@@ -331,9 +332,9 @@ dialog::backdrop{background:rgba(20,20,20,.4)}
         <h2>Hand over the paperwork in one afternoon.</h2>
       </div>
       <div class="steps">
-        <div class="step"><img class="step-img" src="assets/step-share.jpg" alt="A smartphone scanning paper receipts on a warm desk" width="1536" height="1024" loading="lazy"><span class="num">01</span><h3>Share</h3><p>Email, WhatsApp, shared folders — send documents the way you already work. No new system to learn, no migration.</p></div>
-        <div class="step"><img class="step-img" src="assets/step-prepare.jpg" alt="A laptop beside a neatly organized stack of documents" width="1536" height="1024" loading="lazy"><span class="num">02</span><h3>Prepare</h3><p>Bandly captures every document, matches it to transactions and keeps one clear working state. When something is missing, you get one precise request — never a reminder chain.</p></div>
-        <div class="step"><img class="step-img" src="assets/step-review.jpg" alt="A fountain pen and glasses resting on a document in warm light" width="1536" height="1024" loading="lazy"><span class="num">03</span><h3>Review</h3><p>A qualified accountant checks important outputs before anything is filed or sent. You approve with one tap.</p></div>
+        <div class="step"><img class="step-img" src="assets/step-share.jpg" alt="A smartphone scanning paper receipts on a warm desk" width="1536" height="1024" loading="lazy"><div class="step-body"><span class="num">01</span><h3>Share</h3><p>Email, WhatsApp, shared folders — send documents the way you already work. No new system to learn, no migration.</p></div></div>
+        <div class="step"><img class="step-img" src="assets/step-prepare.jpg" alt="A laptop beside a neatly organized stack of documents" width="1536" height="1024" loading="lazy"><div class="step-body"><span class="num">02</span><h3>Prepare</h3><p>Bandly captures every document, matches it to transactions and keeps one clear working state. When something is missing, you get one precise request — never a reminder chain.</p></div></div>
+        <div class="step"><img class="step-img" src="assets/step-review.jpg" alt="A fountain pen and glasses resting on a document in warm light" width="1536" height="1024" loading="lazy"><div class="step-body"><span class="num">03</span><h3>Review</h3><p>A qualified accountant checks important outputs before anything is filed or sent. You approve with one tap.</p></div></div>
       </div>
       <p class="caption">Most clients are fully set up within <span class="tbc" title="Unconfirmed — pending Nikita's OK">one week</span>.</p>
     </div>
@@ -403,7 +404,7 @@ dialog::backdrop{background:rgba(20,20,20,.4)}
         <div class="dark-rule"><span class="num">03</span><p>You work with a firm, not a tool. The service stays accountable to people.</p></div>
       </div>
       <figure class="dark-figure">
-        <img src="assets/review-scene-v2.jpg" alt="A senior expert working on a laptop in a dark premium office" width="1536" height="864" loading="lazy">
+        <img src="assets/banner-review.jpg" alt="A senior expert working on a laptop in a dark premium office" width="1672" height="941" loading="lazy">
         <figcaption>Every important output passes a professional review · illustrative photo</figcaption>
       </figure>
     </div>
