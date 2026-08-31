@@ -113,14 +113,16 @@ a{text-decoration:none;color:inherit}
 .seg-closing a:hover{color:var(--smoke);border-color:var(--smoke)}
 
 /* ---------- 07 dark boundary ---------- */
-.dark{background:#000;color:var(--eggshell)}
+.dark{background:#090909;color:#f5f5f5}
 .dark .wrap{padding-top:112px;padding-bottom:112px}
-.dark .eyebrow{color:var(--ash)}
-.dark .h2{max-width:600px;margin-top:24px}
-.dark-points{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:64px}
-.dark-point .dp-num{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;color:#5c574f;margin-bottom:16px}
-.dark-point p{font-size:16px;line-height:1.55;color:#b8b2aa}
-.dark-point p b{color:var(--eggshell);font-weight:500}
+.dark .eyebrow{color:#9a9a9a}
+.dark .h2{max-width:600px;margin-top:24px;color:#fff}
+.dark-points{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:64px;border-top:1px solid #2a2a2a}
+.dark-point{padding:28px 32px 28px 0;border-right:1px solid #2a2a2a}
+.dark-point:last-child{border-right:0;padding-right:0}
+.dark-point .dp-num{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.12em;color:#888;margin-bottom:16px}
+.dark-point p{font-size:16px;line-height:1.55;color:#c8c8c8}
+.dark-point p b{color:#fff;font-weight:500}
 
 /* ---------- 08 reassurance ---------- */
 .reassure{display:grid;grid-template-columns:repeat(3,1fr);gap:48px}
@@ -258,22 +260,22 @@ footer{border-top:1px solid var(--stone)}
 .seg-icon{display:block;margin-bottom:16px}
 
 /* ---------- dark request UI (human review) ---------- */
-.req-ui{margin-top:72px;background:#111110;border:1px solid #2a2825;border-radius:24px;padding:32px;max-width:780px}
+.req-ui{margin-top:72px;background:#111;border:1px solid #2e2e2e;border-radius:24px;padding:32px;max-width:780px;box-shadow:0 24px 64px rgba(0,0,0,.45)}
 .req-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px}
 .req-title{font-size:14px;font-weight:500;color:var(--eggshell)}
-.req-status{font-size:12px;font-weight:500;color:#b8b2aa;background:#1c1b19;border:1px solid #2a2825;border-radius:9999px;padding:5px 12px}
+.req-status{font-size:12px;font-weight:500;color:#ddd;background:#1a1a1a;border:1px solid #3a3a3a;border-radius:9999px;padding:5px 12px}
 .req-status.closed{color:#e8e4df}
 .req-msg{display:flex;gap:14px;margin-bottom:22px;align-items:flex-start}
 .req-msg:last-of-type{margin-bottom:0}
 .req-msg.you{justify-content:flex-end}
 .req-ava{width:32px;height:32px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
-.req-ava.spark{background:radial-gradient(circle at 32% 30%, #ffb03d, var(--ember) 46%, var(--violet) 118%)}
+.req-ava.spark{background:radial-gradient(circle at 32% 30%, #fff 0%, #bbb 42%, #444 100%)}
 .req-ava.you-ava{background:var(--eggshell);color:#111}
 .req-ava.cpa-ava{background:#3a3835;color:#e8e4df;border:1px solid #4a4742}
-.req-who{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#8a847c;margin-bottom:6px}
+.req-who{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#9a9a9a;margin-bottom:6px}
 .req-msg.you .req-who{text-align:right}
-.req-bubble{display:inline-block;background:#1c1b19;border:1px solid #2a2825;border-radius:14px;padding:12px 16px;
-  font-size:14px;line-height:1.5;color:#d8d4cf;max-width:480px;text-align:left}
+.req-bubble{display:inline-block;background:#1a1a1a;border:1px solid #333;border-radius:14px;padding:12px 16px;
+  font-size:14px;line-height:1.5;color:#e8e8e8;max-width:480px;text-align:left}
 .req-msg.you .req-bubble{background:var(--eggshell);color:#111;border-color:var(--eggshell)}
 .req-bubble .file{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;display:flex;align-items:center;gap:8px}
 .req-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
@@ -285,6 +287,8 @@ footer{border-top:1px solid var(--stone)}
 @media (max-width: 960px){
   .hero,.uae,.pricing-panel,.hiw{grid-template-columns:1fr}
   .steps,.seg-grid,.dark-points,.reassure,.expert-grid,.quote-grid{grid-template-columns:1fr;gap:32px}
+  .dark-point{border-right:0;padding:20px 0;border-bottom:1px solid #2a2a2a}
+  .dark-point:last-child{border-bottom:0;padding-right:0}
   .proof-grid{grid-template-columns:repeat(2,1fr);gap:32px}
   .proof-item{border-left:none;padding-left:0}
   .l-row{grid-template-columns:1fr;gap:8px}
@@ -299,10 +303,11 @@ footer{border-top:1px solid var(--stone)}
 .hero-stage .wrap{position:relative;z-index:1}
 .hero-stage .hero{padding-top:96px;padding-bottom:96px}
 .hero-veil{position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(253,252,252,.88) 0 42%,rgba(253,252,252,.35) 68%,rgba(253,252,252,.08) 100%)}
-.closing-stage{position:relative;isolation:isolate;min-height:28rem;overflow:hidden}
+.closing-stage{position:relative;isolation:isolate;min-height:100svh;overflow:hidden;background:#eee}
 .closing-stage .wrap{position:relative;z-index:1}
-.closing-stage .closing{padding:96px 0;text-align:center}
-.closing-stage .closing .lede{margin:20px auto 28px}
+.closing-stage .closing{padding:120px 0;text-align:center}
+.closing-stage .closing .lede{margin:20px auto 28px;max-width:42rem}
+.closing-veil{position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(238,238,238,.2) 0%,rgba(238,238,238,.55) 45%,rgba(238,238,238,.25) 100%)}
 @media (max-width:900px){
   .hero-veil{background:linear-gradient(180deg,rgba(253,252,252,.92) 0 58%,rgba(253,252,252,.4) 100%)}
 }
@@ -396,19 +401,19 @@ footer{border-top:1px solid var(--stone)}
     <h2 class="h2" style="margin-top:24px;max-width:640px">Hand over the paperwork in one afternoon.</h2>
     <div class="steps">
       <div class="step">
-        <figure class="step-fig" data-lb><img src="assets/step-share.png" alt="Hands passing documents into a tray"></figure>
+        <figure class="step-fig" data-lb><img src="../assets/step-share.png" alt="Hands passing documents into a tray"></figure>
         <div class="step-num">01 — Share</div>
         <h3>Send it the way you already work</h3>
         <p>Email, WhatsApp, shared folders — send documents the way you already work. No new system to learn, no migration.</p>
       </div>
       <div class="step">
-        <figure class="step-fig" data-lb><img src="assets/step-prepare.png" alt="Scattered sheets aligning into a neat stack"></figure>
+        <figure class="step-fig" data-lb><img src="../assets/step-prepare.png" alt="Scattered sheets aligning into a neat stack"></figure>
         <div class="step-num">02 — Prepare</div>
         <h3>One clear working state</h3>
         <p>Bandly captures every document, matches it to transactions and keeps one clear working state. When something is missing, you get one precise request — never a reminder chain.</p>
       </div>
       <div class="step">
-        <figure class="step-fig" data-lb><img src="assets/step-review.png" alt="Hands holding an open ledger book"></figure>
+        <figure class="step-fig" data-lb><img src="../assets/step-review.png" alt="Hands holding an open ledger book"></figure>
         <div class="step-num">03 — Review</div>
         <h3>A person signs off</h3>
         <p>A qualified accountant checks important outputs before anything is filed or sent. You approve with one tap.</p>
@@ -551,19 +556,19 @@ footer{border-top:1px solid var(--stone)}
     <h2 class="h2" style="margin-top:24px;max-width:640px">Software does the legwork. Experts stand behind it.</h2>
     <div class="expert-grid">
       <div class="expert-card">
-        <img src="assets/expert-1.png" alt="Layla Haddad, Head of Accounting">
+        <img src="../assets/expert-1.png" alt="Layla Haddad, Head of Accounting">
         <h3>Layla Haddad</h3>
         <div class="role">Head of Accounting</div>
         <p>Reviews every monthly close before it reaches your inbox. Fourteen years across mainland and free zone structures.</p>
       </div>
       <div class="expert-card">
-        <img src="assets/expert-2.png" alt="Arjun Mehta, Tax Lead">
+        <img src="../assets/expert-2.png" alt="Arjun Mehta, Tax Lead">
         <h3>Arjun Mehta</h3>
         <div class="role">Tax Lead</div>
         <p>Owns VAT and Corporate Tax positions. Nothing is filed with the FTA without his sign-off.</p>
       </div>
       <div class="expert-card">
-        <img src="assets/expert-3.png" alt="Sofia Lindqvist, Review and Quality">
+        <img src="../assets/expert-3.png" alt="Sofia Lindqvist, Review and Quality">
         <h3>Sofia Lindqvist</h3>
         <div class="role">Review &amp; Quality</div>
         <p>Runs the second-pass review on important outputs and the audit-readiness of your records.</p>
@@ -717,7 +722,8 @@ footer{border-top:1px solid var(--stone)}
 
 <!-- 12 · CLOSING -->
 <section class="closing-stage">
-  <div class="us-layer" data-us-project-src="scenes/strand.json" data-us-scale="1" data-us-dpi="1.5" data-us-lazyload="true" data-us-alttext="Animated strand field" data-us-arialabel="Decorative strand animation"></div>
+  <div class="us-layer" data-us-project-src="scenes/strand.json" data-us-scale="1" data-us-dpi="1.5" data-us-alttext="Animated strand field" data-us-arialabel="Decorative strand animation"></div>
+  <div class="closing-veil"></div>
   <div class="wrap">
   <section class="closing">
     <div class="eyebrow">Get started</div>
