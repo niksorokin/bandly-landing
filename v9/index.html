@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Bandly is an accounting firm for Dubai businesses." />
+  <title>Bandly — accounting that starts with what you already have</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f5f0e8;
+      --paper-strong: #fffdf8;
+      --ink: #121216;
+      --muted: #5e5d65;
+      --hairline: rgba(18, 18, 22, .16);
+      --blue: #2d4bff;
+      --blue-deep: #152171;
+      --coral: #ff5a3e;
+      --sun: #ffc837;
+      --mint: #bdeac5;
+      --night: #10111b;
+      --radius-lg: 1.5rem;
+      --radius-md: 1rem;
+      --shadow: 0 1px 0 rgba(18,18,22,.14), 0 12px 32px rgba(18,18,22,.09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Manrope, ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
+    .skip-link { position: fixed; z-index: 100; top: .75rem; left: .75rem; padding: .75rem 1rem; background: var(--paper-strong); transform: translateY(-160%); }
+    .skip-link:focus { transform: none; }
+    .shell { width: min(100% - 3rem, 76rem); margin-inline: auto; }
+    .eyebrow { margin: 0; font: 500 .71rem/1.2 "DM Mono", monospace; letter-spacing: .12em; text-transform: uppercase; }
+    .display { margin: 0; max-width: 14ch; font-size: clamp(3.3rem, 7.15vw, 7.5rem); line-height: .91; letter-spacing: -.075em; text-wrap: balance; }
+    .h2 { margin: 0; max-width: 15ch; font-size: clamp(2.25rem, 4vw, 4.5rem); line-height: .98; letter-spacing: -.065em; text-wrap: balance; }
+    .lede { margin: 0; max-width: 39rem; color: var(--muted); font-size: 1.12rem; line-height: 1.56; text-wrap: pretty; }
+    .button { display: inline-flex; min-height: 3rem; align-items: center; justify-content: center; gap: .6rem; border: 1px solid var(--ink); border-radius: 999px; padding: .75rem 1.15rem; background: transparent; color: var(--ink); font-size: .92rem; font-weight: 700; transition: background-color .16s ease-out, color .16s ease-out, transform .16s ease-out; }
+    .button:hover { background: var(--ink); color: var(--paper-strong); }
+    .button:active { transform: scale(.96); }
+    .button.primary { background: var(--ink); color: var(--paper-strong); }
+    .button.primary:hover { background: var(--blue); border-color: var(--blue); }
+    .arrow { font-size: 1.2em; line-height: 1; }
+    .site-header { position: relative; z-index: 4; padding: 1rem 0; border-bottom: 1px solid var(--hairline); background: color-mix(in srgb, var(--paper) 88%, transparent); }
+    .site-header .shell { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .brand { display: inline-flex; align-items: center; gap: .55rem; font-weight: 700; letter-spacing: -.04em; }
+    .brand-mark { display: grid; width: 1.5rem; height: 1.5rem; place-items: center; border-radius: .45rem; background: var(--blue); color: var(--paper-strong); font: 500 .72rem "DM Mono", monospace; }
+    .desktop-nav { display: flex; align-items: center; gap: 1.25rem; color: var(--muted); font-size: .85rem; }
+    .desktop-nav a:hover { color: var(--ink); }
+    .mobile-nav { display: none; }
+    .menu-button { display: none; }
+    .hero { position: relative; overflow: hidden; isolation: isolate; border-bottom: 1px solid var(--hairline); min-height: 100svh; }
+    .hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    .hero-veil { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, rgba(245,240,232,.92) 0 46%, rgba(245,240,232,.55) 68%, rgba(245,240,232,.18) 100%); }
+    .hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(25rem, .92fr); gap: clamp(2rem, 7vw, 7rem); align-items: center; min-height: 43rem; padding-block: 6.5rem 5rem; }
+    .hero-copy { display: grid; gap: 1.8rem; }
+    .hero-copy .eyebrow { color: var(--blue-deep); }
+    .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: .9rem; }
+    .helper { margin: 0; color: var(--muted); font-size: .78rem; line-height: 1.4; }
+    .hero-object { position: relative; min-height: 31rem; padding: 1rem; border: 1px solid var(--ink); border-radius: var(--radius-lg); background: var(--blue); box-shadow: var(--shadow); }
+    .hero-object::before { position: absolute; inset: -26% -20% auto auto; width: 18rem; height: 18rem; border: 1px solid rgba(255,255,255,.55); border-radius: 50%; content: ""; }
+    .hero-object::after { position: absolute; right: 8%; bottom: 8%; width: 5rem; height: 5rem; border-radius: 50%; background: var(--sun); content: ""; }
+    .intake-card { position: relative; z-index: 1; display: grid; min-height: 29rem; align-content: space-between; gap: 2rem; padding: clamp(1.3rem, 3vw, 2.1rem); border: 1px solid rgba(18,18,22,.4); border-radius: calc(var(--radius-lg) - .45rem); background: var(--paper-strong); }
+    .intake-card > header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+    .card-kicker { margin: 0 0 .5rem; color: var(--blue-deep); font: 500 .68rem/1.2 "DM Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+    .card-title { margin: 0; font-size: clamp(1.45rem, 2.5vw, 2.2rem); line-height: 1; letter-spacing: -.055em; }
+    .step-count { display: grid; flex: 0 0 auto; width: 2.5rem; height: 2.5rem; place-items: center; border-radius: 50%; background: var(--sun); font: 500 .74rem "DM Mono", monospace; }
+    .document-stack { display: grid; gap: .65rem; }
+    .doc-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .9rem 1rem; border: 1px solid var(--hairline); border-radius: .75rem; background: #faf8f2; font-size: .83rem; }
+    .doc-row span:first-child { display: inline-flex; align-items: center; gap: .6rem; }
+    .doc-icon { width: .65rem; height: .65rem; border: 1.5px solid currentColor; border-radius: .12rem; }
+    .doc-row:nth-child(2) .doc-icon { border-radius: 50%; background: var(--coral); border-color: var(--coral); }
+    .tag { flex: 0 0 auto; padding: .25rem .5rem; border-radius: 999px; background: var(--mint); color: #174d29; font: 500 .64rem "DM Mono", monospace; }
+    .tag.ask { background: #ffe1d9; color: #80210e; }
+    .review-line { display: grid; grid-template-columns: 1.5rem 1fr; gap: .75rem; align-items: center; padding-top: 1rem; border-top: 1px solid var(--hairline); font-size: .86rem; font-weight: 700; }
+    .review-dot { display: grid; width: 1.5rem; height: 1.5rem; place-items: center; border-radius: 50%; background: var(--ink); color: var(--sun); font-size: .72rem; }
+    .service-spine { padding-block: 1.25rem; background: var(--ink); color: var(--paper-strong); }
+    .service-spine .shell { display: flex; flex-wrap: wrap; gap: .7rem 1.5rem; align-items: center; justify-content: space-between; font: 500 .69rem/1.5 "DM Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+    .service-spine .arrow { color: var(--sun); }
+    section { scroll-margin-top: 2rem; }
+    .plain-intro { display: grid; grid-template-columns: .85fr 1.15fr; gap: 4rem; padding-block: clamp(5rem, 10vw, 9rem); }
+    .plain-intro .eyebrow { color: var(--coral); }
+    .plain-intro .body { display: grid; align-content: start; gap: 1.3rem; }
+    .plain-intro p { margin: 0; font-size: clamp(1.25rem, 2.3vw, 2rem); line-height: 1.2; letter-spacing: -.045em; }
+    .plain-intro strong { color: var(--blue-deep); }
+    .onboarding { padding-block: clamp(4rem, 9vw, 8rem); background: var(--coral); }
+    .onboarding-head { display: grid; grid-template-columns: 1fr .88fr; gap: 3rem; align-items: end; padding-bottom: 2rem; }
+    .onboarding-head .lede { color: #511308; }
+    .onboarding-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .onboarding-step { display: grid; gap: 3rem; min-height: 17rem; padding: 1.35rem; border: 1px solid var(--ink); border-radius: var(--radius-md); background: var(--paper-strong); }
+    .onboarding-step .number { display: block; color: var(--blue); font: 500 .71rem "DM Mono", monospace; letter-spacing: .1em; }
+    .onboarding-step h3 { margin: 0 0 .65rem; font-size: 1.35rem; letter-spacing: -.04em; }
+    .onboarding-step p { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.5; }
+    .boundary { padding-block: clamp(5rem, 10vw, 9rem); background: var(--night); color: var(--paper-strong); }
+    .boundary-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; }
+    .boundary .eyebrow { color: var(--sun); }
+    .boundary .h2 { margin-top: 1rem; }
+    .boundary-list div { display: grid; grid-template-columns: 2.2rem 1fr; gap: 1rem; padding-block: 1.2rem; border-top: 1px solid rgba(255,255,255,.22); }
+    .boundary-list div:last-child { border-bottom: 1px solid rgba(255,255,255,.22); }
+    .boundary-list span { color: var(--sun); font: 500 .7rem "DM Mono", monospace; }
+    .boundary-list p { margin: 0; max-width: 35rem; color: #d2d2d8; font-size: 1rem; line-height: 1.5; }
+    .boundary-list strong { color: var(--paper-strong); }
+    .faq { padding-block: clamp(5rem, 9vw, 8rem); }
+    .faq-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; margin-bottom: 2.5rem; }
+    .faq-list { border-top: 1px solid var(--hairline); }
+    details { border-bottom: 1px solid var(--hairline); }
+    summary { display: flex; min-height: 4.5rem; align-items: center; justify-content: space-between; gap: 1rem; list-style: none; font-size: 1.06rem; font-weight: 700; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font: 400 1.5rem/1 "DM Mono", monospace; }
+    details[open] summary::after { content: "−"; }
+    details p { max-width: 43rem; margin: 0; padding: 0 2.5rem 1.4rem 0; color: var(--muted); line-height: 1.55; }
+    .final { padding-block: 1rem 0; }
+    .final-card { display: grid; grid-template-columns: 1.1fr .9fr; gap: 2rem; align-items: end; padding: clamp(2rem, 5vw, 5rem); border-radius: var(--radius-lg) var(--radius-lg) 0 0; background: var(--blue); color: var(--paper-strong); }
+    .final-card .eyebrow { color: var(--sun); }
+    .final-card .h2 { margin-top: 1rem; }
+    .final-card .lede { color: #dde3ff; }
+    .final-card .button { justify-self: start; border-color: var(--paper-strong); color: var(--paper-strong); }
+    .final-card .button:hover { background: var(--paper-strong); color: var(--blue-deep); }
+    .ascii-wrap { position: relative; height: 16rem; background: var(--night); overflow: hidden; }
+    .ascii-wrap canvas { display: block; width: 100%; height: 100%; }
+    footer { padding-block: 1.25rem; background: var(--night); color: #9a9aa8; font-size: .76rem; }
+    footer .shell { display: flex; justify-content: space-between; gap: 1rem; }
+    dialog { width: min(100% - 2rem, 41rem); border: 0; padding: 0; border-radius: var(--radius-lg); background: var(--paper-strong); color: var(--ink); box-shadow: 0 2rem 6rem rgba(0,0,0,.35); }
+    dialog::backdrop { background: rgba(9, 11, 29, .68); }
+    .dialog-inner { padding: clamp(1.35rem, 4vw, 2.5rem); }
+    .dialog-top { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start; margin-bottom: 2rem; }
+    .dialog-top h2 { max-width: 13ch; margin: .45rem 0 0; font-size: clamp(2rem, 5vw, 3.3rem); line-height: .98; letter-spacing: -.06em; }
+    .close-button { display: grid; width: 2.75rem; height: 2.75rem; place-items: center; border: 1px solid var(--hairline); border-radius: 50%; background: transparent; font-size: 1.4rem; }
+    .close-button:hover { background: var(--ink); color: var(--paper-strong); }
+    .intake-form { display: grid; gap: 1.3rem; }
+    fieldset { margin: 0; padding: 0; border: 0; }
+    legend { margin-bottom: .7rem; font-size: .83rem; font-weight: 700; }
+    .choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
+    .choice { display: flex; min-height: 3.2rem; align-items: center; gap: .55rem; padding: .75rem; border: 1px solid var(--hairline); border-radius: .75rem; font-size: .86rem; }
+    .choice:focus-within { outline: 3px solid var(--sun); outline-offset: 2px; }
+    .choice input { width: 1rem; height: 1rem; accent-color: var(--blue); }
+    .field { display: grid; gap: .5rem; }
+    .field label { font-size: .83rem; font-weight: 700; }
+    .field input { width: 100%; min-height: 3.1rem; border: 1px solid var(--hairline); border-radius: .75rem; padding: .75rem; background: #fffefb; color: var(--ink); font-size: 1rem; }
+    .field input[aria-invalid="true"] { border-color: #ba280e; }
+    .error { min-height: 1.1rem; margin: 0; color: #9d260e; font-size: .78rem; }
+    .form-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .preview-note { margin: 0; color: var(--muted); font-size: .76rem; line-height: 1.4; }
+    .form-result { display: none; gap: 1rem; padding: 1.25rem; border-radius: var(--radius-md); background: var(--mint); }
+    .form-result.show { display: grid; }
+    .form-result h3, .form-result p { margin: 0; }
+    .form-result p { color: #174d29; line-height: 1.5; }
+    @media (max-width: 54rem) {
+      .desktop-nav, .header-cta { display: none; }
+      .menu-button { display: inline-flex; min-height: 2.75rem; align-items: center; border: 1px solid var(--hairline); border-radius: 999px; padding: .5rem .85rem; background: var(--paper-strong); font-size: .82rem; font-weight: 700; }
+      .mobile-nav { display: none; padding: 0 0 1rem; }
+      .mobile-nav.open { display: grid !important; gap: .75rem; }
+      .hero-veil { background: linear-gradient(180deg, rgba(245,240,232,.94) 0 58%, rgba(245,240,232,.55) 100%); }
+      .hero-grid, .plain-intro, .onboarding-head, .boundary-grid, .final-card { grid-template-columns: 1fr; }
+      .hero-grid { min-height: 0; padding-block: 4.5rem; }
+      .hero-object { min-height: 27rem; }
+      .intake-card { min-height: 25rem; }
+      .onboarding-grid { grid-template-columns: 1fr; }
+      .onboarding-step { min-height: 0; gap: 2rem; }
+      .faq-top { display: grid; }
+      .final-card { align-items: start; }
+    }
+    @media (max-width: 38rem) {
+      .shell { width: min(100% - 2rem, 76rem); }
+      .display { font-size: clamp(3rem, 15vw, 4.7rem); }
+      .choice-grid { grid-template-columns: 1fr; }
+      footer .shell { display: grid; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="#main" aria-label="Bandly home"><span class="brand-mark" aria-hidden="true">B</span>Bandly</a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#how-it-starts">How it starts</a>
+        <a href="#review">Human review</a>
+        <a href="#faq">Questions</a>
+      </nav>
+      <button class="button primary header-cta" type="button" data-open-intake>Start with a checklist <span class="arrow" aria-hidden="true">↗</span></button>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+    </div>
+    <nav class="shell mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="#how-it-starts">How it starts</a>
+      <a href="#review">Human review</a>
+      <a href="#faq">Questions</a>
+      <button class="button primary" type="button" data-open-intake>Start with a checklist <span class="arrow" aria-hidden="true">↗</span></button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <canvas class="hero-canvas" id="particle-image" aria-hidden="true"></canvas>
+      <div class="hero-veil"></div>
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Accounting firm for Dubai businesses</p>
+          <h1 class="display" id="hero-title">Your books, organised. Your next step, clear.</h1>
+          <p class="lede">Send the invoices, bank statements and receipts you already have. Bandly prepares the accounting work, shows what is missing, and puts important outputs through professional review.</p>
+          <div class="hero-actions">
+            <button class="button primary" type="button" data-open-intake>Start with a checklist <span class="arrow" aria-hidden="true">↗</span></button>
+            <p class="helper">Takes about two minutes.<br />No calendar booking at this stage.</p>
+          </div>
+        </div>
+        <div class="hero-object" aria-label="Illustration of three records becoming a clear accounting starting point">
+          <article class="intake-card">
+            <header>
+              <div>
+                <p class="card-kicker">The first handover</p>
+                <h2 class="card-title">Start with what exists.</h2>
+              </div>
+              <span class="step-count" aria-label="Step 1 of 3">01</span>
+            </header>
+            <div class="document-stack">
+              <div class="doc-row"><span><i class="doc-icon" aria-hidden="true"></i>bank statement</span><b class="tag">received</b></div>
+              <div class="doc-row"><span><i class="doc-icon" aria-hidden="true"></i>supplier invoice</span><b class="tag">received</b></div>
+              <div class="doc-row"><span><i class="doc-icon" aria-hidden="true"></i>VAT question</span><b class="tag ask">we ask</b></div>
+            </div>
+            <div class="review-line"><span class="review-dot" aria-hidden="true">✓</span><span>Important accounting work is reviewed by a professional.</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="service-spine" aria-label="Bandly service scope">
+      <div class="shell"><span>Bookkeeping</span><span class="arrow" aria-hidden="true">✦</span><span>VAT support</span><span class="arrow" aria-hidden="true">✦</span><span>Corporate-tax support</span><span class="arrow" aria-hidden="true">✦</span><span>Reporting</span><span class="arrow" aria-hidden="true">✦</span><span>Human review</span></div>
+    </div>
+
+    <section class="plain-intro shell" id="how-it-starts" aria-labelledby="intro-title">
+      <p class="eyebrow">Not a self-serve accounting app</p>
+      <div class="body">
+        <h2 class="h2" id="intro-title">Bandly is the firm that makes the work readable.</h2>
+        <p>You keep using the channels you already use. <strong>We turn scattered records into one clear accounting starting point</strong> — then request only the information that is actually missing.</p>
+      </div>
+    </section>
+
+    <section class="onboarding" aria-labelledby="onboarding-title">
+      <div class="shell">
+        <div class="onboarding-head">
+          <div>
+            <p class="eyebrow">A softer first step</p>
+            <h2 class="h2" id="onboarding-title">A short intake before anyone asks for your time.</h2>
+          </div>
+          <p class="lede">The first interaction should help you see the shape of the handover — not force a cold lead into a calendar.</p>
+        </div>
+        <div class="onboarding-grid">
+          <article class="onboarding-step"><span class="number">01 / TELL US</span><div><h3>What needs attention?</h3><p>Choose the accounting work you want to make easier to follow.</p></div></article>
+          <article class="onboarding-step"><span class="number">02 / SHOW US</span><div><h3>How do records arrive?</h3><p>Email, WhatsApp, a shared drive or your existing accounting system — start from reality.</p></div></article>
+          <article class="onboarding-step"><span class="number">03 / GET A NEXT STEP</span><div><h3>Receive a tailored checklist.</h3><p>A conversation is offered only when it will genuinely help clarify the handover.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="boundary" id="review" aria-labelledby="review-title">
+      <div class="shell boundary-grid">
+        <div>
+          <p class="eyebrow">The accountability boundary</p>
+          <h2 class="h2" id="review-title">Automation prepares. People make the call.</h2>
+        </div>
+        <div class="boundary-list">
+          <div><span>01</span><p><strong>Missing facts stay missing.</strong> They are requested, not guessed.</p></div>
+          <div><span>02</span><p><strong>Important work does not go out automatically.</strong> It stops for professional review.</p></div>
+          <div><span>03</span><p><strong>You work with a firm, not a tool.</strong> Human judgement remains accountable.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq shell" id="faq" aria-labelledby="faq-title">
+      <div class="faq-top"><div><p class="eyebrow">Clear answers</p><h2 class="h2" id="faq-title">The questions worth asking first.</h2></div></div>
+      <div class="faq-list">
+        <details><summary>Is Bandly software or an accounting firm?</summary><p>Bandly is an accounting firm. Automation helps collect, sort and prepare the work; professionals review important outputs and remain accountable for judgement.</p></details>
+        <details><summary>Do I need to replace the systems I already use?</summary><p>No. The starting point is the way your records already arrive: email, WhatsApp, shared drives and existing accounting systems.</p></details>
+        <details><summary>What happens if a document is missing?</summary><p>The gap stays visible. You receive one precise request for what is needed rather than a chain of generic reminders.</p></details>
+        <details><summary>Will I be pushed straight into a sales call?</summary><p>No. The first step is a short intake. A call comes later only if it helps clarify your company’s handover and scope.</p></details>
+      </div>
+    </section>
+
+    <section class="final shell" aria-labelledby="final-title">
+      <div class="final-card">
+        <div><p class="eyebrow">Start from the records you have</p><h2 class="h2" id="final-title">Make the first handover less of a project.</h2></div>
+        <div><p class="lede">Answer three short questions and see what Bandly would ask for first.</p><p><button class="button" type="button" data-open-intake>Start the checklist <span class="arrow" aria-hidden="true">↗</span></button></p></div>
+      </div>
+    </section>
+    <div class="ascii-wrap" aria-hidden="true"><canvas id="ascii-waves"></canvas></div>
+  </main>
+
+  <footer><div class="shell"><span>Bandly · Dubai, UAE</span><span>Prototype direction — no contact details are submitted.</span></div></footer>
+
+  <dialog id="intake-dialog" aria-labelledby="intake-title">
+    <div class="dialog-inner">
+      <div class="dialog-top"><div><p class="eyebrow">Step 1 of 3</p><h2 id="intake-title">What would you like to make clearer?</h2></div><button class="close-button" type="button" aria-label="Close checklist" data-close-intake>×</button></div>
+      <form class="intake-form" id="intake-form" novalidate>
+        <fieldset><legend>Choose one area to start with</legend><div class="choice-grid"><label class="choice"><input type="radio" name="need" value="Monthly bookkeeping" />Monthly bookkeeping</label><label class="choice"><input type="radio" name="need" value="VAT support" />VAT support</label><label class="choice"><input type="radio" name="need" value="Corporate-tax support" />Corporate-tax support</label><label class="choice"><input type="radio" name="need" value="I'm not sure yet" />I’m not sure yet</label></div><p class="error" id="need-error" aria-live="polite"></p></fieldset>
+        <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="name@company.com" aria-describedby="email-error" /><p class="error" id="email-error" aria-live="polite"></p></div>
+        <div class="form-actions"><button class="button primary" type="submit">Prepare my start checklist <span class="arrow" aria-hidden="true">↗</span></button><p class="preview-note">Prototype only. Nothing is sent from this page.</p></div>
+      </form>
+      <section class="form-result" id="form-result" aria-live="polite"><h3>Your checklist would start here.</h3><p>For this preview, we’ve shown the next state without collecting anything. In production, this becomes a verified intake route and only then offers a call if it helps.</p><button class="button" type="button" data-close-intake>Close checklist</button></section>
+    </div>
+  </dialog>
+
+  <script>
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function startParticleImage() {
+      const canvas = document.getElementById('particle-image');
+      const hero = canvas.closest('.hero');
+      const ctx = canvas.getContext('2d');
+      const pointer = { x: -9999, y: -9999, active: false };
+      let particles = [];
+      let width = 0, height = 0, dpr = 1, frame;
+
+      function drawSeal(w, h) {
+        const off = document.createElement('canvas');
+        off.width = w; off.height = h;
+        const o = off.getContext('2d');
+        const cx = w * 0.72, cy = h * 0.52, r = Math.min(w, h) * 0.28;
+        o.fillStyle = '#2d4bff';
+        o.beginPath(); o.arc(cx, cy, r, 0, Math.PI * 2); o.fill();
+        o.globalCompositeOperation = 'destination-out';
+        o.beginPath(); o.arc(cx, cy, r * 0.78, 0, Math.PI * 2); o.fill();
+        o.globalCompositeOperation = 'source-over';
+        o.fillStyle = '#121216';
+        o.font = `800 ${Math.floor(r * 1.15)}px Manrope, sans-serif`;
+        o.textAlign = 'center'; o.textBaseline = 'middle';
+        o.fillText('B', cx, cy + r * 0.04);
+        o.strokeStyle = '#ff5a3e'; o.lineWidth = Math.max(4, r * 0.045);
+        o.beginPath(); o.arc(cx, cy, r * 0.9, -0.4, 1.1); o.stroke();
+        return o.getImageData(0, 0, w, h);
+      }
+
+      function build() {
+        const rect = hero.getBoundingClientRect();
+        dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+        width = Math.max(320, Math.floor(rect.width));
+        height = Math.max(420, Math.floor(rect.height));
+        canvas.width = width * dpr; canvas.height = height * dpr;
+        canvas.style.width = width + 'px'; canvas.style.height = height + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const sampleW = Math.min(720, width);
+        const sampleH = Math.min(720, height);
+        const image = drawSeal(sampleW, sampleH);
+        const gap = width < 700 ? 5 : 4;
+        const next = [];
+        for (let y = 0; y < sampleH; y += gap) {
+          for (let x = 0; x < sampleW; x += gap) {
+            const i = (y * sampleW + x) * 4;
+            if (image.data[i + 3] < 90) continue;
+            const tx = x * (width / sampleW);
+            const ty = y * (height / sampleH);
+            const seed = Math.random();
+            next.push({
+              tx, ty,
+              x: tx + (Math.random() - 0.5) * (reduced ? 0 : 280),
+              y: ty + (Math.random() - 0.5) * (reduced ? 0 : 280),
+              vx: 0, vy: 0, seed,
+              color: image.data[i] > 180 ? '#ffc837' : image.data[i + 2] > 140 ? '#2d4bff' : '#121216',
+              size: 1.4 + seed * 1.6
+            });
+          }
+        }
+        particles = next;
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+        for (const p of particles) {
+          if (!reduced) {
+            const dx = p.x - pointer.x, dy = p.y - pointer.y, dist = Math.hypot(dx, dy);
+            if (pointer.active && dist < 110) {
+              const f = Math.pow(1 - dist / 110, 2) * 18;
+              p.vx += (dx / dist) * f; p.vy += (dy / dist) * f;
+            }
+            p.vx += (p.tx - p.x) * 0.045; p.vy += (p.ty - p.y) * 0.045;
+            p.vx *= 0.86; p.vy *= 0.86;
+            p.x += p.vx; p.y += p.vy;
+          } else { p.x = p.tx; p.y = p.ty; }
+          ctx.fillStyle = p.color;
+          ctx.fillRect(p.x, p.y, p.size, p.size);
+        }
+        frame = requestAnimationFrame(render);
+      }
+
+      hero.addEventListener('pointermove', (e) => {
+        const r = hero.getBoundingClientRect();
+        pointer.x = e.clientX - r.left; pointer.y = e.clientY - r.top; pointer.active = true;
+      });
+      hero.addEventListener('pointerleave', () => { pointer.active = false; });
+      window.addEventListener('resize', () => { cancelAnimationFrame(frame); build(); render(); });
+      build(); render();
+    }
+
+    function startAsciiWaves() {
+      const canvas = document.getElementById('ascii-waves');
+      const wrap = canvas.parentElement;
+      const ctx = canvas.getContext('2d');
+      const glyphs = ' .,:;+*?%#@';
+      let cols = 0, rows = 0, t = 0, dpr = 1, width = 0, height = 0, frame;
+      function resize() {
+        const rect = wrap.getBoundingClientRect();
+        dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+        width = Math.floor(rect.width); height = Math.floor(rect.height);
+        canvas.width = width * dpr; canvas.height = height * dpr;
+        canvas.style.width = width + 'px'; canvas.style.height = height + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.font = '500 12px "DM Mono", monospace';
+        cols = Math.max(20, Math.floor(width / 9));
+        rows = Math.max(8, Math.floor(height / 14));
+      }
+      function render() {
+        ctx.fillStyle = '#10111b'; ctx.fillRect(0, 0, width, height);
+        ctx.fillStyle = '#ff5a3e';
+        const cw = width / cols, ch = height / rows;
+        for (let y = 0; y < rows; y++) {
+          for (let x = 0; x < cols; x++) {
+            const nx = x / cols, ny = y / rows;
+            const wave = Math.sin(nx * 10 + t) * 0.45 + Math.sin(nx * 4.2 - t * 0.7 + ny * 3) * 0.35;
+            const v = Math.max(0, Math.min(1, 0.55 + wave - ny * 0.35));
+            const g = glyphs[Math.floor(v * (glyphs.length - 1))];
+            ctx.globalAlpha = 0.35 + v * 0.65;
+            ctx.fillStyle = v > 0.72 ? '#ffc837' : v > 0.5 ? '#ff5a3e' : '#2d4bff';
+            ctx.fillText(g, x * cw, y * ch + 12);
+          }
+        }
+        ctx.globalAlpha = 1;
+        if (!reduced) t += 0.045;
+        frame = requestAnimationFrame(render);
+      }
+      window.addEventListener('resize', () => { cancelAnimationFrame(frame); resize(); render(); });
+      resize(); render();
+    }
+
+    startParticleImage();
+    startAsciiWaves();
+
+    const dialog = document.getElementById('intake-dialog');
+    const form = document.getElementById('intake-form');
+    const result = document.getElementById('form-result');
+    const email = document.getElementById('email');
+    const menuButton = document.querySelector('.menu-button');
+    const mobileNav = document.getElementById('mobile-nav');
+    let opener = null;
+    function openIntake(trigger) {
+      opener = trigger; form.hidden = false; result.classList.remove('show'); form.reset();
+      document.getElementById('need-error').textContent = '';
+      document.getElementById('email-error').textContent = '';
+      email.removeAttribute('aria-invalid'); dialog.showModal();
+    }
+    function closeIntake() { dialog.close(); opener?.focus(); }
+    document.querySelectorAll('[data-open-intake]').forEach((button) => button.addEventListener('click', () => openIntake(button)));
+    document.querySelectorAll('[data-close-intake]').forEach((button) => button.addEventListener('click', closeIntake));
+    dialog.addEventListener('click', (event) => { if (event.target === dialog) closeIntake(); });
+    dialog.addEventListener('close', () => { opener?.focus(); });
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const chosenNeed = new FormData(form).get('need');
+      const needError = document.getElementById('need-error');
+      const emailError = document.getElementById('email-error');
+      needError.textContent = chosenNeed ? '' : 'Choose one area so we can show the right starting point.';
+      const validEmail = email.value.trim() && email.validity.valid;
+      emailError.textContent = validEmail ? '' : 'Enter a work email in the format name@company.com.';
+      email.toggleAttribute('aria-invalid', !validEmail);
+      if (!chosenNeed) { document.querySelector('input[name="need"]').focus(); return; }
+      if (!validEmail) { email.focus(); return; }
+      form.hidden = true; result.classList.add('show'); result.querySelector('button').focus();
+    });
+    menuButton?.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.textContent = open ? 'Close' : 'Menu';
+    });
+    mobileNav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.textContent = 'Menu';
+    }));
+  </script>
+</body>
+</html>
