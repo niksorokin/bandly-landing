@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bandly — Accounting firm in Dubai</title>
+<!-- BANDLY_V13_STRAND -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f7f6f3; --ink:#111; --mute:#5c5852; --line:#e6e3dc;
+  --white:#fff; --black:#0b0b0b; --accent:#111;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,ui-sans-serif,system-ui,sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit}
+.wrap{width:min(1180px, calc(100% - 40px));margin:0 auto}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.serif{font-family:"Instrument Serif",Georgia,serif}
+.nav-wrap{position:sticky;top:0;z-index:40;background:rgba(247,246,243,.88);backdrop-filter:blur(16px);border-bottom:1px solid transparent}
+.nav-wrap.scrolled{border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;gap:28px;min-height:64px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:600}
+.nav-links{display:flex;gap:22px;font-size:14px;color:var(--mute)}
+.nav-links a:hover{color:var(--ink)}
+.nav-right{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--white);color:var(--ink);cursor:pointer}
+.btn:hover{border-color:#cfcbc3}
+.btn.primary{background:var(--black);color:#fff;border-color:var(--black)}
+.btn.ghost{background:transparent}
+.btn.lg{min-height:48px;padding:0 20px;font-size:15px}
+.eyebrow{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+h1,.h1{font-family:"Instrument Serif",Georgia,serif;font-size:clamp(40px,6vw,72px);font-weight:400;line-height:1.02;letter-spacing:-.03em}
+h2,.h2{font-family:"Instrument Serif",Georgia,serif;font-size:clamp(28px,4vw,46px);font-weight:400;line-height:1.12;letter-spacing:-.03em}
+.lede{font-size:18px;line-height:1.5;color:var(--mute);max-width:38rem}
+.section{padding:88px 0}
+.hero-stage,.closing-stage{position:relative;isolation:isolate;min-height:100svh;overflow:hidden}
+.us-layer{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.hero-veil{position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(247,246,243,.94) 0 46%,rgba(247,246,243,.42) 72%,rgba(247,246,243,.08) 100%)}
+.closing-veil{position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(247,246,243,.18),rgba(247,246,243,.72) 46%,rgba(247,246,243,.28))}
+.hero-stage .wrap,.closing-stage .wrap{position:relative;z-index:1}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:72px 0 88px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.hero-note{margin-top:12px;font-size:13px;color:var(--mute)}
+.spine{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;padding-top:24px;border-top:1px solid var(--line);max-width:36rem}
+.spine b{display:block;font-size:13px;margin-bottom:4px}
+.spine span{display:block;font-size:13px;color:var(--mute);line-height:1.4}
+.app{background:var(--white);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(20,16,12,.08)}
+.app-bar{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);background:#fafaf7}
+.dots{display:flex;gap:6px}
+.dots i{width:8px;height:8px;border-radius:50%;background:#d9d4cc;display:block}
+.app-title{font-size:13px;font-weight:500}
+.pill{margin-left:auto;font-size:11px;padding:4px 8px;border-radius:999px;background:#111;color:#fff}
+.app-grid{display:grid;grid-template-columns:150px 1fr}
+.app-side{padding:16px 14px;border-right:1px solid var(--line);background:#fcfbf8;font-size:13px;color:var(--mute)}
+.app-side b{display:block;color:var(--ink);margin:12px 0 8px}
+.app-main{padding:8px 0}
+.row{display:grid;grid-template-columns:18px 1fr auto;gap:10px;align-items:center;padding:11px 16px;border-bottom:1px solid var(--line);font-size:13px}
+.row:last-child{border-bottom:0}
+.dot{width:8px;height:8px;border-radius:50%;background:#111}
+.dot.warn{background:#c45c12}
+.row small{color:var(--mute)}
+.reviewer{display:flex;align-items:center;gap:10px;padding:14px 16px;background:#f4f2ec}
+.reviewer img{width:36px;height:36px;border-radius:50%;object-fit:cover}
+.reviewer p{font-size:12px;color:var(--mute);line-height:1.4}
+.cap{display:block;margin-top:10px;font-size:12px;color:var(--mute)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
+figure{margin:0}
+.art{border-radius:18px;overflow:hidden;background:#eceae4;margin-bottom:18px}
+.art img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.step h3{font-size:20px;font-family:"Instrument Serif",Georgia,serif;margin:8px 0}
+.step p{font-size:15px;line-height:1.55;color:var(--mute)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:24px;padding:36px}
+.l-row{display:grid;grid-template-columns:280px 1fr;gap:24px;padding:18px 0;border-top:1px solid var(--line)}
+.l-row:first-child{border-top:0;padding-top:0}
+.l-name{font-weight:500}
+.l-desc{color:var(--mute);line-height:1.5}
+.uae{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.uae-item{display:flex;gap:12px;padding:14px 0;border-top:1px solid var(--line);color:var(--mute);line-height:1.5}
+.uae-item:first-child{border-top:0}
+.seg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
+.seg-card{padding:20px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.seg-card h3{font-size:16px;margin-bottom:6px}
+.seg-card p{font-size:14px;color:var(--mute);line-height:1.45}
+.dark{background:#0c0c0c;color:#f3f1ec}
+.dark .eyebrow{color:#9a958c}
+.dark-points{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
+.dark-points p{color:#c8c3ba;line-height:1.5}
+.req{margin-top:48px;max-width:720px;background:#151515;border:1px solid #2a2a2a;border-radius:20px;padding:24px}
+.msg{display:flex;gap:10px;margin:14px 0}
+.msg.you{justify-content:flex-end}
+.ava{width:32px;height:32px;border-radius:50%;object-fit:cover;background:#333;flex:none}
+.bubble{max-width:460px;background:#1d1d1d;border:1px solid #333;border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.5;color:#eceae4}
+.msg.you .bubble{background:#f3f1ec;color:#111;border-color:#f3f1ec}
+.who{font-size:11px;color:#8f8a82;margin-bottom:6px;font-family:"JetBrains Mono",ui-monospace,monospace}
+.experts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.expert{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.expert img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.expert div{padding:16px}
+.expert h3{font-size:16px}
+.expert .role{font-size:13px;color:var(--mute);margin:4px 0 8px}
+.expert p{font-size:14px;color:var(--mute);line-height:1.45}
+.reassure{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.reassure .r-label{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.12em;margin-bottom:10px}
+.reassure p{color:var(--mute);line-height:1.5}
+.pricing{display:grid;grid-template-columns:1.05fr .95fr;gap:28px}
+.calc{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px}
+input[type=range]{width:100%;margin:16px 0}
+.calc-amount{font-family:"Instrument Serif",Georgia,serif;font-size:48px}
+.compare{width:100%;border-collapse:collapse;margin-top:32px;font-size:14px}
+.compare th,.compare td{text-align:left;padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.compare td.bandly,.compare th.bandly{background:#fff}
+.faq-item{border-top:1px solid var(--line)}
+.faq-q{width:100%;display:flex;justify-content:space-between;gap:16px;background:none;border:0;text-align:left;padding:18px 0;cursor:pointer;font-size:16px}
+.faq-a{max-height:0;overflow:hidden}
+.faq-a p{color:var(--mute);padding:0 0 18px;max-width:40rem;line-height:1.55}
+.closing{text-align:center;padding:120px 0}
+.closing .lede{margin:16px auto 28px}
+footer{border-top:1px solid var(--line)}
+.foot{display:flex;align-items:center;gap:20px;min-height:80px;font-size:13px;color:var(--mute)}
+.foot-right{margin-left:auto}
+dialog{border:0;border-radius:20px;padding:0;width:min(100% - 2rem, 28rem);box-shadow:0 24px 80px rgba(0,0,0,.28)}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+.dlg{padding:28px}
+.dlg h2{font-size:28px;margin:8px 0 12px}
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.choice{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px;font-size:14px}
+.field{display:grid;gap:6px;margin:12px 0;font-size:13px}
+.field input{min-height:44px;border:1px solid var(--line);border-radius:12px;padding:0 12px}
+.preview-note{font-size:12px;color:var(--mute)}
+.error{color:#9d260e;font-size:12px;min-height:1rem}
+.form-result{display:none;gap:10px}
+.form-result.show{display:grid}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;z-index:80}
+.lightbox.open{display:flex}
+.lightbox img{max-width:min(860px,88vw);max-height:82vh;border-radius:16px}
+@media (max-width:960px){
+  .nav-links{display:none}
+  .hero,.app-grid,.uae,.pricing,.dark-points,.reassure,.experts,.seg-grid,.steps,.l-row{grid-template-columns:1fr}
+  .app-side{display:none}
+  .spine{grid-template-columns:1fr}
+  .hero-veil{background:linear-gradient(180deg,rgba(247,246,243,.94) 0 58%,rgba(247,246,243,.4))}
+  .section{padding:64px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  .us-layer{display:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<header class="nav-wrap" id="navWrap">
+  <div class="wrap">
+    <nav class="nav">
+      <a class="logo" href="#">
+        <svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="2" width="3" height="3" rx="1" fill="#111"/><rect x="7" y="2" width="3" height="3" rx="1" fill="#111"/><rect x="2" y="7" width="3" height="3" rx="1" fill="#111"/><rect x="12" y="7" width="3" height="3" rx="1" fill="#111"/><rect x="2" y="12" width="3" height="3" rx="1" fill="#111"/></svg>
+        Bandly
+      </a>
+      <div class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-right">
+        <button class="btn ghost" type="button" data-open-login>Log in</button>
+        <button class="btn primary" type="button" data-open-intake>Start with a checklist</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero-stage">
+  <div class="us-layer" data-us-project-src="scenes/strand.json" data-us-scale="1" data-us-dpi="1.5" data-us-alttext="Animated strand field" data-us-arialabel="Decorative strand animation behind the hero"></div>
+  <div class="hero-veil"></div>
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Accounting firm · Dubai, UAE</p>
+        <h1 style="margin-top:18px">Send the papers.<br>See what’s missing.</h1>
+        <p class="lede" style="margin-top:18px">Bandly is an accounting firm for Dubai businesses. You send invoices, bank statements and receipts. We organise the month, show the gaps, and a professional reviews anything that gets filed.</p>
+        <div class="hero-ctas">
+          <button class="btn primary lg" type="button" data-open-intake>Start with a checklist</button>
+          <a class="btn lg" href="#how">See how it works</a>
+        </div>
+        <p class="hero-note">About two minutes. No calendar booking at this stage.</p>
+        <div class="spine">
+          <div><b>You send</b><span>The records you already have</span></div>
+          <div><b>We prepare</b><span>One working state for the month</span></div>
+          <div><b>A person signs off</b><span>Before anything is filed</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="app" aria-label="Illustrative monthly close window">
+          <div class="app-bar">
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="app-title">July close · illustrative</span>
+            <span class="pill">1 item needed</span>
+          </div>
+          <div class="app-grid">
+            <aside class="app-side">
+              <b>Workspace</b>
+              Records<br>VAT<br>Review
+            </aside>
+            <div class="app-main">
+              <div class="row"><span class="dot"></span><span>Sales invoices · June–July<br><small>Received</small></span><span class="mono">ok</span></div>
+              <div class="row"><span class="dot"></span><span>Expense receipts<br><small>Matched</small></span><span class="mono">ok</span></div>
+              <div class="row"><span class="dot warn"></span><span>July bank statement<br><small>Needed to finish the close</small></span><span class="mono">ask</span></div>
+              <div class="row"><span class="dot"></span><span>VAT pack<br><small>Prepared, waiting for review</small></span><span class="mono">hold</span></div>
+              <div class="reviewer">
+                <img src="../assets/expert-1.png" alt="">
+                <p><b>Professional review next</b><br>Automation prepared the file. A person still has to approve it.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="cap">Illustrative close view — not a live client file.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <section class="section" id="how">
+    <p class="eyebrow">How it works</p>
+    <h2 style="margin-top:14px;max-width:18ch">Hand over the paperwork. Keep the business.</h2>
+    <div class="steps">
+      <article class="step">
+        <figure class="art" data-lb><img src="assets/art-share.webp" alt="Layered warm sheets curling, standing in for handing over records"></figure>
+        <p class="mono" style="font-size:12px;color:var(--mute)">01 — Share</p>
+        <h3>Send it the way you already work</h3>
+        <p>Email, WhatsApp, or a shared folder. Invoices, bank statements, receipts — no new system to learn first.</p>
+      </article>
+      <article class="step">
+        <figure class="art" data-lb><img src="assets/art-prepare.webp" alt="Iridescent stacked sheets with a check token, standing in for organised records"></figure>
+        <p class="mono" style="font-size:12px;color:var(--mute)">02 — Prepare</p>
+        <h3>One clear working state</h3>
+        <p>Bandly sorts what arrived, matches it, and asks for the exact missing item. Not a reminder chain.</p>
+      </article>
+      <article class="step">
+        <figure class="art" data-lb><img src="assets/art-review.webp" alt="Cool blue layered mesh with a marker, standing in for human review"></figure>
+        <p class="mono" style="font-size:12px;color:var(--mute)">03 — Review</p>
+        <h3>A person signs off</h3>
+        <p>A qualified accountant checks important outputs before anything is filed or sent. You approve the close.</p>
+      </article>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <section class="section" id="services" style="padding-top:0">
+    <div class="panel">
+      <p class="eyebrow">What the firm handles</p>
+      <h2 style="margin:12px 0 24px;max-width:16ch">The books. The filings. The next step.</h2>
+      <div class="l-row"><div class="l-name">Bookkeeping &amp; period close</div><div class="l-desc">Transactions captured, categorised and reconciled into one monthly state.</div></div>
+      <div class="l-row"><div class="l-name">VAT support</div><div class="l-desc">Returns prepared from your records and reviewed before filing with the FTA.</div></div>
+      <div class="l-row"><div class="l-name">Corporate tax support</div><div class="l-desc">Calculations prepared against the UAE 9% regime, reviewed before submission.</div></div>
+      <div class="l-row"><div class="l-name">Payroll &amp; WPS</div><div class="l-desc">Salaries, gratuity and WPS files prepared on cycle.</div></div>
+      <div class="l-row"><div class="l-name">Reporting</div><div class="l-desc">Monthly P&amp;L, cash flow and balance sheet you can actually read.</div></div>
+      <p class="cap">Final scope is confirmed for your business before work begins.</p>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <section class="section" style="padding-top:0">
+    <div class="uae">
+      <div>
+        <p class="eyebrow">Built for the UAE</p>
+        <h2 style="margin-top:14px">Dubai rules, in the books.</h2>
+      </div>
+      <div>
+        <div class="uae-item">VAT at 5% and Corporate Tax at 9% — prepared against FTA deadlines.</div>
+        <div class="uae-item">Mainland or free zone — your structure is reflected, not fought.</div>
+        <div class="uae-item">IFRS-standard monthly reports, kept audit-ready.</div>
+        <div class="uae-item">Arabic and English documentation support.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <section class="section" style="padding-top:0">
+    <p class="eyebrow">Who it’s for</p>
+    <h2 style="margin-top:14px;max-width:18ch">Owner-led businesses that want a clear month.</h2>
+    <div class="seg-grid">
+      <div class="seg-card"><h3>Startups</h3><p>Numbers that can be shown without a week of reconstruction.</p></div>
+      <div class="seg-card"><h3>Agencies &amp; consultants</h3><p>Revenue, collection and profit by project, kept visible.</p></div>
+      <div class="seg-card"><h3>Online sellers</h3><p>Marketplace payouts reconciled instead of chased.</p></div>
+      <div class="seg-card"><h3>Restaurants &amp; retail</h3><p>Daily sales captured while you stay on the floor.</p></div>
+      <div class="seg-card"><h3>Property</h3><p>Rent rolls, service charges and owner reports in order.</p></div>
+      <div class="seg-card"><h3>Clinics &amp; family offices</h3><p>Discreet records, reviewed before they leave the firm.</p></div>
+    </div>
+  </section>
+</div>
+
+<section class="dark">
+  <div class="wrap section">
+    <p class="eyebrow">Human review</p>
+    <h2 style="margin-top:14px;max-width:16ch">Automation prepares. People make the call.</h2>
+    <div class="dark-points">
+      <p><b style="color:#fff">Missing facts stay missing</b><br>They are requested, never guessed.</p>
+      <p><b style="color:#fff">Filing is never automatic</b><br>Important work is reviewed before it goes out.</p>
+      <p><b style="color:#fff">You hire a firm, not a tool</b><br>Accountants remain accountable.</p>
+    </div>
+    <div class="req">
+      <p class="who">Illustrative request thread</p>
+      <div class="msg">
+        <img class="ava" src="../assets/expert-1.png" alt="">
+        <div><div class="who">Bandly · 09:41</div><div class="bubble">July bank statement is missing — 14 transactions are waiting on it. One upload and this month can close.</div></div>
+      </div>
+      <div class="msg you">
+        <div><div class="who" style="text-align:right">You · 11:02</div><div class="bubble">bank_statement_july.pdf</div></div>
+      </div>
+      <div class="msg">
+        <img class="ava" src="../assets/expert-2.png" alt="">
+        <div><div class="who">Professional review · 12:47</div><div class="bubble">Matched and checked. Nothing else is needed from you this month.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <section class="section">
+    <p class="eyebrow">The people behind it</p>
+    <h2 style="margin-top:14px;max-width:16ch">Software does the sorting. Experts stand behind it.</h2>
+    <div class="experts">
+      <article class="expert"><img src="../assets/expert-1.png" alt=""><div><h3>Layla Haddad</h3><div class="role">Head of Accounting</div><p>Reviews the monthly close before it reaches you.</p></div></article>
+      <article class="expert"><img src="../assets/expert-2.png" alt=""><div><h3>Arjun Mehta</h3><div class="role">Tax lead</div><p>Owns VAT and corporate-tax positions before FTA filing.</p></div></article>
+      <article class="expert"><img src="../assets/expert-3.png" alt=""><div><h3>Sofia Lindqvist</h3><div class="role">Review &amp; quality</div><p>Second pass on important outputs and record readiness.</p></div></article>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <section class="section" style="padding-top:0">
+    <div class="reassure">
+      <div><div class="r-label">IN</div><p>Every document you send lands in one working state — collected, sorted, matched.</p></div>
+      <div><div class="r-label">ASK</div><p>Gaps become one precise request. Nothing is guessed or chased twice.</p></div>
+      <div><div class="r-label">REVIEW</div><p>Anything important carries a visible human boundary before it goes out.</p></div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <section class="section" id="pricing" style="padding-top:0">
+    <div class="pricing">
+      <div class="panel">
+        <p class="eyebrow">Pricing</p>
+        <h2 style="margin:12px 0">One monthly package, by volume.</h2>
+        <p class="lede">Bookkeeping, VAT and corporate-tax support, monthly reporting and a dedicated team — included. Final commercial terms are confirmed before work starts.</p>
+        <div class="l-row"><div class="l-name">Included</div><div class="l-desc">Transaction capture, bank reconciliation, VAT and corporate-tax support, monthly reports, dedicated accounting team.</div></div>
+        <div class="l-row"><div class="l-name">Add-ons</div><div class="l-desc">Backlog accounting. WPS file preparation.</div></div>
+      </div>
+      <div class="calc">
+        <div style="display:flex;justify-content:space-between;font-size:13px"><span>Transactions / month</span><span class="mono" id="calcCount">150</span></div>
+        <input type="range" id="calcRange" min="25" max="1200" step="25" value="150">
+        <div class="calc-amount" id="calcAmount">AED 990</div>
+        <p class="cap">Illustrative range from current packages. A transaction is one bank line. Confirm before production.</p>
+        <button class="btn primary" style="width:100%;margin-top:18px" type="button" data-open-intake>Start with a checklist</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <section class="section" style="padding-top:0">
+    <p class="eyebrow">Compared with the usual options</p>
+    <h2 style="margin-top:14px;max-width:16ch">Less chasing. Same human accountability.</h2>
+    <table class="compare">
+      <thead><tr><th></th><th>Traditional firm</th><th>In-house hire</th><th class="bandly">Bandly</th></tr></thead>
+      <tbody>
+        <tr><td>Documents</td><td>You collect and send</td><td>You hire and manage</td><td class="bandly">Send what you already have</td></tr>
+        <tr><td>Missing items</td><td>Reminder chains</td><td>Depends on one person</td><td class="bandly">One precise request</td></tr>
+        <tr><td>Filing</td><td>Varies</td><td>Depends on one person</td><td class="bandly">Prepared, then professionally reviewed</td></tr>
+        <tr><td>What you buy</td><td>A firm</td><td>An employee</td><td class="bandly">A firm, with preparation automated</td></tr>
+      </tbody>
+    </table>
+  </section>
+</div>
+
+<div class="wrap">
+  <section class="section" id="faq" style="padding-top:0">
+    <p class="eyebrow">FAQ</p>
+    <h2 style="margin:14px 0 8px">Straight answers</h2>
+    <div id="faqList">
+      <div class="faq-item"><button class="faq-q" type="button">Is Bandly software or an accounting firm?</button><div class="faq-a"><p>A firm. Automation collects, sorts and prepares. Qualified accountants review the work and stand behind it.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">Does AI submit filings by itself?</button><div class="faq-a"><p>No. Automation prepares; a professional reviews and approves before anything is filed with the FTA.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">Do I have to replace my accounting system?</button><div class="faq-a"><p>No. Start from email, bank files, marketplaces, or the software you already use.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">What if a document is missing?</button><div class="faq-a"><p>You get one precise request for exactly what is missing. Nothing is guessed.</p></div></div>
+      <div class="faq-item"><button class="faq-q" type="button">Can you fix a backlog?</button><div class="faq-a"><p>Yes. Books can be brought up to date first, then kept current.</p></div></div>
+    </div>
+  </section>
+</div>
+
+<section class="closing-stage">
+  <div class="us-layer" data-us-project-src="scenes/strand.json" data-us-scale="1" data-us-dpi="1.5" data-us-lazyload="true" data-us-alttext="Animated strand field" data-us-arialabel="Decorative strand animation behind the closing call to action"></div>
+  <div class="closing-veil"></div>
+  <div class="wrap">
+    <div class="closing">
+      <p class="eyebrow">Get started</p>
+      <h2 style="margin-top:16px">Hand over the books. Keep the business.</h2>
+      <p class="lede">Start from the documents you already have. A call is only offered later if it actually helps.</p>
+      <button class="btn primary lg" type="button" data-open-intake>Start with a checklist</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a class="logo" href="#">Bandly</a>
+      <a href="#how">How it works</a>
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <span class="foot-right">© 2026 Bandly · Dubai, UAE</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox"><img id="lbImg" alt=""></div>
+
+<dialog id="intake-dialog" aria-labelledby="intake-title">
+  <div class="dlg">
+    <p class="eyebrow">Step 1 of 3</p>
+    <h2 id="intake-title">What should be clearer first?</h2>
+    <form id="intake-form">
+      <div class="choice-grid">
+        <label class="choice"><input type="radio" name="need" value="Bookkeeping"> Monthly books</label>
+        <label class="choice"><input type="radio" name="need" value="VAT"> VAT</label>
+        <label class="choice"><input type="radio" name="need" value="Tax"> Corporate tax</label>
+        <label class="choice"><input type="radio" name="need" value="Not sure"> Not sure yet</label>
+      </div>
+      <p class="error" id="need-error"></p>
+      <label class="field">Work email<input id="intake-email" name="email" type="email" autocomplete="email" placeholder="name@company.com"></label>
+      <p class="error" id="email-error"></p>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <button class="btn primary" type="submit">Prepare my checklist</button>
+        <button class="btn ghost" type="button" data-close-intake>Close</button>
+      </div>
+      <p class="preview-note" style="margin-top:10px">Prototype only. Nothing is sent from this page.</p>
+    </form>
+    <div class="form-result" id="form-result">
+      <h3>Your checklist would start here.</h3>
+      <p class="preview-note">Nothing was sent. In production this becomes a real intake.</p>
+      <button class="btn" type="button" data-close-intake>Close</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="login-dialog" aria-labelledby="login-title">
+  <div class="dlg">
+    <p class="eyebrow">Client access</p>
+    <h2 id="login-title">Log in is not connected yet</h2>
+    <p class="lede">This preview cannot authenticate anyone. Use the checklist if you want to see the first step. Nothing is sent.</p>
+    <div style="display:flex;gap:8px;margin-top:20px">
+      <button class="btn primary" type="button" data-close-login data-open-intake>Start with a checklist</button>
+      <button class="btn ghost" type="button" data-close-login>Close</button>
+    </div>
+  </div>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.1.12/dist/unicornStudio.umd.js"></script>
+<script>
+const navWrap = document.getElementById('navWrap');
+addEventListener('scroll', () => navWrap.classList.toggle('scrolled', scrollY > 8), {passive:true});
+
+document.getElementById('faqList').addEventListener('click', e => {
+  const q = e.target.closest('.faq-q');
+  if (!q) return;
+  const item = q.parentElement;
+  const ans = item.querySelector('.faq-a');
+  const open = item.classList.toggle('open');
+  ans.style.maxHeight = open ? ans.scrollHeight + 'px' : '0';
+});
+
+const range = document.getElementById('calcRange');
+const count = document.getElementById('calcCount');
+const amount = document.getElementById('calcAmount');
+function priceFor(t){
+  if (t <= 100) return 'AED 690';
+  if (t <= 250) return 'AED 990';
+  if (t <= 500) return 'AED 1,490';
+  if (t <= 1000) return 'AED 1,990';
+  return "Let's talk";
+}
+function upd(){
+  const t = +range.value;
+  count.textContent = t >= 1200 ? '1,200+' : t.toLocaleString('en-US');
+  amount.textContent = priceFor(t);
+}
+range.addEventListener('input', upd); upd();
+
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+document.querySelectorAll('[data-lb] img').forEach(img => {
+  img.closest('[data-lb]').addEventListener('click', () => { lbImg.src = img.src; lbImg.alt = img.alt; lb.classList.add('open'); });
+});
+lb.addEventListener('click', () => lb.classList.remove('open'));
+addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+
+(function(){
+  const dialog = document.getElementById('intake-dialog');
+  const login = document.getElementById('login-dialog');
+  const form = document.getElementById('intake-form');
+  const result = document.getElementById('form-result');
+  const email = document.getElementById('intake-email');
+  let opener = null;
+  function openIntake(btn){ opener = btn || opener; form.hidden = false; result.classList.remove('show'); form.reset(); document.getElementById('need-error').textContent=''; document.getElementById('email-error').textContent=''; dialog.showModal(); }
+  function closeIntake(){ dialog.close(); opener && opener.focus(); }
+  document.querySelectorAll('[data-open-intake]').forEach(b => b.addEventListener('click', () => { if (login.open) login.close(); openIntake(b); }));
+  document.querySelectorAll('[data-close-intake]').forEach(b => b.addEventListener('click', closeIntake));
+  document.querySelectorAll('[data-open-login]').forEach(b => b.addEventListener('click', () => login.showModal()));
+  document.querySelectorAll('[data-close-login]').forEach(b => b.addEventListener('click', () => login.close()));
+  dialog.addEventListener('click', e => { if (e.target === dialog) closeIntake(); });
+  login.addEventListener('click', e => { if (e.target === login) login.close(); });
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const need = new FormData(form).get('need');
+    const ok = email.value.trim() && email.validity.valid;
+    document.getElementById('need-error').textContent = need ? '' : 'Choose one area.';
+    document.getElementById('email-error').textContent = ok ? '' : 'Enter a work email.';
+    if (!need || !ok) return;
+    form.hidden = true; result.classList.add('show');
+  });
+})();
+
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  function boot() {
+    if (!window.UnicornStudio || !UnicornStudio.init) return;
+    UnicornStudio.init().catch(function (err) { console.warn('Unicorn Studio scene failed', err); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>
+</body>
+</html>
