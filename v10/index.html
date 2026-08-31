@@ -1,0 +1,949 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bandly — AI-Native Accounting Firm · Dubai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --eggshell:#fafafa; --taupe:#f2f2f2; --stone:#e6e6e6;
+  --ink:#000; --graphite:#3a3a3a; --smoke:#6b6b6b; --ash:#9a9a9a;
+  --violet:#111; --ember:#111;
+  --shadow: rgba(0,0,0,.4) 0 0 1px 0, rgba(0,0,0,.04) 0 1px 1px 0, rgba(0,0,0,.04) 0 2px 4px 0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;background:var(--eggshell);color:var(--ink);-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+
+/* ---------- primitives ---------- */
+.btn{display:inline-flex;align-items:center;border-radius:9999px;font-size:14px;font-weight:500;
+  padding:9px 16px;border:1px solid #e5e5e5;background:var(--eggshell);color:var(--ink);cursor:pointer;
+  font-family:inherit;transition:box-shadow .15s ease}
+.btn:hover{box-shadow:var(--shadow)}
+.btn.primary{background:#000;color:#fff;box-shadow:var(--shadow)}
+.btn.lg{padding:12px 22px;font-size:15px}
+
+.eyebrow{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:500;
+  letter-spacing:.12em;color:var(--graphite);text-transform:uppercase}
+.h1{font-size:48px;font-weight:300;letter-spacing:-.96px;line-height:1.08}
+.h2{font-size:36px;font-weight:300;letter-spacing:-.72px;line-height:1.17}
+.lede{font-size:16px;line-height:1.5;letter-spacing:.16px;color:var(--smoke)}
+.caption{font-size:13px;color:var(--ash)}
+.check{width:22px;height:22px;border-radius:50%;background:var(--taupe);display:flex;align-items:center;justify-content:center;flex:none}
+.section{padding:96px 0}
+.spark-dot{width:10px;height:10px;border-radius:50%;flex:none;
+  background:radial-gradient(circle at 32% 30%, #ffb03d, var(--ember) 46%, var(--violet) 118%)}
+
+/* ---------- nav ---------- */
+.nav{display:flex;align-items:center;height:64px;gap:36px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:600;font-size:16px}
+.nav-links{display:flex;gap:28px;margin-left:12px}
+.nav-links a{font-size:14px}
+.nav-links a:hover{color:var(--smoke)}
+.nav-right{margin-left:auto}
+
+/* ---------- 01 hero ---------- */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;padding:96px 0;align-items:center}
+.hero .eyebrow{margin-bottom:24px}
+.hero .lede{margin-top:24px;max-width:480px}
+.hero-ctas{display:flex;gap:12px;margin-top:32px}
+
+.close-card{background:var(--eggshell);border:1px solid var(--stone);border-radius:20px;box-shadow:var(--shadow);padding:28px}
+.close-card .cc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.cc-title{font-size:14px;font-weight:500;color:var(--graphite)}
+.cc-status{font-size:12px;font-weight:500;color:var(--graphite);background:var(--taupe);border:1px solid var(--stone);
+  border-radius:9999px;padding:5px 12px}
+.cc-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--stone);font-size:14px}
+.cc-row:first-of-type{border-top:none}
+.cc-row .num{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;color:var(--graphite);margin-left:auto}
+.cc-row.need .t{color:var(--graphite);font-weight:500}
+.need-dot{width:22px;height:22px;border-radius:50%;background:var(--taupe);display:flex;align-items:center;justify-content:center;flex:none}
+.need-dot::after{content:"";width:8px;height:8px;border-radius:50%;
+  background:radial-gradient(circle at 32% 30%, #ffb03d, var(--ember) 50%, var(--violet) 130%)}
+.cc-foot{display:flex;align-items:center;gap:10px;margin-top:18px;padding-top:18px;border-top:1px solid var(--stone);
+  font-size:13px;color:var(--graphite)}
+
+/* ---------- 02 proof strip ---------- */
+.proof{border-top:1px solid var(--stone);border-bottom:1px solid var(--stone)}
+.proof-grid{display:grid;grid-template-columns:repeat(4,1fr);padding:40px 0}
+.proof-item{text-align:left;padding:0 32px;border-left:1px solid var(--stone)}
+.proof-item:first-child{border-left:none;padding-left:0}
+.proof-num{font-size:36px;font-weight:300;letter-spacing:-.72px;line-height:1.17}
+.proof-label{font-size:13px;color:var(--smoke);margin-top:4px}
+
+/* ---------- 03 how it works ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:56px}
+.step .step-num{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;color:var(--ash);margin-bottom:16px}
+.step h3{font-size:18px;font-weight:500;margin-bottom:10px}
+.step p{font-size:15px;line-height:1.55;color:var(--smoke)}
+.how .caption{display:block;margin-top:48px}
+
+/* ---------- 04 ledger ---------- */
+.ledger-panel{background:var(--taupe);border-radius:24px;padding:48px}
+.ledger-panel .h2{max-width:560px}
+.ledger-rows{margin-top:40px;background:var(--eggshell);border:1px solid var(--stone);border-radius:16px;overflow:hidden}
+.l-row{display:grid;grid-template-columns:320px 1fr;gap:32px;padding:22px 28px;border-top:1px solid var(--stone);align-items:baseline}
+.l-row:first-child{border-top:none}
+.l-row:hover{background:var(--taupe)}
+.l-name{font-size:16px;font-weight:500}
+.l-desc{font-size:15px;line-height:1.5;color:var(--smoke)}
+.ledger-panel .caption{display:block;margin-top:20px}
+
+/* ---------- 05 UAE ---------- */
+.uae{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.uae-list{display:flex;flex-direction:column;gap:4px}
+.uae-item{display:flex;gap:14px;padding:16px 0;border-top:1px solid var(--stone);font-size:15px;line-height:1.5;color:var(--graphite)}
+.uae-item:first-child{border-top:none;padding-top:0}
+.uae-item p{flex:1}
+
+/* ---------- 06 segments ---------- */
+.seg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+.seg-card{background:var(--taupe);border-radius:20px;padding:28px;transition:box-shadow .15s ease}
+.seg-card:hover{box-shadow:var(--shadow)}
+.seg-card h3{font-size:16px;font-weight:500;margin-bottom:8px}
+.seg-card p{font-size:14px;line-height:1.5;color:var(--smoke)}
+.seg-closing{margin-top:40px;font-size:16px;color:var(--graphite)}
+.seg-closing a{font-weight:500;border-bottom:1px solid var(--ink)}
+.seg-closing a:hover{color:var(--smoke);border-color:var(--smoke)}
+
+/* ---------- 07 dark boundary ---------- */
+.dark{background:#000;color:var(--eggshell)}
+.dark .wrap{padding-top:112px;padding-bottom:112px}
+.dark .eyebrow{color:var(--ash)}
+.dark .h2{max-width:600px;margin-top:24px}
+.dark-points{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:64px}
+.dark-point .dp-num{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;color:#5c574f;margin-bottom:16px}
+.dark-point p{font-size:16px;line-height:1.55;color:#b8b2aa}
+.dark-point p b{color:var(--eggshell);font-weight:500}
+
+/* ---------- 08 reassurance ---------- */
+.reassure{display:grid;grid-template-columns:repeat(3,1fr);gap:48px}
+.reassure .r-label{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;font-weight:500;
+  letter-spacing:.12em;color:var(--graphite);margin-bottom:16px}
+.reassure p{font-size:15px;line-height:1.55;color:var(--smoke)}
+
+/* ---------- 09 pricing ---------- */
+.pricing-panel{background:var(--taupe);border-radius:24px;padding:48px;display:grid;grid-template-columns:1.05fr .95fr;gap:64px}
+.pricing-panel .lede{margin-top:20px;max-width:440px}
+.included{margin-top:32px;display:flex;flex-direction:column;gap:2px}
+.inc-item{display:flex;align-items:center;gap:12px;padding:9px 0;font-size:14px;color:var(--graphite)}
+.addons{margin-top:28px}
+.addons .caption{display:block;margin-bottom:10px}
+.addon-chips{display:flex;gap:8px;flex-wrap:wrap}
+.addon-chip{font-size:13px;font-weight:500;color:var(--graphite);background:var(--eggshell);border:1px solid var(--stone);
+  border-radius:9999px;padding:7px 14px}
+
+.calc{background:var(--eggshell);border:1px solid var(--stone);border-radius:20px;box-shadow:var(--shadow);padding:32px}
+.calc-label{font-size:13px;font-weight:500;color:var(--graphite);display:flex;justify-content:space-between;align-items:baseline}
+.calc-count{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;color:var(--smoke)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:9999px;background:var(--stone);outline:none;margin:22px 0 8px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;
+  background:#000;box-shadow:var(--shadow);cursor:pointer;border:none}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#000;box-shadow:var(--shadow);cursor:pointer;border:none}
+.calc-marks{display:flex;justify-content:space-between;font-size:11px;color:var(--ash);margin-bottom:28px}
+.calc-price{display:flex;align-items:baseline;gap:8px}
+.calc-amount{font-size:48px;font-weight:300;letter-spacing:-.96px;line-height:1.08}
+.calc-per{font-size:14px;color:var(--smoke)}
+.calc-note{font-size:12px;line-height:1.5;color:var(--ash);margin-top:24px;padding-top:20px;border-top:1px solid var(--stone)}
+.calc .btn{width:100%;justify-content:center;margin-top:20px}
+
+/* ---------- 10 comparison ---------- */
+.compare{width:100%;border-collapse:collapse;margin-top:56px;font-size:14px}
+.compare th,.compare td{text-align:left;padding:18px 20px;border-bottom:1px solid var(--stone);vertical-align:top;line-height:1.45}
+.compare thead th{font-size:13px;font-weight:500;color:var(--graphite);border-bottom:1px solid var(--stone)}
+.compare thead th.bandly,.compare td.bandly{background:var(--taupe)}
+.compare thead th.bandly{border-radius:12px 12px 0 0;color:var(--ink)}
+.compare td.rowhead{font-weight:500;color:var(--graphite);width:150px}
+.compare tbody tr:last-child td.bandly{border-radius:0 0 12px 12px}
+.compare td{color:var(--smoke)}
+.compare td.bandly{color:var(--ink)}
+
+/* ---------- 11 FAQ ---------- */
+.faq-list{max-width:800px;margin:56px auto 0}
+.faq-item{border-top:1px solid var(--stone)}
+.faq-item:last-child{border-bottom:1px solid var(--stone)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;background:none;border:none;
+  font-family:inherit;text-align:left;font-size:16px;font-weight:500;padding:22px 0;cursor:pointer;color:var(--ink)}
+.faq-q .fi{width:26px;height:26px;border-radius:50%;border:1px solid var(--stone);display:flex;align-items:center;justify-content:center;
+  flex:none;transition:transform .2s ease,background .2s ease}
+.faq-item.open .fi{transform:rotate(45deg);background:var(--taupe)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-a p{font-size:15px;line-height:1.6;color:var(--smoke);padding:0 0 22px;max-width:640px}
+
+/* ---------- 12 closing ---------- */
+.closing{text-align:center;padding:112px 0}
+.closing .h2{max-width:640px;margin:0 auto}
+.closing .lede{max-width:480px;margin:20px auto 0}
+.closing .btn{margin-top:32px}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--stone)}
+.foot{display:flex;align-items:center;gap:32px;height:88px}
+.foot-links{display:flex;gap:24px}
+.foot-links a{font-size:13px;color:var(--smoke)}
+.foot-links a:hover{color:var(--ink)}
+.foot-right{margin-left:auto;font-size:13px;color:var(--ash)}
+
+/* ---------- sticky nav ---------- */
+.nav-wrap{position:sticky;top:0;z-index:60;background:var(--eggshell);border-bottom:1px solid transparent;transition:border-color .2s ease}
+.nav-wrap.scrolled{border-bottom-color:var(--stone)}
+
+/* ---------- step figures ---------- */
+.step-fig{display:block;border:1px solid var(--stone);border-radius:16px;overflow:hidden;margin-bottom:24px;
+  cursor:zoom-in;background:var(--taupe);transition:box-shadow .15s ease}
+.step-fig:hover{box-shadow:var(--shadow)}
+.step-fig img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+
+/* ---------- experts ---------- */
+.expert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+.expert-card{background:var(--taupe);border-radius:20px;padding:20px}
+.expert-card img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;margin-bottom:20px}
+.expert-card h3{font-size:16px;font-weight:500}
+.expert-card .role{font-size:13px;color:var(--smoke);margin:4px 0 12px}
+.expert-card p{font-size:14px;line-height:1.5;color:var(--smoke)}
+
+/* ---------- testimonials ---------- */
+.quote-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+.quote-card{background:var(--taupe);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:20px}
+.quote-metric{align-self:flex-start;font-size:12px;font-weight:500;color:var(--graphite);background:var(--eggshell);
+  border:1px solid var(--stone);border-radius:9999px;padding:6px 12px}
+.quote-text{font-size:18px;font-weight:300;letter-spacing:-.2px;line-height:1.4;flex:1}
+.quote-who{font-size:13px;color:var(--smoke)}
+.quote-who b{color:var(--ink);font-weight:500}
+
+/* ---------- lightbox ---------- */
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center}
+.lightbox.open{display:flex}
+.lightbox img{max-width:min(860px,88vw);max-height:82vh;border-radius:16px;box-shadow:0 24px 80px rgba(0,0,0,.5)}
+.lb-btn{position:absolute;background:var(--eggshell);border:1px solid #e5e5e5;border-radius:9999px;width:44px;height:44px;
+  font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink);font-family:inherit}
+.lb-btn:hover{box-shadow:var(--shadow)}
+.lb-close{top:24px;right:24px}
+.lb-prev{left:24px;top:50%;transform:translateY(-50%)}
+.lb-next{right:24px;top:50%;transform:translateY(-50%)}
+.lb-counter{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:#b8b2aa;font-size:13px;
+  font-family:'JetBrains Mono',ui-monospace,monospace}
+
+/* ---------- how-it-works switcher ---------- */
+.hiw{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;margin-top:56px;align-items:start}
+.hiw-steps{display:flex;flex-direction:column;gap:12px}
+.hiw-step{display:flex;gap:16px;text-align:left;background:transparent;border:1px solid transparent;
+  border-radius:16px;padding:20px;cursor:pointer;font-family:inherit;color:var(--ink)}
+.hiw-step.active{background:var(--eggshell);border-color:var(--stone);box-shadow:var(--shadow)}
+.hiw-step:not(.active):hover{background:var(--taupe)}
+.hs-num{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;color:var(--ash);padding-top:2px}
+.hiw-step.active .hs-num{color:var(--ink)}
+.hs-title{display:block;font-size:16px;font-weight:500;margin-bottom:6px}
+.hs-desc{display:block;font-size:14px;line-height:1.5;color:var(--smoke)}
+.hiw-panel{background:var(--taupe);border-radius:24px;padding:24px}
+.hiw-illu{display:block;border-radius:16px;overflow:hidden;border:1px solid var(--stone);cursor:zoom-in;margin-bottom:16px;transition:box-shadow .15s ease}
+.hiw-illu:hover{box-shadow:var(--shadow)}
+.hiw-illu img{display:block;width:100%;aspect-ratio:16/8;object-fit:cover}
+.hiw-mock{background:var(--eggshell);border:1px solid var(--stone);border-radius:16px;padding:20px}
+.mk-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:12px}
+.mk-title{font-size:14px;font-weight:500;color:var(--graphite)}
+.mk-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--stone);font-size:13px}
+.mk-file{flex:1;font-weight:500;min-width:0}
+.mk-time{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:var(--ash)}
+.mk-progress{height:6px;background:var(--stone);border-radius:9999px;overflow:hidden;margin-bottom:14px}
+.mk-progress>div{height:100%;background:#000;border-radius:9999px;transition:width .5s ease}
+.mk-actions{display:flex;gap:10px;margin-top:16px}
+.mk-approved{display:none;align-items:center;gap:10px;margin-top:16px;font-size:14px;font-weight:500}
+.seg-icon{display:block;margin-bottom:16px}
+
+/* ---------- dark request UI (human review) ---------- */
+.req-ui{margin-top:72px;background:#111110;border:1px solid #2a2825;border-radius:24px;padding:32px;max-width:780px}
+.req-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px}
+.req-title{font-size:14px;font-weight:500;color:var(--eggshell)}
+.req-status{font-size:12px;font-weight:500;color:#b8b2aa;background:#1c1b19;border:1px solid #2a2825;border-radius:9999px;padding:5px 12px}
+.req-status.closed{color:#e8e4df}
+.req-msg{display:flex;gap:14px;margin-bottom:22px;align-items:flex-start}
+.req-msg:last-of-type{margin-bottom:0}
+.req-msg.you{justify-content:flex-end}
+.req-ava{width:32px;height:32px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+.req-ava.spark{background:radial-gradient(circle at 32% 30%, #ffb03d, var(--ember) 46%, var(--violet) 118%)}
+.req-ava.you-ava{background:var(--eggshell);color:#111}
+.req-ava.cpa-ava{background:#3a3835;color:#e8e4df;border:1px solid #4a4742}
+.req-who{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:#8a847c;margin-bottom:6px}
+.req-msg.you .req-who{text-align:right}
+.req-bubble{display:inline-block;background:#1c1b19;border:1px solid #2a2825;border-radius:14px;padding:12px 16px;
+  font-size:14px;line-height:1.5;color:#d8d4cf;max-width:480px;text-align:left}
+.req-msg.you .req-bubble{background:var(--eggshell);color:#111;border-color:var(--eggshell)}
+.req-bubble .file{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;display:flex;align-items:center;gap:8px}
+.req-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  margin-top:24px;padding-top:20px;border-top:1px solid #2a2825}
+.req-done{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--eggshell)}
+.req-note{font-size:13px;color:#8a847c}
+
+/* ---------- responsive ---------- */
+@media (max-width: 960px){
+  .hero,.uae,.pricing-panel,.hiw{grid-template-columns:1fr}
+  .steps,.seg-grid,.dark-points,.reassure,.expert-grid,.quote-grid{grid-template-columns:1fr;gap:32px}
+  .proof-grid{grid-template-columns:repeat(2,1fr);gap:32px}
+  .proof-item{border-left:none;padding-left:0}
+  .l-row{grid-template-columns:1fr;gap:8px}
+  .nav-links{display:none}
+  .compare th,.compare td{padding:14px 12px;font-size:13px}
+  .section{padding:64px 0}
+  .ledger-panel,.pricing-panel{padding:32px}
+}
+
+.hero-stage{position:relative;overflow:hidden;isolation:isolate}
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.hero-stage .wrap{position:relative;z-index:1}
+.ascii-wrap{position:relative;height:15rem;background:#000;overflow:hidden}
+.ascii-wrap canvas{display:block;width:100%;height:100%}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<div class="nav-wrap" id="navWrap">
+<div class="wrap">
+  <nav class="nav">
+    <a class="logo" href="#">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+        <rect x="2.4" y="1" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+        <rect x="6.1" y="1" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+        <rect x="2.4" y="4.7" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+        <rect x="9.8" y="4.7" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+        <rect x="2.4" y="8.4" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+        <rect x="6.1" y="8.4" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+        <rect x="2.4" y="12.1" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+        <rect x="9.8" y="12.1" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+        <rect x="2.4" y="15.8" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+        <rect x="6.1" y="15.8" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+        <circle cx="1.3" cy="8" r="0.9" fill="#000"/>
+        <circle cx="15.6" cy="3.5" r="0.9" fill="#000"/>
+        <circle cx="14.8" cy="17.2" r="0.9" fill="#000"/>
+      </svg>
+      Bandly
+    </a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-right">
+      <button class="btn primary">Book a demo</button>
+    </div>
+  </nav>
+</div>
+</div>
+
+<!-- 01 · HERO -->
+<section class="hero-stage">
+<canvas class="hero-canvas" id="particle-image" aria-hidden="true"></canvas>
+<div class="wrap">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">AI-native accounting firm · Dubai, UAE</div>
+      <h1 class="h1">Accounting you can actually follow.</h1>
+      <p class="lede">Send the documents you already have — email, WhatsApp, a shared drive. Bandly sorts, reconciles and prepares everything, asks for exactly what is missing, and puts important outputs through professional review before anything goes out.</p>
+      <div class="hero-ctas">
+        <button class="btn primary lg">Book a demo</button>
+        <a class="btn lg" href="#pricing">See pricing</a>
+      </div>
+    </div>
+    <div class="close-card">
+      <div class="cc-head">
+        <div class="cc-title">July — a clear close state</div>
+        <div class="cc-status">On track</div>
+      </div>
+      <div class="cc-row"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">Documents received this month</span><span class="num">214</span></div>
+      <div class="cc-row"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">Matched and reconciled</span><span class="num">209</span></div>
+      <div class="cc-row"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">VAT return — prepared</span><span class="num">Q2</span></div>
+      <div class="cc-row need"><span class="need-dot"></span><span class="t">1 item needed: July bank statement</span></div>
+      <div class="cc-foot"><span class="spark-dot"></span>Professional review before filing</div>
+    </div>
+  </section>
+</div>
+</section>
+
+<!-- 02 · PROOF STRIP -->
+<div class="wrap">
+  <section class="proof">
+    <div class="proof-grid">
+      <div class="proof-item"><div class="proof-num">500+</div><div class="proof-label">UAE businesses served</div></div>
+      <div class="proof-item"><div class="proof-num">5.0</div><div class="proof-label">on Google (70+ reviews)</div></div>
+      <div class="proof-item"><div class="proof-num">4-hour</div><div class="proof-label">response time, guaranteed</div></div>
+      <div class="proof-item"><div class="proof-num">100%</div><div class="proof-label">filings on time</div></div>
+    </div>
+  </section>
+</div>
+
+<!-- 03 · HOW IT WORKS -->
+<div class="wrap">
+  <section class="section how" id="how">
+    <div class="eyebrow">How it works</div>
+    <h2 class="h2" style="margin-top:24px;max-width:640px">Hand over the paperwork in one afternoon.</h2>
+    <div class="steps">
+      <div class="step">
+        <figure class="step-fig" data-lb><img src="assets/step-share.png" alt="Hands passing documents into a tray"></figure>
+        <div class="step-num">01 — Share</div>
+        <h3>Send it the way you already work</h3>
+        <p>Email, WhatsApp, shared folders — send documents the way you already work. No new system to learn, no migration.</p>
+      </div>
+      <div class="step">
+        <figure class="step-fig" data-lb><img src="assets/step-prepare.png" alt="Scattered sheets aligning into a neat stack"></figure>
+        <div class="step-num">02 — Prepare</div>
+        <h3>One clear working state</h3>
+        <p>Bandly captures every document, matches it to transactions and keeps one clear working state. When something is missing, you get one precise request — never a reminder chain.</p>
+      </div>
+      <div class="step">
+        <figure class="step-fig" data-lb><img src="assets/step-review.png" alt="Hands holding an open ledger book"></figure>
+        <div class="step-num">03 — Review</div>
+        <h3>A person signs off</h3>
+        <p>A qualified accountant checks important outputs before anything is filed or sent. You approve with one tap.</p>
+      </div>
+    </div>
+    <span class="caption">Most clients are fully set up within one week.</span>
+  </section>
+</div>
+
+<!-- 04 · LEDGER -->
+<div class="wrap">
+  <section class="section" id="services" style="padding-top:0">
+    <div class="ledger-panel">
+      <div class="eyebrow">What your firm handles</div>
+      <h2 class="h2" style="margin-top:24px">Everything the books need. Nothing they don't.</h2>
+      <div class="ledger-rows">
+        <div class="l-row"><div class="l-name">Bookkeeping &amp; period close</div><div class="l-desc">Every transaction captured, categorised and reconciled. Your month closes clean, every month.</div></div>
+        <div class="l-row"><div class="l-name">VAT support</div><div class="l-desc">VAT returns prepared from your actual records and professionally reviewed before filing with the FTA.</div></div>
+        <div class="l-row"><div class="l-name">Corporate Tax support</div><div class="l-desc">Calculations and returns prepared against the 9% regime, reviewed before anything is submitted.</div></div>
+        <div class="l-row"><div class="l-name">Payroll &amp; WPS</div><div class="l-desc">Salaries, gratuity and WPS files, prepared on cycle.</div></div>
+        <div class="l-row"><div class="l-name">Reporting &amp; administration</div><div class="l-desc">Monthly P&amp;L, cash flow and balance sheet you can read without an accounting degree.</div></div>
+      </div>
+      <span class="caption">Final scope is confirmed for your business before work begins.</span>
+    </div>
+  </section>
+</div>
+
+<!-- 05 · UAE -->
+<div class="wrap">
+  <section class="section" style="padding-top:0">
+    <div class="uae">
+      <div>
+        <div class="eyebrow">Built for the UAE</div>
+        <h2 class="h2" style="margin-top:24px">Dubai rules, native fluency.</h2>
+      </div>
+      <div class="uae-list">
+        <div class="uae-item"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>VAT at 5% and Corporate Tax at 9% — prepared and filed on FTA deadlines, not yours.</p></div>
+        <div class="uae-item"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>Mainland or free zone — your structure is reflected in the books, not fought by them.</p></div>
+        <div class="uae-item"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>IFRS-standard monthly reports, records kept audit-ready.</p></div>
+        <div class="uae-item"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p>Arabic and English documentation support.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 06 · WHO IT'S FOR -->
+<div class="wrap">
+  <section class="section" style="padding-top:0">
+    <div class="eyebrow">Who it's for</div>
+    <h2 class="h2" style="margin-top:24px;max-width:640px">Built for owner-led businesses with high standards.</h2>
+    <div class="seg-grid">
+      <div class="seg-card">
+        <svg class="seg-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16l5-5 3 3 6-7"/><path d="M14 7h3v3"/></svg>
+        <h3>Startups</h3><p>Investor-ready numbers that update fast.</p></div>
+      <div class="seg-card">
+        <svg class="seg-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="14" height="10" rx="2"/><path d="M7.5 7V5.5A1.5 1.5 0 019 4h2a1.5 1.5 0 011.5 1.5V7"/><path d="M3 11.5h14"/></svg>
+        <h3>Agencies &amp; consultants</h3><p>Revenue, collection and profit by project — finally visible.</p></div>
+      <div class="seg-card">
+        <svg class="seg-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 7h11l-.9 9.2a2 2 0 01-2 1.8H7.4a2 2 0 01-2-1.8L4.5 7z"/><path d="M7.5 9.5V6a2.5 2.5 0 015 0v3.5"/></svg>
+        <h3>Online sellers</h3><p>Gross profit by SKU, marketplace payouts reconciled.</p></div>
+      <div class="seg-card">
+        <svg class="seg-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5L5 4.5h10l1 4"/><path d="M4 8.5V17h12V8.5"/><path d="M4 8.5a2 2 0 004 0 2 2 0 004 0 2 2 0 004 0"/><path d="M8 17v-4.5h4V17"/></svg>
+        <h3>Restaurants &amp; retail</h3><p>Daily sales captured. You focus on service, not the back office.</p></div>
+      <div class="seg-card">
+        <svg class="seg-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="10" height="14" rx="1.5"/><path d="M8.5 7h3M8.5 10.5h3M8.5 14h3"/></svg>
+        <h3>Real estate &amp; property managers</h3><p>Rent rolls, service charges and owner reports in order.</p></div>
+      <div class="seg-card">
+        <svg class="seg-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6.5"/><path d="M10 7v6M7 10h6"/></svg>
+        <h3>Clinics &amp; family offices</h3><p>Discreet, precise, always on time.</p></div>
+    </div>
+    <p class="seg-closing">Not sure where you fit? <a href="#">Book a demo</a> — we'll tell you honestly.</p>
+  </section>
+</div>
+
+<!-- 07 · HUMAN REVIEW — DARK -->
+<section class="dark">
+  <div class="wrap">
+    <div class="eyebrow">Human review</div>
+    <h2 class="h2">Automation prepares. People make the call.</h2>
+    <div class="dark-points">
+      <div class="dark-point">
+        <div class="dp-num">01</div>
+        <p><b>Missing facts stay missing</b> — they are requested, never guessed.</p>
+      </div>
+      <div class="dark-point">
+        <div class="dp-num">02</div>
+        <p><b>External action is never automatic</b> — important work is reviewed before it goes out.</p>
+      </div>
+      <div class="dark-point">
+        <div class="dp-num">03</div>
+        <p><b>You work with a firm, not a tool.</b> The service stays accountable to people.</p>
+      </div>
+    </div>
+
+    <div class="req-ui">
+      <div class="req-head">
+        <span class="req-title">One precise request — how it actually goes</span>
+        <span class="req-status closed">closed · 3h 06m</span>
+      </div>
+      <div class="req-msg">
+        <span class="req-ava spark"></span>
+        <div>
+          <div class="req-who">Bandly agent · 09:41</div>
+          <div class="req-bubble">July bank statement is missing — 14 transactions are waiting on it. One upload and we're done.</div>
+        </div>
+      </div>
+      <div class="req-msg you">
+        <div>
+          <div class="req-who">You · 11:02</div>
+          <div class="req-bubble"><span class="file"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="#111" stroke-width="1.5" stroke-linejoin="round"><path d="M5 2.5h7l3 3v12H5z"/><path d="M12 2.5v3h3"/></svg>bank_statement_july.pdf</span></div>
+        </div>
+        <span class="req-ava you-ava">Y</span>
+      </div>
+      <div class="req-msg">
+        <span class="req-ava spark"></span>
+        <div>
+          <div class="req-who">Bandly agent · 11:02</div>
+          <div class="req-bubble">Received — 14 of 14 transactions matched. Handing to professional review.</div>
+        </div>
+      </div>
+      <div class="req-msg">
+        <span class="req-ava cpa-ava">L</span>
+        <div>
+          <div class="req-who">Layla H. · professional review · 12:47</div>
+          <div class="req-bubble">Verified against your records. Approved — nothing else is needed from you this month.</div>
+        </div>
+      </div>
+      <div class="req-foot">
+        <span class="req-done"><svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" stroke="#e8e4df" stroke-width="1.4" fill="none"/><path d="M4.5 7.2l1.8 1.8 3.2-3.8" stroke="#e8e4df" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Request closed — one ask, one upload, one sign-off</span>
+        <span class="req-note">Nothing guessed. Nothing chased twice.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07b · EXPERTS -->
+<div class="wrap">
+  <section class="section" id="experts">
+    <div class="eyebrow">The people behind it</div>
+    <h2 class="h2" style="margin-top:24px;max-width:640px">Software does the legwork. Experts stand behind it.</h2>
+    <div class="expert-grid">
+      <div class="expert-card">
+        <img src="assets/expert-1.png" alt="Layla Haddad, Head of Accounting">
+        <h3>Layla Haddad</h3>
+        <div class="role">Head of Accounting</div>
+        <p>Reviews every monthly close before it reaches your inbox. Fourteen years across mainland and free zone structures.</p>
+      </div>
+      <div class="expert-card">
+        <img src="assets/expert-2.png" alt="Arjun Mehta, Tax Lead">
+        <h3>Arjun Mehta</h3>
+        <div class="role">Tax Lead</div>
+        <p>Owns VAT and Corporate Tax positions. Nothing is filed with the FTA without his sign-off.</p>
+      </div>
+      <div class="expert-card">
+        <img src="assets/expert-3.png" alt="Sofia Lindqvist, Review and Quality">
+        <h3>Sofia Lindqvist</h3>
+        <div class="role">Review &amp; Quality</div>
+        <p>Runs the second-pass review on important outputs and the audit-readiness of your records.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 08 · TESTIMONIALS -->
+<div class="wrap">
+  <section class="section" style="padding-top:0">
+    <div class="eyebrow">Proof</div>
+    <h2 class="h2" style="margin-top:24px;max-width:640px">Firms like yours, already handed over.</h2>
+    <div class="quote-grid">
+      <div class="quote-card">
+        <span class="quote-metric">2-day close</span>
+        <p class="quote-text">"Books close in two days now. I stopped thinking about VAT entirely — it just happens, on time."</p>
+        <div class="quote-who"><b>Rami K.</b> · Norte Coffee Roasters, F&amp;B</div>
+      </div>
+      <div class="quote-card">
+        <span class="quote-metric">3× faster month-end</span>
+        <p class="quote-text">"For the first time I see profit per project without asking anyone. The one precise question a month is all it takes."</p>
+        <div class="quote-who"><b>Alina P.</b> · Forma Digital, agency</div>
+      </div>
+      <div class="quote-card">
+        <span class="quote-metric">100% payouts matched</span>
+        <p class="quote-text">"Marketplace payouts just reconcile. Every single one. Our old accountant chased them for weeks."</p>
+        <div class="quote-who"><b>Omar S.</b> · Souqline, e-commerce</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 08b · REASSURANCE -->
+<div class="wrap">
+  <section class="section">
+    <div class="reassure">
+      <div>
+        <div class="r-label">IN</div>
+        <p>Every document you send lands in one working state — collected, sorted, and matched to your transactions.</p>
+      </div>
+      <div>
+        <div class="r-label">ASK</div>
+        <p>Gaps become one precise request for exactly what is missing. Nothing is guessed, nothing is chased twice.</p>
+      </div>
+      <div>
+        <div class="r-label">REVIEW</div>
+        <p>Everything important carries a visible human boundary — a qualified accountant reviews before it goes out.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 09 · PRICING -->
+<div class="wrap">
+  <section class="section" id="pricing" style="padding-top:0">
+    <div class="pricing-panel">
+      <div>
+        <div class="eyebrow">Pricing</div>
+        <h2 class="h2" style="margin-top:24px">Clear pricing. No surprises.</h2>
+        <p class="lede">One monthly package, priced by your transaction volume. Bookkeeping, VAT and Corporate Tax support, monthly reporting and your dedicated team — all included.</p>
+        <div class="included">
+          <div class="inc-item"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Transaction capture &amp; categorisation</div>
+          <div class="inc-item"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Bank &amp; payment reconciliation</div>
+          <div class="inc-item"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>VAT and Corporate Tax support</div>
+          <div class="inc-item"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monthly P&amp;L, cash flow, balance sheet</div>
+          <div class="inc-item"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Dedicated accounting team</div>
+          <div class="inc-item"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Same-day response</div>
+        </div>
+        <div class="addons">
+          <span class="caption">Add-ons</span>
+          <div class="addon-chips">
+            <span class="addon-chip">Backlog accounting</span>
+            <span class="addon-chip">WPS file preparation</span>
+          </div>
+        </div>
+      </div>
+      <div class="calc">
+        <div class="calc-label">Transactions per month <span class="calc-count" id="calcCount">150</span></div>
+        <input type="range" id="calcRange" min="25" max="1200" step="25" value="150">
+        <div class="calc-marks"><span>25</span><span>300</span><span>600</span><span>900</span><span>1,200+</span></div>
+        <div class="calc-price"><span class="calc-amount" id="calcAmount">AED 990</span><span class="calc-per">/ month</span></div>
+        <div class="calc-note">A transaction is one bank statement line. Payment gateways and marketplaces: 10 lines count as 1.</div>
+        <button class="btn primary">Book a demo</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 10 · COMPARISON -->
+<div class="wrap">
+  <section class="section" style="padding-top:0">
+    <div class="eyebrow">Why not a traditional firm</div>
+    <h2 class="h2" style="margin-top:24px;max-width:600px">The old way costs more than money.</h2>
+    <table class="compare">
+      <thead>
+        <tr><th></th><th>Traditional firm</th><th>In-house accountant</th><th class="bandly">Bandly</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="rowhead">Documents</td><td>You collect and send everything yourself</td><td>You hire, train and manage</td><td class="bandly">Captured automatically from email, bank and chats</td></tr>
+        <tr><td class="rowhead">Deadlines</td><td>A reminder days before filing</td><td>Depends on one person</td><td class="bandly">Tracked all year, prepared early</td></tr>
+        <tr><td class="rowhead">Answers</td><td>Days</td><td>Fast, but AED 12,000+/mo</td><td class="bandly">Same day, in your channel</td></tr>
+        <tr><td class="rowhead">Price</td><td>AED 1,500–3,000+/mo</td><td>AED 12,000+/mo + visa</td><td class="bandly">From AED 690/mo</td></tr>
+        <tr><td class="rowhead">Accountability</td><td>Varies</td><td>Turnover risk</td><td class="bandly">A firm, with professional review on everything important</td></tr>
+      </tbody>
+    </table>
+  </section>
+</div>
+
+<!-- 11 · FAQ -->
+<div class="wrap">
+  <section class="section" id="faq" style="padding-top:0">
+    <div class="eyebrow" style="text-align:center">FAQ</div>
+    <h2 class="h2" style="margin-top:24px;text-align:center">Fair questions, straight answers.</h2>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item">
+        <button class="faq-q">Is Bandly software or an accounting firm?<span class="fi"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1v8M1 5h8" stroke="#44403b" stroke-width="1.5" stroke-linecap="round"/></svg></span></button>
+        <div class="faq-a"><p>A firm. Automation does the collecting, sorting and preparing; qualified accountants review the work and stand behind it.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Does AI submit filings by itself?<span class="fi"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1v8M1 5h8" stroke="#44403b" stroke-width="1.5" stroke-linecap="round"/></svg></span></button>
+        <div class="faq-a"><p>No. Automation prepares; a professional reviews and approves before anything is filed with the FTA.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I have to replace my accounting system?<span class="fi"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1v8M1 5h8" stroke="#44403b" stroke-width="1.5" stroke-linecap="round"/></svg></span></button>
+        <div class="faq-a"><p>No. We work with what you already have — email, bank feeds, marketplaces, your current software.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if a document is missing?<span class="fi"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1v8M1 5h8" stroke="#44403b" stroke-width="1.5" stroke-linecap="round"/></svg></span></button>
+        <div class="faq-a"><p>You get one precise request for exactly what is missing. Nothing is guessed or invented.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How much does accounting cost in Dubai?<span class="fi"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1v8M1 5h8" stroke="#44403b" stroke-width="1.5" stroke-linecap="round"/></svg></span></button>
+        <div class="faq-a"><p>Small-company packages range from AED 399 to 3,000+ per month. Bandly sits in the middle — without cutting corners on compliance, and with a level of visibility traditional firms don't offer.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I still need an accountant if AI does the work?<span class="fi"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1v8M1 5h8" stroke="#44403b" stroke-width="1.5" stroke-linecap="round"/></svg></span></button>
+        <div class="faq-a"><p>Yes — that is exactly the point. AI is tireless at collecting and matching; people are accountable for judgement. You get both.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can you fix my backlog?<span class="fi"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1v8M1 5h8" stroke="#44403b" stroke-width="1.5" stroke-linecap="round"/></svg></span></button>
+        <div class="faq-a"><p>Yes. We bring your books up to date first, then keep them clean from there.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is my financial data safe?<span class="fi"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 1v8M1 5h8" stroke="#44403b" stroke-width="1.5" stroke-linecap="round"/></svg></span></button>
+        <div class="faq-a"><p>Documents are stored encrypted, access is limited to your dedicated accounting team, and every access is logged.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 12 · CLOSING -->
+<div class="wrap">
+  <section class="closing">
+    <div class="eyebrow">Get started</div>
+    <h2 class="h2" style="margin-top:24px">Hand over the books. Keep the business.</h2>
+    <p class="lede">Start with the setup and documents you already have. We'll show you your clear state within the first week.</p>
+    <button class="btn primary lg">Book a demo</button>
+  </section>
+</div>
+
+<div class="ascii-wrap" aria-hidden="true"><canvas id="ascii-waves"></canvas></div>
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a class="logo" href="#">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+          <rect x="2.4" y="1" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+          <rect x="6.1" y="1" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+          <rect x="2.4" y="4.7" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+          <rect x="9.8" y="4.7" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+          <rect x="2.4" y="8.4" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+          <rect x="6.1" y="8.4" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+          <rect x="2.4" y="12.1" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+          <rect x="9.8" y="12.1" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+          <rect x="2.4" y="15.8" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+          <rect x="6.1" y="15.8" width="2.8" height="2.8" rx="0.9" fill="#000"/>
+          <circle cx="1.3" cy="8" r="0.9" fill="#000"/>
+          <circle cx="15.6" cy="3.5" r="0.9" fill="#000"/>
+          <circle cx="14.8" cy="17.2" r="0.9" fill="#000"/>
+        </svg>
+        Bandly
+      </a>
+      <div class="foot-links">
+        <a href="#how">How it works</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+      </div>
+      <div class="foot-right">© 2026 Bandly · Dubai, UAE</div>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Close">×</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <img id="lbImg" alt="">
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Next">›</button>
+  <div class="lb-counter" id="lbCounter"></div>
+</div>
+
+<script>
+/* ---------- sticky nav hairline ---------- */
+const navWrap = document.getElementById('navWrap');
+addEventListener('scroll', () => navWrap.classList.toggle('scrolled', scrollY > 8), {passive:true});
+
+/* ---------- lightbox для иллюстраций шагов ---------- */
+const lbFigs = [...document.querySelectorAll('[data-lb] img')];
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbCounter = document.getElementById('lbCounter');
+let lbIdx = 0;
+function lbShow(i){
+  lbIdx = (i + lbFigs.length) % lbFigs.length;
+  lbImg.src = lbFigs[lbIdx].src;
+  lbImg.alt = lbFigs[lbIdx].alt;
+  lbCounter.textContent = (lbIdx + 1) + ' / ' + lbFigs.length;
+  lb.classList.add('open');
+}
+lbFigs.forEach((img, i) => img.closest('[data-lb]').addEventListener('click', () => lbShow(i)));
+document.getElementById('lbClose').addEventListener('click', () => lb.classList.remove('open'));
+document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); lbShow(lbIdx - 1); });
+document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); lbShow(lbIdx + 1); });
+lb.addEventListener('click', e => { if (e.target === lb) lb.classList.remove('open'); });
+addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') lb.classList.remove('open');
+  if (e.key === 'ArrowLeft') lbShow(lbIdx - 1);
+  if (e.key === 'ArrowRight') lbShow(lbIdx + 1);
+});
+
+/* ---------- pricing calculator (модель иллюстративная — подтвердить перед публикацией) ---------- */
+const range = document.getElementById('calcRange');
+const count = document.getElementById('calcCount');
+const amount = document.getElementById('calcAmount');
+function priceFor(t){
+  if (t <= 100) return 'AED 690';
+  if (t <= 250) return 'AED 990';
+  if (t <= 500) return 'AED 1,490';
+  if (t <= 1000) return 'AED 1,990';
+  return "Let's talk";
+}
+function upd(){
+  const t = +range.value;
+  count.textContent = t >= 1200 ? '1,200+' : t.toLocaleString('en-US');
+  amount.textContent = priceFor(t);
+}
+range.addEventListener('input', upd);
+upd();
+
+/* ---------- FAQ accordion ---------- */
+document.getElementById('faqList').addEventListener('click', e => {
+  const q = e.target.closest('.faq-q');
+  if (!q) return;
+  const item = q.parentElement;
+  const ans = item.querySelector('.faq-a');
+  const open = item.classList.toggle('open');
+  ans.style.maxHeight = open ? ans.scrollHeight + 'px' : '0';
+});
+
+/* reconstructed React Bits Particle Image + ASCII Waves (no Pro license) */
+(function(){
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function startParticleImage(){
+    const canvas = document.getElementById('particle-image');
+    const stage = canvas.closest('.hero-stage');
+    if (!canvas || !stage) return;
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    const pointer = {x:-9999,y:-9999,active:false};
+    let particles = [], width=0, height=0, dpr=1, frame;
+
+    function sample(image){
+      const rect = stage.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio||1, 1.75);
+      width = Math.max(320, Math.floor(rect.width));
+      height = Math.max(480, Math.floor(rect.height));
+      canvas.width = width*dpr; canvas.height = height*dpr;
+      canvas.style.width = width+'px'; canvas.style.height = height+'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+
+      const targetH = Math.floor(height * 0.92);
+      const targetW = Math.floor(targetH * (image.width / image.height));
+      const ox = Math.floor(width * 0.52);
+      const oy = Math.floor((height - targetH) / 2);
+      const off = document.createElement('canvas');
+      off.width = targetW; off.height = targetH;
+      const o = off.getContext('2d');
+      o.filter = 'grayscale(1) contrast(1.25)';
+      o.drawImage(image, 0, 0, targetW, targetH);
+      const data = o.getImageData(0,0,targetW,targetH).data;
+      const gap = width < 700 ? 5 : 4;
+      const next = [];
+      for (let y=0; y<targetH; y+=gap){
+        for (let x=0; x<targetW; x+=gap){
+          const i = (y*targetW + x)*4;
+          const a = data[i+3];
+          const lum = (data[i]+data[i+1]+data[i+2])/3;
+          if (a < 80 || lum > 245) continue;
+          const tx = ox + x, ty = oy + y;
+          const seed = Math.random();
+          next.push({
+            tx, ty,
+            x: tx + (reduced ? 0 : (Math.random()-0.5)*260),
+            y: ty + (reduced ? 0 : (Math.random()-0.5)*260),
+            vx:0, vy:0, seed,
+            size: lum < 40 ? 2.4 : lum < 110 ? 1.8 : 1.3,
+            gray: lum < 30 ? '#000' : lum < 90 ? '#222' : lum < 150 ? '#555' : '#888'
+          });
+        }
+      }
+      particles = next;
+    }
+
+    function render(){
+      ctx.clearRect(0,0,width,height);
+      for (const p of particles){
+        if (!reduced){
+          const dx = p.x-pointer.x, dy = p.y-pointer.y, dist = Math.hypot(dx,dy);
+          if (pointer.active && dist < 90 && dist > 0){
+            const f = Math.pow(1-dist/90,2)*14;
+            p.vx += (dx/dist)*f; p.vy += (dy/dist)*f;
+          }
+          p.vx += (p.tx-p.x)*0.05; p.vy += (p.ty-p.y)*0.05;
+          p.vx *= 0.84; p.vy *= 0.84;
+          p.x += p.vx; p.y += p.vy;
+        } else { p.x = p.tx; p.y = p.ty; }
+        ctx.fillStyle = p.gray;
+        ctx.fillRect(p.x, p.y, p.size, p.size);
+      }
+      frame = requestAnimationFrame(render);
+    }
+
+    stage.addEventListener('pointermove', e => {
+      const r = stage.getBoundingClientRect();
+      pointer.x = e.clientX-r.left; pointer.y = e.clientY-r.top; pointer.active = true;
+    });
+    stage.addEventListener('pointerleave', () => { pointer.active = false; });
+    window.addEventListener('resize', () => { if (img.complete) { cancelAnimationFrame(frame); sample(img); render(); } });
+    img.onload = () => { sample(img); render(); };
+    img.src = '../assets/expert-1.png';
+  }
+
+  function startAsciiWaves(){
+    const canvas = document.getElementById('ascii-waves');
+    const wrap = canvas && canvas.parentElement;
+    if (!canvas || !wrap) return;
+    const ctx = canvas.getContext('2d');
+    const glyphs = ' .·:-=+*#%@';
+    let cols=0, rows=0, t=0, width=0, height=0, dpr=1, frame;
+    function resize(){
+      const rect = wrap.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio||1, 1.75);
+      width = Math.floor(rect.width); height = Math.floor(rect.height);
+      canvas.width = width*dpr; canvas.height = height*dpr;
+      canvas.style.width = width+'px'; canvas.style.height = height+'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      ctx.font = '500 13px "JetBrains Mono", ui-monospace, monospace';
+      cols = Math.max(24, Math.floor(width/8));
+      rows = Math.max(10, Math.floor(height/13));
+    }
+    function render(){
+      ctx.fillStyle = '#000'; ctx.fillRect(0,0,width,height);
+      const cw = width/cols, ch = height/rows;
+      for (let y=0;y<rows;y++){
+        for (let x=0;x<cols;x++){
+          const nx = x/cols, ny = y/rows;
+          const wave = Math.sin(nx*7.2 + t + ny*1.1)*0.22 + Math.sin(nx*2.4 - t*0.6)*0.14;
+          const band = Math.abs(ny - (0.52 + wave));
+          if (band > 0.34) continue;
+          const v = 1 - band/0.34;
+          const g = glyphs[Math.min(glyphs.length-1, Math.floor(v*(glyphs.length-1)))];
+          ctx.globalAlpha = 0.2 + v*0.8;
+          ctx.fillStyle = v > 0.78 ? '#fff' : v > 0.45 ? '#cfcfcf' : '#8a8a8a';
+          ctx.fillText(g, x*cw, y*ch + 12);
+        }
+      }
+      ctx.globalAlpha = 1;
+      if (!reduced) t += 0.038;
+      frame = requestAnimationFrame(render);
+    }
+    window.addEventListener('resize', () => { cancelAnimationFrame(frame); resize(); render(); });
+    resize(); render();
+  }
+
+  startParticleImage();
+  startAsciiWaves();
+})();
+</script>
+</body>
+</html>
