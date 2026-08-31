@@ -847,14 +847,14 @@ document.getElementById('faqList').addEventListener('click', e => {
       o.filter = 'grayscale(1) contrast(1.25)';
       o.drawImage(image, 0, 0, targetW, targetH);
       const data = o.getImageData(0,0,targetW,targetH).data;
-      const gap = width < 700 ? 5 : 4;
+      const gap = width < 700 ? 4 : 3;
       const next = [];
       for (let y=0; y<targetH; y+=gap){
         for (let x=0; x<targetW; x+=gap){
           const i = (y*targetW + x)*4;
           const a = data[i+3];
           const lum = (data[i]+data[i+1]+data[i+2])/3;
-          if (a < 80 || lum > 245) continue;
+          if (a < 40 || lum > 250) continue;
           const tx = ox + x, ty = oy + y;
           const seed = Math.random();
           next.push({
@@ -862,7 +862,7 @@ document.getElementById('faqList').addEventListener('click', e => {
             x: tx + (reduced ? 0 : (Math.random()-0.5)*260),
             y: ty + (reduced ? 0 : (Math.random()-0.5)*260),
             vx:0, vy:0, seed,
-            size: lum < 40 ? 2.4 : lum < 110 ? 1.8 : 1.3,
+            size: lum < 50 ? 2.8 : lum < 120 ? 2.1 : 1.5,
             gray: lum < 30 ? '#000' : lum < 90 ? '#222' : lum < 150 ? '#555' : '#888'
           });
         }
