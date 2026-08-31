@@ -51,7 +51,7 @@
     .brand-mark { display: grid; width: 1.5rem; height: 1.5rem; place-items: center; border-radius: .45rem; background: var(--blue); color: var(--paper-strong); font: 500 .72rem "DM Mono", monospace; }
     .desktop-nav { display: flex; align-items: center; gap: 1.25rem; color: var(--muted); font-size: .85rem; }
     .desktop-nav a:hover { color: var(--ink); }
-    .mobile-nav { display: none; }
+    .mobile-nav { display: none !important; }
     .menu-button { display: none; }
     .hero { position: relative; overflow: hidden; isolation: isolate; border-bottom: 1px solid var(--hairline); min-height: 100svh; }
     .hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
@@ -188,7 +188,7 @@
       <button class="button primary header-cta" type="button" data-open-intake>Start with a checklist <span class="arrow" aria-hidden="true">↗</span></button>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
     </div>
-    <nav class="shell mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <nav class="shell mobile-nav" id="mobile-nav" hidden aria-label="Mobile navigation">
       <a href="#how-it-starts">How it starts</a>
       <a href="#review">Human review</a>
       <a href="#faq">Questions</a>
@@ -401,7 +401,7 @@
       const canvas = document.getElementById('ascii-waves');
       const wrap = canvas.parentElement;
       const ctx = canvas.getContext('2d');
-      const glyphs = ' .,:;+*?%#@';
+      const glyphs = ' .·:-=+*#%@';
       let cols = 0, rows = 0, t = 0, dpr = 1, width = 0, height = 0, frame;
       function resize() {
         const rect = wrap.getBoundingClientRect();
@@ -416,21 +416,22 @@
       }
       function render() {
         ctx.fillStyle = '#10111b'; ctx.fillRect(0, 0, width, height);
-        ctx.fillStyle = '#ff5a3e';
         const cw = width / cols, ch = height / rows;
         for (let y = 0; y < rows; y++) {
           for (let x = 0; x < cols; x++) {
             const nx = x / cols, ny = y / rows;
-            const wave = Math.sin(nx * 10 + t) * 0.45 + Math.sin(nx * 4.2 - t * 0.7 + ny * 3) * 0.35;
-            const v = Math.max(0, Math.min(1, 0.55 + wave - ny * 0.35));
-            const g = glyphs[Math.floor(v * (glyphs.length - 1))];
-            ctx.globalAlpha = 0.35 + v * 0.65;
-            ctx.fillStyle = v > 0.72 ? '#ffc837' : v > 0.5 ? '#ff5a3e' : '#2d4bff';
+            const wave = Math.sin(nx * 6.4 + t + ny * 0.9) * 0.28 + Math.sin(nx * 2.1 - t * 0.55) * 0.18;
+            const band = Math.abs(ny - (0.55 + wave));
+            if (band > 0.22) continue;
+            const v = 1 - band / 0.22;
+            const g = glyphs[Math.min(glyphs.length - 1, Math.floor(v * (glyphs.length - 1)))];
+            ctx.globalAlpha = 0.25 + v * 0.75;
+            ctx.fillStyle = v > 0.75 ? '#ffc837' : v > 0.45 ? '#ff5a3e' : '#6b7cff';
             ctx.fillText(g, x * cw, y * ch + 12);
           }
         }
         ctx.globalAlpha = 1;
-        if (!reduced) t += 0.045;
+        if (!reduced) t += 0.04;
         frame = requestAnimationFrame(render);
       }
       window.addEventListener('resize', () => { cancelAnimationFrame(frame); resize(); render(); });
@@ -472,11 +473,14 @@
       form.hidden = true; result.classList.add('show'); result.querySelector('button').focus();
     });
     menuButton?.addEventListener('click', () => {
-      const open = mobileNav.classList.toggle('open');
-      menuButton.setAttribute('aria-expanded', String(open));
-      menuButton.textContent = open ? 'Close' : 'Menu';
+      const open = !mobileNav.hidden;
+      mobileNav.hidden = open;
+      mobileNav.classList.toggle('open', !open);
+      menuButton.setAttribute('aria-expanded', String(!open));
+      menuButton.textContent = open ? 'Menu' : 'Close';
     });
     mobileNav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+      mobileNav.hidden = true;
       mobileNav.classList.remove('open');
       menuButton.setAttribute('aria-expanded', 'false');
       menuButton.textContent = 'Menu';
