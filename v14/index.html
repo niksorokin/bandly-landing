@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <!-- BANDLY_V14_ROOT -->
 <!-- BANDLY_V14_POLISH -->
+<!-- BANDLY_V14_VISUAL_POLISH_2 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bandly — Accounting firm in Dubai</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -386,6 +387,23 @@ dialog.intake::backdrop,dialog.login::backdrop{background:rgba(0,0,0,.55)}
 @media (max-width:960px){.reassure-head{display:block}.req-ui{grid-template-columns:1fr}.review-board{min-height:auto}.dark-point{min-height:auto}}
 @media (prefers-reduced-motion:reduce){.rb-paper,.rb-scan,.rb-pulse{animation:none}}
 
+
+/* ---------- v14 visual polish 2: stronger hero product UI + stretched dark review ---------- */
+.hero-stage{min-height:calc(100svh - 64px)}
+.hero-stage .hero{grid-template-columns:minmax(0,1fr) minmax(420px,.92fr);gap:72px}
+.close-card{position:relative;overflow:hidden;padding:0;background:linear-gradient(180deg,#fff 0%,#fbfaf8 100%);border-color:#dedbd6;box-shadow:0 24px 80px rgba(0,0,0,.10), rgba(0,0,0,.45) 0 0 1px 0}
+.close-card::before{content:"";position:absolute;inset:0 0 auto;height:92px;background:radial-gradient(circle at 18% 0%,rgba(255,71,4,.15),transparent 42%),radial-gradient(circle at 80% 20%,rgba(4,71,255,.10),transparent 42%);pointer-events:none}
+.cc-head{position:relative;padding:24px 26px 18px;border-bottom:1px solid var(--stone);margin-bottom:0!important}
+.cc-meta{display:flex;align-items:center;gap:8px;margin-top:8px;color:var(--ash);font-size:12px}
+.cc-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:18px 20px;background:rgba(245,243,241,.72);border-bottom:1px solid var(--stone)}
+.cc-metric{background:var(--eggshell);border:1px solid var(--stone);border-radius:14px;padding:12px;min-width:0}
+.cc-metric b{display:block;font-weight:500;font-size:18px;letter-spacing:-.02em}.cc-metric span{display:block;margin-top:4px;font-size:11px;color:var(--smoke);line-height:1.25}
+.cc-flow{padding:8px 24px 2px}.cc-row{padding:13px 0}.cc-row .t small{display:block;color:var(--ash);font-size:12px;margin-top:2px}.cc-foot{margin:18px 24px 24px!important;background:var(--taupe);border:1px solid var(--stone);border-radius:14px;padding:14px!important}
+.review-mini{display:flex;align-items:center;gap:10px;padding:14px 24px 6px}.review-mini img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid var(--stone)}.review-mini div{font-size:13px;color:var(--graphite)}.review-mini span{display:block;font-size:12px;color:var(--ash);margin-top:2px}
+.dark .wrap{padding-top:120px;padding-bottom:120px}.dark-top{display:grid;grid-template-columns:minmax(0,.72fr) minmax(360px,.5fr);gap:48px;align-items:end}.dark-top .h2{max-width:760px}.dark-photo-rail{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:end}.dark-photo{position:relative;border-radius:18px;overflow:hidden;background:#151411;border:1px solid #2a2825;min-height:190px;box-shadow:0 20px 60px rgba(0,0,0,.35)}.dark-photo:nth-child(2){min-height:230px}.dark-photo img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;filter:saturate(.84) contrast(1.08) brightness(.78)}.dark-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.7))}.dark-photo span{position:absolute;left:14px;right:14px;bottom:12px;z-index:1;color:#f6f2ed;font-size:12px;line-height:1.25}.dark-points{margin-top:40px}.req-ui{max-width:none;width:100%;grid-template-columns:minmax(0,.95fr) minmax(420px,1.05fr);padding:28px;margin-top:48px}.review-board{min-height:520px;display:flex;align-items:stretch}.rb-window{width:100%;display:grid;grid-template-rows:auto 1fr auto auto auto auto}.rb-preview{height:auto;min-height:220px}.rb-reviewer{margin-top:18px}.rb-reviewer img{width:54px;height:54px}.rb-mini-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}.rb-mini-photos img{height:72px;width:100%;object-fit:cover;border-radius:12px;border:1px solid #302c27;filter:saturate(.9) brightness(.82)}
+@media (max-width:960px){.hero-stage .hero{grid-template-columns:1fr}.cc-metrics{grid-template-columns:1fr 1fr}.dark-top{grid-template-columns:1fr}.dark-photo-rail{max-width:520px}.req-ui{grid-template-columns:1fr}.review-board{min-height:0}.rb-preview{min-height:180px}}
+@media (max-width:560px){.cc-metrics{grid-template-columns:1fr}.dark-photo-rail{grid-template-columns:1fr 1fr}.dark-photo:last-child{display:none}}
+
 </style>
 </head>
 <body>
@@ -443,14 +461,25 @@ dialog.intake::backdrop,dialog.login::backdrop{background:rgba(0,0,0,.55)}
     </div>
     <div class="close-card">
       <div class="cc-head">
-        <div class="cc-title">July — a clear close state</div>
-        <div class="cc-status">On track</div>
+        <div>
+          <div class="cc-title">July close</div>
+          <div class="cc-meta"><span class="spark-dot"></span>Books, VAT and review in one state</div>
+        </div>
+        <div class="cc-status">Ready for review</div>
       </div>
-      <div class="cc-row"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">Documents received this month</span><span class="num">214</span></div>
-      <div class="cc-row"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">Matched and reconciled</span><span class="num">209</span></div>
-      <div class="cc-row"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">VAT return — prepared</span><span class="num">Q2</span></div>
-      <div class="cc-row need"><span class="need-dot"></span><span class="t">1 item needed: July bank statement</span></div>
-      <div class="cc-foot"><span class="spark-dot"></span>Professional review before filing</div>
+      <div class="cc-metrics">
+        <div class="cc-metric"><b>214</b><span>documents received</span></div>
+        <div class="cc-metric"><b>209</b><span>matched to transactions</span></div>
+        <div class="cc-metric"><b>1</b><span>clear request left</span></div>
+      </div>
+      <div class="cc-flow">
+        <div class="cc-row"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">Invoices and receipts organised<small>Email, WhatsApp and folders captured</small></span><span class="num">done</span></div>
+        <div class="cc-row"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">Bank lines reconciled<small>Payment gaps flagged before close</small></span><span class="num">98%</span></div>
+        <div class="cc-row"><span class="check"><svg width="10" height="10" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" stroke="#44403b" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="t">VAT support pack prepared<small>Waiting for professional sign-off</small></span><span class="num">Q2</span></div>
+        <div class="cc-row need"><span class="need-dot"></span><span class="t">Needed from you<small>July bank statement for 14 open lines</small></span><span class="num">1 item</span></div>
+      </div>
+      <div class="review-mini"><img src="../assets/expert-1.png" alt="Reviewer portrait"><div>Layla H. is reviewing before anything is filed<span>Professional boundary, visible in the work state</span></div></div>
+      <div class="cc-foot"><span class="spark-dot"></span>Everything important is prepared first, then reviewed by a person.</div>
     </div>
   </section>
 </div>
@@ -565,8 +594,17 @@ dialog.intake::backdrop,dialog.login::backdrop{background:rgba(0,0,0,.55)}
 <!-- 07 · HUMAN REVIEW — DARK -->
 <section class="dark">
   <div class="wrap">
-    <div class="eyebrow">Human review</div>
-    <h2 class="h2">Automation prepares. People make the call.</h2>
+    <div class="dark-top">
+      <div>
+        <div class="eyebrow">Human review</div>
+        <h2 class="h2">Automation prepares. People make the call.</h2>
+      </div>
+      <div class="dark-photo-rail" aria-label="Bandly review team">
+        <figure class="dark-photo"><img src="../assets/expert-1.png" alt="Layla Haddad"><span>Accounting review</span></figure>
+        <figure class="dark-photo"><img src="../assets/expert-2.png" alt="Arjun Mehta"><span>Tax sign-off</span></figure>
+        <figure class="dark-photo"><img src="../assets/expert-3.png" alt="Sofia Lindqvist"><span>Quality control</span></figure>
+      </div>
+    </div>
     <div class="dark-points">
       <div class="dark-point">
         <span class="dark-icon"><svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/><path d="M9 10h6M9 14h3"/></svg></span>
