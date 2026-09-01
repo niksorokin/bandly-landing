@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <!-- BANDLY_V14_ROOT -->
+<!-- BANDLY_V14_POLISH -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bandly — Accounting firm in Dubai</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -323,6 +324,68 @@ dialog.intake::backdrop,dialog.login::backdrop{background:rgba(0,0,0,.55)}
 .form-result.show{display:grid}
 .error{min-height:1rem;color:#9d260e;font-size:12px}
 
+
+/* ---------- v14 polish pass: fixed-size hero/closing backgrounds ---------- */
+.nav-right{display:flex;align-items:center;gap:10px}
+.hero-stage{min-height:calc(100svh - 64px);display:flex;align-items:center}
+.closing-stage{min-height:100svh;display:flex;align-items:center}
+.hero-stage .wrap,.closing-stage .wrap{width:100%}
+.hero-stage .hero{width:100%;padding-top:72px;padding-bottom:72px}
+.closing-stage .closing{width:100%;padding:104px 0}
+.us-layer>*,.us-layer canvas{width:100%!important;height:100%!important;display:block!important}
+@media (max-width:960px){
+  .hero-stage{min-height:auto;align-items:flex-start}
+  .closing-stage{min-height:72svh}
+  .hero-stage .hero{padding-top:64px;padding-bottom:64px}
+  .nav-right .btn:not(.primary){display:none}
+}
+
+/* ---------- v14 polish pass: generated 3D step art ---------- */
+.step-fig img{aspect-ratio:4/3;object-fit:cover;filter:saturate(1.04) contrast(1.02)}
+.step-fig{position:relative;box-shadow:rgba(0,0,0,.04) 0 1px 1px, rgba(0,0,0,.06) 0 12px 32px}
+
+/* ---------- v14 polish pass: books / filings / next step icons ---------- */
+.reassure-wrap{padding-top:0}
+.reassure-head{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:36px}
+.reassure-head .h2{max-width:560px}
+.reassure-card{background:var(--taupe);border-radius:20px;padding:28px;min-height:178px;transition:box-shadow .15s ease,transform .15s ease}
+.reassure-card:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
+.reassure-icon{width:44px;height:44px;border-radius:15px;background:var(--eggshell);border:1px solid var(--stone);display:flex;align-items:center;justify-content:center;margin-bottom:18px;box-shadow:rgba(0,0,0,.03) 0 8px 20px}
+.reassure-icon svg{width:22px;height:22px;stroke:#111;stroke-width:1.45;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.reassure .r-label{color:var(--ink);margin-bottom:10px}
+
+/* ---------- v14 polish pass: human-review animated interface ---------- */
+.dark .h2{max-width:720px}
+.dark-points{gap:24px}
+.dark-point{background:#111110;border:1px solid #2a2825;border-radius:18px;padding:22px;min-height:150px}
+.dark-icon{width:38px;height:38px;border-radius:14px;background:#1c1b19;border:1px solid #2a2825;display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:#e8e4df}
+.dark-icon svg{width:19px;height:19px;stroke:currentColor;stroke-width:1.55;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.req-ui{max-width:980px;display:grid;grid-template-columns:1fr .78fr;gap:24px;align-items:stretch;box-shadow:0 24px 80px rgba(0,0,0,.38)}
+.req-thread{min-width:0}
+.review-board{background:#0c0c0b;border:1px solid #24221f;border-radius:20px;padding:20px;position:relative;overflow:hidden;min-height:420px}
+.review-board::before{content:"";position:absolute;inset:-30% -20% auto auto;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(255,71,4,.2),transparent 68%);filter:blur(6px)}
+.rb-window{position:relative;background:#151411;border:1px solid #2d2a25;border-radius:18px;padding:16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.rb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;color:#e8e4df;font-size:13px;font-weight:500}
+.rb-dots{display:flex;gap:5px}.rb-dots span{width:7px;height:7px;border-radius:50%;background:#4a4742}.rb-dots span:first-child{background:#ff4704}.rb-dots span:nth-child(2){background:#ffb03d}
+.rb-preview{height:142px;border-radius:14px;background:linear-gradient(145deg,#f9f4ec,#fff 55%,#f4eee5);position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.08);margin-bottom:14px}
+.rb-paper{position:absolute;background:#fffaf3;border-radius:10px;box-shadow:0 14px 32px rgba(0,0,0,.18)}
+.rb-paper.a{width:54%;height:72%;left:18%;top:18%;transform:rotate(-7deg);animation:paperA 4.8s ease-in-out infinite}
+.rb-paper.b{width:48%;height:58%;left:34%;top:26%;transform:rotate(8deg);background:#ffd8cf;animation:paperB 4.8s ease-in-out infinite}
+.rb-paper.c{width:38%;height:44%;left:42%;top:34%;background:#ff9a1f;transform:rotate(-2deg);animation:paperC 4.8s ease-in-out infinite}
+.rb-scan{position:absolute;left:8%;right:8%;height:2px;top:24%;background:linear-gradient(90deg,transparent,#ff4704,transparent);box-shadow:0 0 16px rgba(255,71,4,.7);animation:scan 3.2s ease-in-out infinite}
+.rb-row{display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:center;padding:10px 0;border-top:1px solid #26231f;color:#d8d4cf;font-size:13px}
+.rb-row:first-of-type{border-top:0}.rb-dot{width:20px;height:20px;border-radius:50%;background:#1f1d1a;border:1px solid #35312b;position:relative}.rb-dot::after{content:"";position:absolute;inset:5px;border-radius:50%;background:#ff4704}.rb-row.done .rb-dot::after{background:#e8e4df}.rb-tag{font-family:'JetBrains Mono',monospace;color:#8a847c;font-size:11px}
+.rb-reviewer{display:flex;gap:12px;align-items:center;margin-top:16px;padding:14px;border:1px solid #2d2a25;border-radius:16px;background:#11100e;color:#d8d4cf}
+.rb-reviewer img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:1px solid rgba(255,255,255,.12)}
+.rb-reviewer b{display:block;color:#fff;font-weight:500;font-size:13px}.rb-reviewer span{display:block;font-size:12px;color:#8a847c;margin-top:3px}.rb-pulse{margin-left:auto;width:12px;height:12px;border-radius:50%;background:#ff4704;box-shadow:0 0 0 0 rgba(255,71,4,.5);animation:pulse 1.8s ease-out infinite}
+@keyframes scan{0%,100%{top:20%;opacity:.35}50%{top:78%;opacity:1}}
+@keyframes paperA{0%,100%{transform:rotate(-7deg) translateY(0)}50%{transform:rotate(-5deg) translateY(-4px)}}
+@keyframes paperB{0%,100%{transform:rotate(8deg) translateY(0)}50%{transform:rotate(6deg) translateY(5px)}}
+@keyframes paperC{0%,100%{transform:rotate(-2deg) translateY(0)}50%{transform:rotate(0) translateY(-6px)}}
+@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(255,71,4,0)}100%{box-shadow:0 0 0 0 rgba(255,71,4,0)}}
+@media (max-width:960px){.reassure-head{display:block}.req-ui{grid-template-columns:1fr}.review-board{min-height:auto}.dark-point{min-height:auto}}
+@media (prefers-reduced-motion:reduce){.rb-paper,.rb-scan,.rb-pulse{animation:none}}
+
 </style>
 </head>
 <body>
@@ -356,7 +419,7 @@ dialog.intake::backdrop,dialog.login::backdrop{background:rgba(0,0,0,.55)}
     </div>
     <div class="nav-right">
       <button class="btn" type="button" data-open-login>Log in</button>
-      <button class="btn primary" type="button" data-open-intake>Start with a checklist</button>
+      <button class="btn primary" type="button" data-open-intake>Book a demo</button>
     </div>
   </nav>
 </div>
@@ -373,10 +436,10 @@ dialog.intake::backdrop,dialog.login::backdrop{background:rgba(0,0,0,.55)}
       <h1 class="h1">Accounting you can actually follow.</h1>
       <p class="lede">Send invoices, bank statements and receipts. Bandly organises the month, shows exactly what is missing, and a professional reviews anything that gets filed.</p>
       <div class="hero-ctas">
-        <button class="btn primary lg" type="button" data-open-intake>Start with a checklist</button>
+        <button class="btn primary lg" type="button" data-open-intake>Book a demo</button>
         <a class="btn lg" href="#how">See how it works</a>
       </div>
-      <p class="hero-note">About two minutes. No calendar booking at this stage.</p>
+      <p class="hero-note">About two minutes. This preview does not send the form yet.</p>
     </div>
     <div class="close-card">
       <div class="cc-head">
@@ -412,19 +475,19 @@ dialog.intake::backdrop,dialog.login::backdrop{background:rgba(0,0,0,.55)}
     <h2 class="h2" style="margin-top:24px;max-width:640px">Hand over the paperwork in one afternoon.</h2>
     <div class="steps">
       <div class="step">
-        <figure class="step-fig" data-lb><img src="../assets/step-share.png" alt="Hands passing documents into a tray"></figure>
+        <figure class="step-fig" data-lb><img src="assets/how-share.png" alt="Blank folded documents flowing into a coral tray"></figure>
         <div class="step-num">01 — Share</div>
         <h3>Send it the way you already work</h3>
         <p>Email, WhatsApp, shared folders — send documents the way you already work. No new system to learn, no migration.</p>
       </div>
       <div class="step">
-        <figure class="step-fig" data-lb><img src="../assets/step-prepare.png" alt="Scattered sheets aligning into a neat stack"></figure>
+        <figure class="step-fig" data-lb><img src="assets/how-prepare.png" alt="Layered blank paper sheets aligning into an organised stack"></figure>
         <div class="step-num">02 — Prepare</div>
         <h3>One clear working state</h3>
         <p>Bandly captures every document, matches it to transactions and keeps one clear working state. When something is missing, you get one precise request — never a reminder chain.</p>
       </div>
       <div class="step">
-        <figure class="step-fig" data-lb><img src="../assets/step-review.png" alt="Hands holding an open ledger book"></figure>
+        <figure class="step-fig" data-lb><img src="assets/how-review.png" alt="A reviewed document stack with an abstract check mark"></figure>
         <div class="step-num">03 — Review</div>
         <h3>A person signs off</h3>
         <p>A qualified accountant checks important outputs before anything is filed or sent. You approve with one tap.</p>
@@ -495,7 +558,7 @@ dialog.intake::backdrop,dialog.login::backdrop{background:rgba(0,0,0,.55)}
         <svg class="seg-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6.5"/><path d="M10 7v6M7 10h6"/></svg>
         <h3>Clinics &amp; family offices</h3><p>Discreet, precise, always on time.</p></div>
     </div>
-    <p class="seg-closing">Not sure where you fit? <a href="#" data-open-intake>Start with a checklist</a> — we'll tell you honestly.</p>
+    <p class="seg-closing">Not sure where you fit? <a href="#" data-open-intake>Book a demo</a> — we'll tell you honestly.</p>
   </section>
 </div>
 
@@ -506,20 +569,24 @@ dialog.intake::backdrop,dialog.login::backdrop{background:rgba(0,0,0,.55)}
     <h2 class="h2">Automation prepares. People make the call.</h2>
     <div class="dark-points">
       <div class="dark-point">
+        <span class="dark-icon"><svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/><path d="M9 10h6M9 14h3"/></svg></span>
         <div class="dp-num">01</div>
         <p><b>Missing facts stay missing</b> — they are requested, never guessed.</p>
       </div>
       <div class="dark-point">
+        <span class="dark-icon"><svg viewBox="0 0 24 24"><path d="M12 4v10"/><path d="M8 10l4 4 4-4"/><path d="M6 19h12"/></svg></span>
         <div class="dp-num">02</div>
         <p><b>External action is never automatic</b> — important work is reviewed before it goes out.</p>
       </div>
       <div class="dark-point">
+        <span class="dark-icon"><svg viewBox="0 0 24 24"><path d="M12 4l7 4v5c0 4-3 6.5-7 7-4-.5-7-3-7-7V8z"/><path d="M9 12l2 2 4-5"/></svg></span>
         <div class="dp-num">03</div>
         <p><b>You work with a firm, not a tool.</b> The service stays accountable to people.</p>
       </div>
     </div>
 
     <div class="req-ui">
+      <div class="req-thread">
       <div class="req-head">
         <span class="req-title">One precise request — how it actually goes</span>
         <span class="req-status closed">closed · 3h 06m</span>
@@ -556,6 +623,23 @@ dialog.intake::backdrop,dialog.login::backdrop{background:rgba(0,0,0,.55)}
         <span class="req-done"><svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" stroke="#e8e4df" stroke-width="1.4" fill="none"/><path d="M4.5 7.2l1.8 1.8 3.2-3.8" stroke="#e8e4df" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Request closed — one ask, one upload, one sign-off</span>
         <span class="req-note">Nothing guessed. Nothing chased twice.</span>
       </div>
+      </div>
+      <aside class="review-board" aria-label="Animated review interface preview">
+        <div class="rb-window">
+          <div class="rb-top"><span>Month close review</span><span class="rb-dots"><span></span><span></span><span></span></span></div>
+          <div class="rb-preview">
+            <span class="rb-paper a"></span><span class="rb-paper b"></span><span class="rb-paper c"></span><span class="rb-scan"></span>
+          </div>
+          <div class="rb-row done"><span class="rb-dot"></span><span>Bank statement matched</span><span class="rb-tag">done</span></div>
+          <div class="rb-row done"><span class="rb-dot"></span><span>VAT support pack prepared</span><span class="rb-tag">done</span></div>
+          <div class="rb-row"><span class="rb-dot"></span><span>Professional review</span><span class="rb-tag">live</span></div>
+          <div class="rb-reviewer">
+            <img src="../assets/expert-1.png" alt="Reviewer portrait">
+            <div><b>Layla H.</b><span>reviewing before filing</span></div>
+            <span class="rb-pulse" aria-hidden="true"></span>
+          </div>
+        </div>
+      </aside>
     </div>
   </div>
 </section>
@@ -615,19 +699,29 @@ dialog.intake::backdrop,dialog.login::backdrop{background:rgba(0,0,0,.55)}
 
 <!-- 08b · REASSURANCE -->
 <div class="wrap">
-  <section class="section">
+  <section class="section reassure-wrap">
+    <div class="reassure-head">
+      <div>
+        <div class="eyebrow">What stays clear</div>
+        <h2 class="h2" style="margin-top:24px">The books. The filings. The next step.</h2>
+      </div>
+      <p class="lede" style="max-width:420px">You always know what is handled, what is waiting, and what a professional has reviewed.</p>
+    </div>
     <div class="reassure">
-      <div>
-        <div class="r-label">IN</div>
-        <p>Every document you send lands in one working state — collected, sorted, and matched to your transactions.</p>
+      <div class="reassure-card">
+        <span class="reassure-icon"><svg viewBox="0 0 24 24"><path d="M7 4.5h7l3 3v12H7z"/><path d="M14 4.5v3h3"/><path d="M9.5 11h5M9.5 14h5"/></svg></span>
+        <div class="r-label">THE BOOKS</div>
+        <p>Every document lands in one working state — collected, sorted, and matched to your transactions.</p>
       </div>
-      <div>
-        <div class="r-label">ASK</div>
-        <p>Gaps become one precise request for exactly what is missing. Nothing is guessed, nothing is chased twice.</p>
+      <div class="reassure-card">
+        <span class="reassure-icon"><svg viewBox="0 0 24 24"><path d="M6 6.5h12v13H6z"/><path d="M9 4.5h6v4H9z"/><path d="M9 13h6M9 16h4"/></svg></span>
+        <div class="r-label">THE FILINGS</div>
+        <p>VAT, corporate tax and monthly outputs are prepared from the records, then reviewed before they go out.</p>
       </div>
-      <div>
-        <div class="r-label">REVIEW</div>
-        <p>Everything important carries a visible human boundary — a qualified accountant reviews before it goes out.</p>
+      <div class="reassure-card">
+        <span class="reassure-icon"><svg viewBox="0 0 24 24"><path d="M5 12h12"/><path d="M13 8l4 4-4 4"/><path d="M5 18h6M5 6h8"/></svg></span>
+        <div class="r-label">THE NEXT STEP</div>
+        <p>If something is missing, you get one precise request — not a long thread of accounting questions.</p>
       </div>
     </div>
   </section>
@@ -663,7 +757,7 @@ dialog.intake::backdrop,dialog.login::backdrop{background:rgba(0,0,0,.55)}
         <div class="calc-marks"><span>25</span><span>300</span><span>600</span><span>900</span><span>1,200+</span></div>
         <div class="calc-price"><span class="calc-amount" id="calcAmount">AED 990</span><span class="calc-per">/ month</span></div>
         <div class="calc-note">A transaction is one bank statement line. Payment gateways and marketplaces: 10 lines count as 1.</div>
-        <button class="btn primary" type="button" data-open-intake>Start with a checklist</button>
+        <button class="btn primary" type="button" data-open-intake>Book a demo</button>
       </div>
     </div>
   </section>
@@ -740,7 +834,7 @@ dialog.intake::backdrop,dialog.login::backdrop{background:rgba(0,0,0,.55)}
     <div class="eyebrow">Get started</div>
     <h2 class="h2" style="margin-top:24px">Hand over the books. Keep the business.</h2>
     <p class="lede">Start from the documents you already have. A call is offered later only if it helps.</p>
-    <button class="btn primary lg" type="button" data-open-intake>Start with a checklist</button>
+    <button class="btn primary lg" type="button" data-open-intake>Book a demo</button>
   </section>
 </div>
 </section>
@@ -860,13 +954,13 @@ document.getElementById('faqList').addEventListener('click', e => {
     <div class="intake-top">
       <div>
         <div class="eyebrow">Step 1 of 3</div>
-        <h2 id="intake-title">What should be clearer first?</h2>
+        <h2 id="intake-title">Book a demo</h2>
       </div>
       <button class="intake-close" type="button" data-close-intake aria-label="Close">×</button>
     </div>
     <form class="intake-form" id="intake-form" novalidate>
       <fieldset style="border:0;padding:0;margin:0">
-        <legend style="font-size:13px;font-weight:500;margin-bottom:10px">Choose one area</legend>
+        <legend style="font-size:13px;font-weight:500;margin-bottom:10px">What should we look at first?</legend>
         <div class="choice-grid">
           <label class="choice"><input type="radio" name="need" value="Bookkeeping"> Monthly bookkeeping</label>
           <label class="choice"><input type="radio" name="need" value="VAT"> VAT support</label>
@@ -880,13 +974,13 @@ document.getElementById('faqList').addEventListener('click', e => {
         <span class="error" id="email-error" aria-live="polite"></span>
       </label>
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-        <button class="btn primary" type="submit">Prepare my checklist</button>
-        <p class="preview-note">Prototype only. Nothing is sent from this page.</p>
+        <button class="btn primary" type="submit">Prepare demo brief</button>
+        <p class="preview-note">Prototype only. Nothing is sent from this page yet.</p>
       </div>
     </form>
     <section class="form-result" id="form-result">
-      <h3>Your checklist would start here.</h3>
-      <p class="preview-note">Nothing was sent. In production this becomes a real intake, and a call is offered only if it helps.</p>
+      <h3>Your demo brief would start here.</h3>
+      <p class="preview-note">Nothing was sent. In production this becomes a real demo request. Nothing was sent from this preview.</p>
       <button class="btn" type="button" data-close-intake>Close</button>
     </section>
   </div>
@@ -901,9 +995,9 @@ document.getElementById('faqList').addEventListener('click', e => {
       </div>
       <button class="intake-close" type="button" data-close-login aria-label="Close">×</button>
     </div>
-    <p class="preview-note">This preview cannot authenticate anyone. Use the checklist if you want to see the first step. Nothing is sent.</p>
+    <p class="preview-note">This preview cannot authenticate anyone. Book a demo to see the first step. Nothing is sent from this preview.</p>
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px">
-      <button class="btn primary" type="button" data-close-login data-open-intake>Start with a checklist</button>
+      <button class="btn primary" type="button" data-close-login data-open-intake>Book a demo</button>
       <button class="btn" type="button" data-close-login>Close</button>
     </div>
   </div>
@@ -928,7 +1022,7 @@ document.getElementById('faqList').addEventListener('click', e => {
     e.preventDefault();
     const need=new FormData(form).get('need');
     const ok=email.value.trim() && email.validity.valid;
-    document.getElementById('need-error').textContent=need?'':'Choose one area.';
+    document.getElementById('need-error').textContent=need?'':'What should we look at first?.';
     document.getElementById('email-error').textContent=ok?'':'Enter a work email.';
     if(!need){ form.querySelector('input[name=need]').focus(); return; }
     if(!ok){ email.focus(); return; }
