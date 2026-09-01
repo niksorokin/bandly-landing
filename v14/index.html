@@ -7,6 +7,7 @@
 <!-- BANDLY_V14_VISUAL_POLISH_2 -->
 <!-- BANDLY_V14_COPY_PASS -->
 <!-- BANDLY_V14_FABLE_COPY_MERGE -->
+<!-- BANDLY_V14_DARK_CHAT_AVATARS -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bandly — Accounting firm in Dubai</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -406,6 +407,17 @@ dialog.intake::backdrop,dialog.login::backdrop{background:rgba(0,0,0,.55)}
 @media (max-width:960px){.hero-stage .hero{grid-template-columns:1fr}.cc-metrics{grid-template-columns:1fr 1fr}.dark-top{grid-template-columns:1fr}.dark-photo-rail{max-width:520px}.req-ui{grid-template-columns:1fr}.review-board{min-height:0}.rb-preview{min-height:180px}}
 @media (max-width:560px){.cc-metrics{grid-template-columns:1fr}.dark-photo-rail{grid-template-columns:1fr 1fr}.dark-photo:last-child{display:none}}
 
+
+/* ---------- v14 dark block avatar cleanup ---------- */
+.dark-top{display:block;max-width:760px}
+.dark-photo-rail{display:none!important}
+.req-ava{overflow:hidden;border:1px solid #33302b;box-shadow:0 0 0 1px rgba(255,255,255,.03)}
+.req-ava img{width:100%;height:100%;display:block;object-fit:cover}
+.req-ava.client-ava{background:#f6f2ed;color:#111;border-color:#f6f2ed}
+.req-ava.cpa-ava{background:#2b2926;color:#e8e4df}
+.req-msg.you .req-who{text-align:right}
+@media (max-width:960px){.dark-top{max-width:none}}
+
 </style>
 </head>
 <body>
@@ -601,11 +613,6 @@ dialog.intake::backdrop,dialog.login::backdrop{background:rgba(0,0,0,.55)}
         <div class="eyebrow">Human review</div>
         <h2 class="h2">Automation prepares the work. Accountants make the calls.</h2>
       </div>
-      <div class="dark-photo-rail" aria-label="Bandly review team">
-        <figure class="dark-photo"><img src="../assets/expert-1.png" alt="Layla Haddad"><span>Accounting review</span></figure>
-        <figure class="dark-photo"><img src="../assets/expert-2.png" alt="Arjun Mehta"><span>Tax sign-off</span></figure>
-        <figure class="dark-photo"><img src="../assets/expert-3.png" alt="Sofia Lindqvist"><span>Quality control</span></figure>
-      </div>
     </div>
     <div class="dark-points">
       <div class="dark-point">
@@ -640,10 +647,10 @@ dialog.intake::backdrop,dialog.login::backdrop{background:rgba(0,0,0,.55)}
       </div>
       <div class="req-msg you">
         <div>
-          <div class="req-who">You · 11:02</div>
+          <div class="req-who">Client · 11:02</div>
           <div class="req-bubble"><span class="file"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="#111" stroke-width="1.5" stroke-linejoin="round"><path d="M5 2.5h7l3 3v12H5z"/><path d="M12 2.5v3h3"/></svg>bank_statement_july.pdf</span></div>
         </div>
-        <span class="req-ava you-ava">Y</span>
+        <span class="req-ava client-ava"><img src="../assets/expert-2.png" alt="Client"></span>
       </div>
       <div class="req-msg">
         <span class="req-ava spark"></span>
@@ -653,7 +660,7 @@ dialog.intake::backdrop,dialog.login::backdrop{background:rgba(0,0,0,.55)}
         </div>
       </div>
       <div class="req-msg">
-        <span class="req-ava cpa-ava">L</span>
+        <span class="req-ava cpa-ava"><img src="../assets/expert-1.png" alt="Layla H."></span>
         <div>
           <div class="req-who">Layla H. · professional review · 12:47</div>
           <div class="req-bubble">Reviewed against the records. No further action is needed from you for this close.</div>
