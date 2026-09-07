@@ -53,9 +53,7 @@ a:hover{color:var(--ember)}
 .signature-ink{font-family:'Mrs Saint Delafield',cursive;font-weight:400;letter-spacing:.01em;line-height:.78;display:inline-block;color:#171513;font-synthesis:none}
 .nav-signature{font-size:28px;min-width:64px}.foot-signature{font-size:32px}
 .signature-ink.write-on{position:relative;clip-path:inset(0 100% 0 0);animation:signatureWrite 1.25s .18s cubic-bezier(.7,0,.2,1) forwards}
-.signature-ink.write-on::after{content:"";position:absolute;width:.12em;height:.12em;border-radius:50%;right:.03em;top:.55em;background:var(--ember);box-shadow:0 0 0 5px rgba(255,71,4,.12);opacity:0;transform:translateX(-5.8em);animation:signatureNib 1.25s .18s cubic-bezier(.7,0,.2,1) forwards}
 @keyframes signatureWrite{to{clip-path:inset(0 0 0 0)}}
-@keyframes signatureNib{0%{opacity:0;transform:translateX(-5.8em)}12%{opacity:1}82%{opacity:1}100%{opacity:0;transform:translateX(.05em)}}
 
 /* ---------- nav ---------- */
 .nav-wrap{position:sticky;top:0;z-index:60;background:transparent;border-bottom:1px solid transparent;transition:background .2s ease,border-color .2s ease}
@@ -348,7 +346,7 @@ footer .signature-ink{color:#171513}
 .v21-proofs .stat{min-width:0}.v21-proofs .stat-num{font-size:clamp(44px,4.8vw,76px)}
 .manager-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:58px}
 .manager-step{background:#111110;color:#fff;border-radius:18px;padding:30px;min-height:196px;display:grid;grid-template-rows:1fr auto}
-.manager-step-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.manager-step-no{font-family:'JetBrains Mono',monospace;font-size:12px;color:#8a847c;letter-spacing:.08em}.manager-step h3{font-size:18px;font-weight:500;line-height:1.2}.manager-step p{font-size:13.5px;line-height:1.45;color:#b8b2aa;margin-top:6px}
+.manager-step-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.manager-step-no{font-family:'JetBrains Mono',monospace;font-size:12px;color:#8a847c;letter-spacing:.08em;margin-bottom:12px}.manager-step h3{font-size:18px;font-weight:500;line-height:1.2}.manager-step p{font-size:13.5px;line-height:1.45;color:#b8b2aa;margin-top:6px}
 .manager-card{display:flex;align-items:center;gap:10px;margin-top:18px}.manager-photo{width:40px;height:40px;border-radius:50%;object-fit:cover;outline:1px solid rgba(255,255,255,.1)}.manager-card span{font-size:12px;color:#b8b2aa}.manager-card b{display:block;color:#fff;font-size:13px;font-weight:500;margin-bottom:2px}
 @media (max-width:960px){
   .app-shell{grid-template-columns:1fr}
@@ -395,7 +393,7 @@ footer .signature-ink{color:#171513}
   html{scroll-behavior:auto}
   .us-layer{display:none}
   .rb-paper,.rb-scan,.rb-pulse{animation:none}
-  .wordmark{transform:none!important;opacity:1!important;will-change:auto}.hero-signature .signature-ink{animation:none!important;clip-path:none!important}.signature-ink.write-on::after{display:none}
+  .wordmark{transform:none!important;opacity:1!important;will-change:auto}.hero-signature .signature-ink{animation:none!important;clip-path:none!important}
   .sme-card img{transition:none}.record-list::before{transform:none}
 }
 </style>
