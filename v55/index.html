@@ -31,7 +31,7 @@
 :root{
   --canvas:#f2f0eb; --card:#ffffff; --ink:#292827; --muted:#666666; --line:#e3e3e2;
   --wine:#421d24; --wine-hover:color-mix(in oklab,#421d24 86%,#ffffff);
-  --violet:#714cb6; --lilac:#d4c7ff; --lagoon:#0c4243;
+  --lagoon:#0c4243;
   --photo-line:oklch(0 0 0 / 0.1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -41,9 +41,10 @@ body{font-family:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;font-s
 p{text-wrap:pretty}
 a{text-decoration:none;color:inherit;transition:color .15s ease}
 b,strong{font-weight:inherit}
-::selection{background:var(--lilac);color:var(--ink)}
-:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
-.on-dark :focus-visible,.nav-wrap:not(.scrolled) :focus-visible{box-shadow:0 0 0 2px #fff}
+::selection{background:var(--wine);color:#fff}
+:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
+.on-dark :focus-visible,.nav-wrap:not(.scrolled) :focus-visible{outline-color:#fff}
+.btn.primary:focus-visible,.app-send:focus-visible,.skip-link:focus-visible{outline:2px solid #fff;outline-offset:-5px}
 .wrap{max-width:1280px;margin:0 auto;padding:0 40px}
 
 .skip-link{position:fixed;left:16px;top:12px;z-index:100;padding:10px 18px;border-radius:9999px;background:var(--wine);color:#fff;font-size:15px;
@@ -109,7 +110,7 @@ b,strong{font-weight:inherit}
 .nav-links{display:flex;gap:28px;margin-left:8px}
 .nav-links a{font-size:15px}
 .nav-wrap:not(.scrolled) .nav-links a:hover{text-decoration:underline;text-underline-offset:4px}
-.nav-wrap.scrolled .nav-links a:hover{color:var(--violet)}
+.nav-wrap.scrolled .nav-links a:hover{color:var(--wine)}
 .nav-right{margin-left:auto;display:flex;align-items:center;gap:8px}
 .nav-wrap:not(.scrolled) .btn.ghost:hover{background:rgba(255,255,255,.12)}
 .nav .btn.cta{padding:12px 20px}
@@ -122,8 +123,8 @@ b,strong{font-weight:inherit}
   object-fit:cover;object-position:48% 0%;
   -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 120px);mask-image:linear-gradient(180deg,transparent 0,#000 120px)}
 .hero-scrim{position:absolute;inset:-120px 0 0;z-index:-1;pointer-events:none;
-  background:radial-gradient(ellipse 62% 38% at 50% 26%,rgba(38,30,92,.22),transparent 72%),
-    linear-gradient(180deg,rgba(48,38,108,.5) 0%,rgba(66,54,132,.38) 40%,rgba(72,50,112,.32) 64%,rgba(28,20,44,.48) 100%)}
+  background:radial-gradient(ellipse 62% 38% at 50% 26%,rgba(41,40,39,.22),transparent 72%),
+    linear-gradient(180deg,rgba(41,40,39,.5) 0%,rgba(41,40,39,.38) 40%,rgba(41,40,39,.32) 64%,rgba(41,40,39,.48) 100%)}
 .hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:76px}
 .hero .h1{max-inline-size:14ch;color:#fff;overflow-wrap:break-word}
 .hero-sub{margin-top:22px;max-width:36ch;font-size:clamp(18px,.6vw + 14px,21px);line-height:1.45;color:rgba(255,255,255,.88)}
@@ -198,10 +199,11 @@ b,strong{font-weight:inherit}
 .app-main{display:flex;flex-direction:column;min-width:0;background:var(--card)}
 .app-pane{padding:28px 24px}
 .app-pane[data-app-pane="chat"]{padding:0;display:flex;flex-direction:column;flex:1}
+.app-pane[hidden]{display:none}
 .app-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 22px;border-bottom:1px solid var(--line)}
 .app-head b{display:block;font-size:16px}
 .app-head span{display:block;margin-top:2px;font-size:13px;color:var(--muted)}
-.app-time{font-size:13px;color:var(--ink);background:var(--lilac);border-radius:9999px;padding:6px 12px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.app-time{font-size:13px;color:var(--ink);background:var(--canvas);border-radius:9999px;padding:6px 12px;white-space:nowrap;font-variant-numeric:tabular-nums}
 .app-chat{flex:1;padding:22px;display:flex;flex-direction:column;gap:18px}
 .app-msg{display:flex;gap:12px;align-items:flex-start;max-width:640px}
 .app-msg.you{margin-left:auto;flex-direction:row-reverse}
@@ -211,7 +213,7 @@ b,strong{font-weight:inherit}
 .app-meta{margin-bottom:6px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
 .app-msg.you .app-meta{text-align:right}
 .app-bubble{background:var(--canvas);border-radius:14px;padding:12px 14px;font-size:15px;line-height:1.5;color:var(--ink)}
-.app-msg.you .app-bubble{background:var(--lilac)}
+.app-msg.you .app-bubble{background:var(--wine);color:#fff}
 .app-file{display:inline-flex;align-items:center;gap:8px;font-size:14px}
 .app-composer{margin-top:auto;border-top:1px solid var(--line);padding:14px 18px;display:flex;gap:10px;background:var(--card)}
 .app-composer input{min-width:0;flex:1;height:44px;border:1px solid var(--line);border-radius:12px;padding:0 14px;background:var(--card);color:var(--ink);font:inherit;font-size:16px}
@@ -227,7 +229,7 @@ b,strong{font-weight:inherit}
 .work-meta{font-size:13px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
 .pill{font-size:12px;border-radius:9999px;padding:5px 10px;white-space:nowrap;color:var(--ink)}
 .pill.ok{background:var(--canvas)}
-.pill.wait{background:var(--lilac)}
+.pill.wait{background:var(--wine);color:#fff}
 .pill.done{background:var(--card);border:1px solid var(--line)}
 .app-caption{margin-top:14px;font-size:14px;color:var(--muted)}
 
@@ -254,7 +256,7 @@ b,strong{font-weight:inherit}
 .addons{margin-top:28px}
 .addons .caption{display:block;margin-bottom:10px}
 .addon-chips{display:flex;gap:8px;flex-wrap:wrap}
-.addon-chip{font-size:14px;color:var(--ink);background:var(--lilac);border-radius:9999px;padding:7px 14px}
+.addon-chip{font-size:14px;color:var(--ink);background:var(--canvas);border-radius:9999px;padding:7px 14px}
 .calc{align-self:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:32px}
 .calc-label{font-size:16px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .calc-count{font-size:16px;font-variant-numeric:tabular-nums}
@@ -278,7 +280,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   transition:transform .2s ease,background-color .2s ease,border-color .2s ease}
 .faq-q:hover .fi{border-color:var(--ink)}
 .faq-q:active .fi{transform:scale(.96)}
-.faq-item.open .fi{transform:rotate(45deg);background:var(--lilac);border-color:var(--lilac)}
+.faq-item.open .fi{transform:rotate(45deg);background:var(--canvas);border-color:var(--ink)}
 .faq-item.open .faq-q:active .fi{transform:rotate(45deg) scale(.96)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
 .faq-a p{font-size:16px;line-height:1.6;color:var(--muted);padding:0 0 24px;max-width:65ch}
@@ -321,7 +323,7 @@ dialog.intake{accent-color:var(--wine)}
 .choice{display:flex;min-height:48px;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:16px;cursor:pointer;transition:border-color .15s ease}
 .choice:hover{border-color:var(--ink)}
 .choice:has(input:checked){border-color:var(--wine);box-shadow:inset 0 0 0 1px var(--wine)}
-.choice:has(input:focus-visible){outline:2px solid var(--violet);outline-offset:2px}
+.choice:has(input:focus-visible){outline:2px solid var(--wine);outline-offset:2px}
 .choice input{appearance:none;-webkit-appearance:none;width:16px;height:16px;margin:0;flex:none;border:1.5px solid var(--muted);border-radius:50%;background:var(--card)}
 .choice input:checked{border-color:var(--wine);background:var(--wine);box-shadow:inset 0 0 0 3px #fff}
 .choice input:focus-visible{outline:none;box-shadow:none}
@@ -335,7 +337,7 @@ dialog.intake{accent-color:var(--wine)}
 .error{min-height:1rem;color:#9d260e;font-size:13px}
 .preview-note{font-size:15px;color:var(--muted)}
 .intake-intro{margin:-8px 0 22px;max-width:36rem;font-size:15px;line-height:1.55;color:var(--muted)}
-.success-mark{width:28px;height:28px;margin-bottom:16px;border-radius:50%;display:grid;place-items:center;background:var(--lilac)}
+.success-mark{width:28px;height:28px;margin-bottom:16px;border-radius:50%;display:grid;place-items:center;background:var(--canvas)}
 .success-copy{display:grid;gap:10px;max-width:34rem}
 .success-copy p{font-size:15px;line-height:1.55;color:var(--muted)}
 .success-actions{margin-top:28px}
@@ -431,7 +433,7 @@ dialog.intake{accent-color:var(--wine)}
       <path fill="#FDFCFC" d="M603.209 594.874L603.365 349.346L603.334 280.808C603.326 258.062 599.628 236.849 617.381 219.564C626.18 211.168 637.985 206.669 650.139 207.082C667.651 207.544 685.249 220.193 700.134 228.895L747.404 256.296L817.586 296.93C831.069 304.685 861.605 320.273 871.267 330.688C878.131 338.11 882.454 347.521 883.617 357.561C884.26 362.834 884.064 371.189 884.07 376.656L884.095 407.937V512.639V689.731L884.101 749.314C884.094 758.841 884.352 768.761 884.082 778.264C883.654 793.265 879.778 798.194 870.373 808.267C868.817 808.659 867.875 808.23 866.405 807.673C795.072 780.695 724.51 750.881 653.096 724.191C652.27 716.164 652.735 691.029 652.937 682.113C653.347 664.191 652.178 641.548 653.139 624.202C637.128 614.056 619.242 604.967 603.209 594.874Z"/>
     </g>
     <g class="logo-nib">
-      <path fill="#EC572A" d="M653.139 624.202C675.941 638.395 711.774 670.253 732.843 688.457C767.591 718.289 802.186 748.304 836.629 778.49C841.839 783.064 867.428 803.895 870.373 808.267C868.817 808.659 867.874 808.23 866.405 807.673C795.071 780.695 724.509 750.881 653.096 724.191C652.27 716.164 652.735 691.029 652.937 682.114C653.347 664.191 652.178 641.548 653.139 624.202Z"/>
+      <path fill="#421d24" d="M653.139 624.202C675.941 638.395 711.774 670.253 732.843 688.457C767.591 718.289 802.186 748.304 836.629 778.49C841.839 783.064 867.428 803.895 870.373 808.267C868.817 808.659 867.874 808.23 866.405 807.673C795.071 780.695 724.509 750.881 653.096 724.191C652.27 716.164 652.735 691.029 652.937 682.114C653.347 664.191 652.178 641.548 653.139 624.202Z"/>
     </g>
     <g class="logo-plate-a">
       <path fill="#ECE8E3" d="M653.096 724.191L652.986 927.985L653.029 994.848C653.047 1006.79 653.519 1019.54 652.717 1031.37C650.568 1059.83 617.13 1074.47 592.489 1064.32C580.675 1059.46 567.115 1050.54 555.837 1044.02L492.935 1007.76L423.535 967.717C413.352 961.869 395.528 952.324 386.353 945.931C377.115 939.6 370.855 929.779 369.019 918.733C367.495 909.726 368.162 878.278 368.184 867.158L368.199 767.653L368.217 606.13L368.184 555.082C368.176 545.402 368.238 535.707 368.424 526.18C368.969 498.14 400.43 481.714 425.073 491.075C433.218 494.168 446.962 503.196 454.738 507.756L506.997 538.264L571.041 575.712C579.444 580.622 596.099 589.646 603.209 594.874C619.242 604.967 637.127 614.056 653.139 624.202C652.178 641.548 653.347 664.191 652.937 682.114C652.735 691.029 652.27 716.164 653.096 724.191Z"/>
@@ -485,7 +487,7 @@ c-11 0 -21 0 -21 0z"/>
 <!-- 01 · HERO -->
 <section class="hero-stage on-dark" aria-labelledby="hero-title">
   <div class="hero-media" aria-hidden="true">
-    <img src="assets/hero-dusk.png" alt="" width="1024" height="576" fetchpriority="high" decoding="async">
+    <img src="assets/hero-office.png" alt="An accountant's desk in a Dubai office at dusk, with a laptop and ledger in front of the city skyline" width="1024" height="576" fetchpriority="high" decoding="async">
   </div>
   <div class="hero-scrim" aria-hidden="true"></div>
   <div class="wrap">
@@ -581,7 +583,7 @@ c-11 0 -21 0 -21 0z"/>
       <path fill="#FDFCFC" d="M603.209 594.874L603.365 349.346L603.334 280.808C603.326 258.062 599.628 236.849 617.381 219.564C626.18 211.168 637.985 206.669 650.139 207.082C667.651 207.544 685.249 220.193 700.134 228.895L747.404 256.296L817.586 296.93C831.069 304.685 861.605 320.273 871.267 330.688C878.131 338.11 882.454 347.521 883.617 357.561C884.26 362.834 884.064 371.189 884.07 376.656L884.095 407.937V512.639V689.731L884.101 749.314C884.094 758.841 884.352 768.761 884.082 778.264C883.654 793.265 879.778 798.194 870.373 808.267C868.817 808.659 867.875 808.23 866.405 807.673C795.072 780.695 724.51 750.881 653.096 724.191C652.27 716.164 652.735 691.029 652.937 682.113C653.347 664.191 652.178 641.548 653.139 624.202C637.128 614.056 619.242 604.967 603.209 594.874Z"/>
     </g>
     <g class="logo-nib">
-      <path fill="#EC572A" d="M653.139 624.202C675.941 638.395 711.774 670.253 732.843 688.457C767.591 718.289 802.186 748.304 836.629 778.49C841.839 783.064 867.428 803.895 870.373 808.267C868.817 808.659 867.874 808.23 866.405 807.673C795.071 780.695 724.509 750.881 653.096 724.191C652.27 716.164 652.735 691.029 652.937 682.114C653.347 664.191 652.178 641.548 653.139 624.202Z"/>
+      <path fill="#421d24" d="M653.139 624.202C675.941 638.395 711.774 670.253 732.843 688.457C767.591 718.289 802.186 748.304 836.629 778.49C841.839 783.064 867.428 803.895 870.373 808.267C868.817 808.659 867.874 808.23 866.405 807.673C795.071 780.695 724.509 750.881 653.096 724.191C652.27 716.164 652.735 691.029 652.937 682.114C653.347 664.191 652.178 641.548 653.139 624.202Z"/>
     </g>
     <g class="logo-plate-a">
       <path fill="#ECE8E3" d="M653.096 724.191L652.986 927.985L653.029 994.848C653.047 1006.79 653.519 1019.54 652.717 1031.37C650.568 1059.83 617.13 1074.47 592.489 1064.32C580.675 1059.46 567.115 1050.54 555.837 1044.02L492.935 1007.76L423.535 967.717C413.352 961.869 395.528 952.324 386.353 945.931C377.115 939.6 370.855 929.779 369.019 918.733C367.495 909.726 368.162 878.278 368.184 867.158L368.199 767.653L368.217 606.13L368.184 555.082C368.176 545.402 368.238 535.707 368.424 526.18C368.969 498.14 400.43 481.714 425.073 491.075C433.218 494.168 446.962 503.196 454.738 507.756L506.997 538.264L571.041 575.712C579.444 580.622 596.099 589.646 603.209 594.874C619.242 604.967 637.127 614.056 653.139 624.202C652.178 641.548 653.347 664.191 652.937 682.114C652.735 691.029 652.27 716.164 653.096 724.191Z"/>
@@ -806,7 +808,7 @@ c-11 0 -21 0 -21 0z"/>
       <path fill="#FDFCFC" d="M603.209 594.874L603.365 349.346L603.334 280.808C603.326 258.062 599.628 236.849 617.381 219.564C626.18 211.168 637.985 206.669 650.139 207.082C667.651 207.544 685.249 220.193 700.134 228.895L747.404 256.296L817.586 296.93C831.069 304.685 861.605 320.273 871.267 330.688C878.131 338.11 882.454 347.521 883.617 357.561C884.26 362.834 884.064 371.189 884.07 376.656L884.095 407.937V512.639V689.731L884.101 749.314C884.094 758.841 884.352 768.761 884.082 778.264C883.654 793.265 879.778 798.194 870.373 808.267C868.817 808.659 867.875 808.23 866.405 807.673C795.072 780.695 724.51 750.881 653.096 724.191C652.27 716.164 652.735 691.029 652.937 682.113C653.347 664.191 652.178 641.548 653.139 624.202C637.128 614.056 619.242 604.967 603.209 594.874Z"/>
     </g>
     <g class="logo-nib">
-      <path fill="#EC572A" d="M653.139 624.202C675.941 638.395 711.774 670.253 732.843 688.457C767.591 718.289 802.186 748.304 836.629 778.49C841.839 783.064 867.428 803.895 870.373 808.267C868.817 808.659 867.874 808.23 866.405 807.673C795.071 780.695 724.509 750.881 653.096 724.191C652.27 716.164 652.735 691.029 652.937 682.114C653.347 664.191 652.178 641.548 653.139 624.202Z"/>
+      <path fill="#421d24" d="M653.139 624.202C675.941 638.395 711.774 670.253 732.843 688.457C767.591 718.289 802.186 748.304 836.629 778.49C841.839 783.064 867.428 803.895 870.373 808.267C868.817 808.659 867.874 808.23 866.405 807.673C795.071 780.695 724.509 750.881 653.096 724.191C652.27 716.164 652.735 691.029 652.937 682.114C653.347 664.191 652.178 641.548 653.139 624.202Z"/>
     </g>
     <g class="logo-plate-a">
       <path fill="#ECE8E3" d="M653.096 724.191L652.986 927.985L653.029 994.848C653.047 1006.79 653.519 1019.54 652.717 1031.37C650.568 1059.83 617.13 1074.47 592.489 1064.32C580.675 1059.46 567.115 1050.54 555.837 1044.02L492.935 1007.76L423.535 967.717C413.352 961.869 395.528 952.324 386.353 945.931C377.115 939.6 370.855 929.779 369.019 918.733C367.495 909.726 368.162 878.278 368.184 867.158L368.199 767.653L368.217 606.13L368.184 555.082C368.176 545.402 368.238 535.707 368.424 526.18C368.969 498.14 400.43 481.714 425.073 491.075C433.218 494.168 446.962 503.196 454.738 507.756L506.997 538.264L571.041 575.712C579.444 580.622 596.099 589.646 603.209 594.874C619.242 604.967 637.127 614.056 653.139 624.202C652.178 641.548 653.347 664.191 652.937 682.114C652.735 691.029 652.27 716.164 653.096 724.191Z"/>

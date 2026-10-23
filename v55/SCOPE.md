@@ -4,11 +4,12 @@ V55 is a visual restyle of V54 in the Superhuman reference style. V1–V54 and t
 
 ## Visual change
 
-- Hero: the Unicorn Studio script and `data-us-project-src` layer are removed. The hero is now `assets/hero-dusk.png` full-bleed with a violet/blue dusk scrim. It has a centered white headline at weight 460, a midnight wine (`#421d24`) "Book a demo" pill, and glass cards (`rgba(255,255,255,.14)`, blur 12px, 16px radius, no shadow) built from the existing July-close chat lines.
+- Hero: the Unicorn Studio script and `data-us-project-src` layer are removed. The hero is now `assets/hero-office.png` (an accountant's desk in a Dubai office at dusk) full-bleed with a neutral ink scrim. It has a centered white headline at weight 460, a midnight wine (`#421d24`) "Book a demo" pill, and glass cards (`rgba(255,255,255,.14)`, blur 12px, 16px radius, no shadow) built from the existing July-close chat lines.
 - Announcement bar in midnight wine above the nav: "Accounting for SMEs · Dubai, UAE", with a ghost "See how we work" link to `#review`.
 - Nav: transparent with light type over the photo. On scroll it turns parchment with `backdrop-filter: blur(12px)` and a 1px `#e3e3e2` border.
 - Canvas is Warm Parchment `#f2f0eb`. Cards are white with a 1px `#e3e3e2` border, 16px radius and no shadow. Text is `#292827`, secondary text `#666666`.
-- "Why Bandly" is the only Deep Lagoon (`#0c4243`) band. The footer is midnight wine. Lilac `#d4c7ff` is used only for secondary chips and ghost surfaces. Royal Violet `#714cb6` is used for link hover and the 2px `:focus-visible` ring.
+- "Why Bandly" is the only Deep Lagoon (`#0c4243`) band. The footer is midnight wine. There is one accent: cherry, used as midnight wine `#421d24`. It covers primary fills, link hover, selection, the "your message" chat bubbles and wait pills. Secondary controls and chips are ink on parchment, or white with a `#e3e3e2` hairline. The `:focus-visible` ring is 2px wine on parchment and white on wine or dark fills. Violet and lilac are removed. The logo nib is recolored from ember `#EC572A` to `#421d24`; the mark itself is not redrawn.
+- Workspace tabs: any `.app-pane[hidden]` is `display:none`, so only the selected pane shows. Before this fix the chat pane stayed visible behind the other tabs.
 - One type family: Inter variable from Google Fonts (`opsz,wght`). Instrument Serif and JetBrains Mono are no longer loaded. Headlines use weight 460 with negative tracking. Stats and the calculator use tabular figures.
 - Added a skip link, a `<main>` landmark, 1px `oklch(0 0 0 / 0.1)` outlines on photos, and `scale(.96)` on button press. Text inputs are 16px.
 
